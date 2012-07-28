@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2008-05-09
+name BookPageLegalNotice Plugin
+desc To specify legal notice to display on each page of the book
+url http://jelix.org

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project xmlns="http://jelix.org/ns/project/1.0">
+    <info id="portail@jelix.org" name="portail">
+        <version>1.2</version>
+        <label lang="en_US">Jelix.org</label>
+        <description lang="en_US">Main web site of Jelix.org</description>
+        <copyright>2005-2012 Laurent Jouanneau and other contributors</copyright>
+        <creator name="Laurent Jouanneau" email="laurent@jelix.org" active="true"/>
+        <homepageURL>http://jelix.org</homepageURL>
+    </info>
+    <dependencies>
+         <jelix minversion="1.1.0" maxversion="1.2.*"/>
+    </dependencies>
+    <directories>
+        <config>var/config</config>
+        <log>var/log</log>
+        <var>var</var>
+        <www>../www</www>
+        <temp>../temp/portail</temp>
+    </directories>
+    <entrypoints>
+        <entry file="index.php" config="index/config.ini.php"/>
+        <entry file="en.php" config="en/config.ini.php"/>
+        <entry file="fr.php" config="fr/config.ini.php"/>
+        <entry file="forums.php" config="havefnubb/config.ini.php"/>
+        <entry file="portal.php" config="cmdline/config.ini.php"/>
+    </entrypoints>
+</project>

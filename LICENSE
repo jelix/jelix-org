@@ -1,0 +1,12 @@
+
+
+
+All files are released under the GNU General Public Licence, except some external
+libraries that are released under the GNU Lesser General Public Licence.
+
+- lib/
+- planet/magpierss
+
+
+See http://www.gnu.org/licenses/gpl.html and http://www.gnu.org/licenses/lgpl.html
+

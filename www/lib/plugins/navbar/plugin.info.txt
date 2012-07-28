@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2008-05-09
+name Navbar Plugin
+desc Displays a navigation bar
+url http://jelix.org

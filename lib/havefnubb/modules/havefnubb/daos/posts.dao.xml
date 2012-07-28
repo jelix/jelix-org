@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dao xmlns="http://jelix.org/ns/dao/1.0">
+    <datasources>
+        <primarytable name="posts" realname="hfnu_posts"  primarykey="id_post" />
+        <optionalforeigntable name="usr"   realname="community_users" primarykey="id"  onforeignkey="id_user" />
+        <optionalforeigntable name="forum" realname="hfnu_forum"  primarykey="id_forum" onforeignkey="id_forum" />
+    </datasources>
+    <record>
+        <property name="id_post"    fieldname="id_post"     datatype="autoincrement"/>
+        <property name="id_user"    fieldname="id_user"     datatype="int" required="true"/>
+        <property name="id_forum"   fieldname="id_forum"    datatype="int" required="true"/>
+        <property name="thread_id"  fieldname="thread_id"   datatype="int" required="true"/>
+        <property name="status"     fieldname="status"      datatype="int" required="true"/>
+        <property name="ispined"    fieldname="ispined"     datatype="int"/>
+        <property name="iscensored" fieldname="iscensored"  datatype="int" />
+
+        <!--
+        status :
+                1 - pined
+                2 - pinedclosed
+                3 - opened
+                4 - closed
+                5 - censored
+                6 - uncensored
+                7 - hidden
+        -->
+        <property name="subject"        fieldname="subject"       datatype="string" required="true" maxlength="255"/>
+        <property name="message"        fieldname="message"       datatype="text" required="true"/>
+        <property name="date_created"   fieldname="date_created"  datatype="int" required="true"/>
+        <property name="date_modified"  fieldname="date_modified" datatype="int" required="true"/>
+        <property name="viewed"         fieldname="viewed"        datatype="int" required="true"/>
+        <property name="poster_ip"      fieldname="poster_ip"     datatype="string" required="true"/>
+        <property name="censored_msg"   fieldname="censored_msg"  datatype="string" required="false" maxlength="50"/>
+        <property name="read_by_mod"    fieldname="read_by_mod"   datatype="int" required="false" maxlength="1"/>
+        <property name="censored_by"    fieldname="censored_by"   datatype="int"/>
+
+        <!-- properties from community_users table -->
+        <property name="id"             fieldname="id" table="usr" datatype="int"/>
+        <property name="email"          fieldname="email"   table="usr" datatype="string" maxlength="255" />
+        <property name="login"          fieldname="login"   table="usr" required="yes" datatype="string"  maxlength="50" />
+        <property name="nickname"       fieldname="nickname" table="usr" datatype="string" required="yes" maxlength="50" />
+        <property name="member_comment" fieldname="comment" table="usr" datatype="string" maxlength="255"/>
+        <property name="member_town"    fieldname="town"    table="usr" datatype="string" maxlength="100"/>
+        <property name="member_avatar"  fieldname="avatar"  table="usr" datatype="string" maxlength="255"/>
+        <property name="member_website" fieldname="website" table="usr" datatype="string" maxlength="255"/>
+        <property name="nb_msg"         fieldname="nb_msg"  table="usr" datatype="integer" />
+        <property name="member_last_post"    fieldname="last_post"    table="usr" datatype="integer" />
+
+        <!-- properties from forum table -->
+        <property name="forum_parent_id" fieldname="parent_id" table="forum" datatype="int" required="true"/>
+        <property name="forum_name"      fieldname="forum_name" table="forum" datatype="int" required="true"/>
+        <property name="id_last_msg"     fieldname="id_last_msg" table="forum" datatype="int"/>
+    </record>
+
+    <!-- naming convention :
+        findXXX uses type="select"
+        getXXX uses type="selectfirst"
+        countXXX uses type="count"
+    -->
+    <factory>
+        <method name="findAllExceptOneToSplitAndLink" type="select">
+            <parameter name="thread_id" />
+            <parameter name="id_forum" />
+            <conditions>
+                <neq property="thread_id" expr="$thread_id" />
+                <eq property="id_forum" expr="$id_forum" />
+            </conditions>
+            <order>
+                <orderitem property="date_modified" way="desc" />
+            </order>
+        </method>
+        <!-- get the posts to be displayed on the index of the forum page -->
+        <method name="findByThreadId" type="select">
+            <parameter name="thread_id" />
+            <parameter name="offset" default="0" />
+            <parameter name="count" default="200" />
+            <conditions>
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+            <order>
+                <orderitem property="thread_id" way="desc" />
+                <orderitem property="id_post" way="asc" />
+            </order>
+            <limit offset="$offset" count="$count"/>
+        </method>
+        <method name="findAllPostByThreadId" type="select">
+            <parameter name="thread_id" />
+            <conditions>
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+            <order>
+                <orderitem property="date_created" way="asc" />
+            </order>
+        </method>
+        <method name="findByAuthor" type="select">
+            <parameter name="login"/>
+            <parameter name="limit" default="0" />
+            <parameter name="count" default="25" />
+            <conditions>
+                <eq property="login" expr="$login" />
+            </conditions>
+            <order>
+                <orderitem property="date_modified" way="desc" />
+            </order>
+            <limit offset="$limit" count="$count"/>
+        </method>
+        <!--
+                this method permits to find all the post id to move
+             from the current post with the same thread_id
+        -->
+        <method name="findAllFromCurrentIdPostWithThreadId" type="select">
+            <parameter name="thread_id"/>
+            <parameter name="id_post"/>
+           <conditions>
+                <gteq property="id_post" expr="$id_post" />
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+            <order>
+                <orderitem property="id_post" way="asc" />
+            </order>
+        </method>
+
+        <method name="findUnreadThreadByMod" type="select" distinct="true" groupby="thread_id">
+            <conditions>
+                <eq property="read_by_mod" value="0" />
+            </conditions>
+            <order>
+                <orderitem property="date_modified" way="desc" />
+            </order>
+        </method>
+
+        <!-- countXXX -->
+        <method name="countAllByIdForum" type="count">
+            <parameter name="id_forum" />
+            <conditions>
+                <eq property="id_forum" expr="$id_forum" />
+            </conditions>
+        </method>
+        <method name="countAllByIdForumVisible" type="count">
+            <parameter name="id_forum" />
+            <conditions logic="AND">
+                <eq property="id_forum" expr="$id_forum" />
+                <neq property="status" value="7" />
+            </conditions>
+        </method>
+        <method name="countMsgsByIdUser" type="count">
+            <parameter name="id_user" />
+            <conditions>
+                <eq property="id_user" expr="$id_user" />
+            </conditions>
+        </method>
+        <!-- getXXX -->
+        <method name="getUserLastCommentOnPosts" type="selectfirst">
+            <parameter name="id_post" />
+            <conditions>
+                <eq property="thread_id" expr="$id_post" />
+            </conditions>
+            <order>
+                <orderitem property="date_created" way="desc" />
+            </order>
+        </method>
+        <method name="getUserLastVisibleCommentOnPosts" type="selectfirst">
+            <parameter name="id_post" />
+            <conditions>
+                <eq property="thread_id" expr="$id_post" />
+                <neq property="status" value="hidden" />
+            </conditions>
+            <order>
+                <orderitem property="date_created" way="desc" />
+            </order>
+        </method>
+        <method name="getUserLastCommentOnForums" type="selectfirst">
+            <parameter name="id_forum" />
+            <conditions>
+                <eq property="id_forum" expr="$id_forum" />
+            </conditions>
+            <order>
+                <orderitem property="date_created" way="desc" />
+            </order>
+        </method>
+        <method name="getUserLastVisibleCommentOnForums" type="selectfirst">
+            <parameter name="id_forum" />
+            <conditions>
+                <eq property="id_forum" expr="$id_forum" />
+                <neq property="status" value="hidden" />
+            </conditions>
+            <order>
+                <orderitem property="date_created" way="desc" />
+            </order>
+        </method>
+        <method name="getPostVisible" type="selectfirst">
+            <parameter name="id_post" />
+            <conditions>
+                <eq property="id_post" expr="$id_post" />
+                <neq property="status" value="7" />
+            </conditions>
+        </method>
+       <!-- for stats purpose -->
+        <method name="getLastPost" type="selectfirst">
+            <order>
+                <orderitem property="date_modified" way="desc" />
+            </order>
+        </method>
+        <method name="getLastCreatedPostByThreadId" type="selectfirst">
+            <parameter name="thread_id" />
+           <conditions>
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+            <order>
+                <orderitem property="date_created" way="desc" />
+            </order>
+        </method>
+        <method name="getMyLastEditedPost" type="selectfirst">
+            <parameter name="id_user" />
+           <conditions>
+                <eq property="id_user" expr="$id_user" />
+            </conditions>
+            <order>
+                <orderitem property="date_modified" way="desc" />
+            </order>
+        </method>
+        <method name="getByIdAndIdTread" type="selectfirst">
+           <parameter name="id_post" />
+           <parameter name="thread_id" />
+           <conditions>
+                <eq property="id_post" expr="$id_post" />
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+        </method>
+
+        <!-- all update statement -->
+        <method name="updateStatusByThreadId" type="update">
+            <parameter name="thread_id"/>
+            <parameter name="status"/>
+           <conditions>
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+            <values>
+                <value property="status" expr="$status" />
+            </values>
+        </method>
+        <method name="moveToForum" type="update">
+            <parameter name="thread_id"/>
+            <parameter name="id_forum"/>
+           <conditions>
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+            <values>
+                <value property="id_forum" expr="$id_forum" />
+            </values>
+        </method>
+        <method name="deleteAllFromCurrentIdPostWithThreadId" type="delete">
+            <parameter name="thread_id"/>
+            <parameter name="id_post"/>
+           <conditions>
+                <gteq property="id_post" expr="$id_post" />
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+            <order>
+                <orderitem property="id_post" way="asc" />
+            </order>
+        </method>
+        <method name="updateStatusById" type="update">
+            <parameter name="id_post"/>
+            <parameter name="status"/>
+           <conditions>
+                <eq property="id_post" expr="$id_post" />
+            </conditions>
+            <values>
+                <value property="status" expr="$status" />
+            </values>
+        </method>
+        <method name="censorIt" type="update">
+        <parameter name="id_post"/>
+            <parameter name="censored_msg"/>
+            <parameter name="censored_by"/>
+           <conditions>
+                <eq property="id_post" expr="$id_post" />
+            </conditions>
+            <values>
+                <value property="censored_msg" expr="$censored_msg" />
+                <value property="status"       expr="5" />
+                <value property="censored_by"  expr="$censored_by"/>
+            </values>
+        </method>
+        <method name="unCensorIt" type="update">
+        <parameter name="id_post"/>
+           <conditions>
+                <eq property="id_post" expr="$id_post" />
+            </conditions>
+            <values>
+                <value property="censored_msg" expr="" />
+                <value property="censored_by"  expr="NULL" />
+                <value property="status"       expr="3" />
+            </values>
+        </method>
+        <method name="updateReadByMod" type="update">
+            <parameter name="thread_id"/>
+           <conditions>
+                <eq property="thread_id" expr="$thread_id" />
+                <eq property="read_by_mod" value="0" />
+            </conditions>
+            <values>
+                <value property="read_by_mod" value="1" />
+            </values>
+        </method>
+        <method name="deleteSonsPost" type="delete">
+            <parameter name="thread_id"/>
+           <conditions>
+                <eq property="thread_id" expr="$thread_id" />
+            </conditions>
+        </method>
+
+
+    </factory>
+</dao>

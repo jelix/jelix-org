@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2008-05-09
+name BookContents Plugin
+desc Management of contents for a book
+url http://jelix;org

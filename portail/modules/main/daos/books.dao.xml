@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dao xmlns="http://jelix.org/ns/dao/1.0">
+    <datasources>
+        <primarytable name="books" realname="books" primarykey="book_id" />
+    </datasources>
+    <record>
+        <property name="book_id" fieldname="book_id" datatype="string" required="true" maxlength="100"/>
+        <property name="title" fieldname="title" datatype="string" required="true" maxlength="255"/>
+        <property name="subtitle" fieldname="subtitle" datatype="string" required="true" maxlength="255"/>
+        <property name="title_short" fieldname="title_short" datatype="string" required="true" maxlength="255"/>
+        <property name="edition" fieldname="edition" datatype="string" required="true" maxlength="255"/>
+        <property name="authors" fieldname="authors" datatype="text" required="true"/>
+        <property name="copyright_years" fieldname="copyright_years" datatype="string" required="true" maxlength="255"/>
+        <property name="copyright_holders" fieldname="copyright_holders" datatype="text" required="true"/>
+        <property name="hierarchy" fieldname="hierarchy" datatype="text" default=""/>
+        <property name="legalnotice" fieldname="legalnotice" datatype="text" default=""/>
+        <property name="legalnoticehtml" fieldname="legalnoticehtml" datatype="text" default=""/>
+        <property name="pagelegalnoticehtml" fieldname="pagelegalnoticehtml" datatype="text" default=""/>
+
+
+    <!--<property name="" fieldname="" datatype="string/int/float/autoincrement/date"
+        required="yes"
+        maxlength="" minlength="" regexp=""
+        sequence=""
+        updatepattern="" insertpattern="" selectpattern=""
+    />-->
+    </record>
+    <!--<factory>
+        <method name="findByStage" type="select/selectfirst/delete/update/php">
+            <parameter name="" />
+            <values>
+                <value property="" value="" />
+            </values>
+            <conditions logic="and/or">
+                <eq property="" value="" />
+            </conditions>
+            <order>
+                <orderitem property="" way="asc/desc" />
+            </order>
+            <limit offset="" count=""/>
+            <body><![CDATA[
+            ]]></body>
+        </method>
+    </factory>-->
+</dao>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dao xmlns="http://jelix.org/ns/dao/1.0">
+    <datasources>
+        <primarytable name="threads" realname="hfnu_threads"  primarykey="id_thread" />
+    </datasources>
+    <record>
+        <property name="id_thread"     fieldname="id_thread" datatype="autoincrement"/>
+        <property name="id_user_thread" fieldname="id_user" datatype="int" required="true"/>
+        <property name="id_forum_thread" fieldname="id_forum" datatype="int" required="true"/>
+        <property name="status_thread" fieldname="status"  datatype="int" required="true"/>
+        <property name="nb_viewed"     fieldname="nb_viewed"  datatype="int" required="true"/>
+        <property name="nb_replies"    fieldname="nb_replies"  datatype="int" required="true"/>
+        <property name="id_first_msg"  fieldname="id_first_msg"  datatype="int" required="true"/>
+        <property name="id_last_msg"   fieldname="id_last_msg"  datatype="int" required="true"/>
+        <property name="date_created"  fieldname="date_created" datatype="int" required="true"/>
+        <property name="date_last_post" fieldname="date_last_post" datatype="int" />
+        <property name="ispined_thread"       fieldname="ispined"  datatype="int" required="true"/>
+        <property name="iscensored_thread"    fieldname="iscensored"  datatype="int" required="true"/>
+        <property name="status"    fieldname="status"  datatype="int" required="true"/>
+    </record>
+        <!--
+        status :
+                1 - pined
+                2 - pinedclosed
+                3 - opened
+                4 - closed
+                5 - censored
+                6 - uncensored
+                7 - hidden
+        -->
+    <factory>
+       <!-- for stats purpose -->
+        <method name="countAllThreads" type="count">
+        </method>
+
+        <method name="countThreadsByIdForum" type="count">
+            <parameter name="id_forum" />
+            <conditions>
+                <eq property="id_forum_thread" expr="$id_forum" />
+            </conditions>
+        </method>
+        <method name="countVisibleThreadsByIdForum" type="count">
+            <parameter name="id_forum" />
+            <conditions>
+                <eq property="id_forum_thread" expr="$id_forum" />
+                <neq property="status" value="7"/>
+            </conditions>
+        </method>
+        <method name="countUnreadThread" type="count">
+            <parameter name="date" />
+            <conditions>
+                <gt property="date_last_post" expr="$date" />
+            </conditions>
+        </method>
+        <method name="countMessagesByIdForum" type="php">
+            <parameter name="id_forum" />
+            <body>
+<![CDATA[
+    $query = 'SELECT SUM(nb_replies) AS nb_replies, COUNT(nb_replies) AS total_replies '.$this->_fromClause.$this->_whereClause;
+    $query .= ($this->_whereClause == ''?' WHERE ':' AND ');
+    $query .= ' id_forum = '. $this->_prepareValue($id_forum,'integer');
+
+    $rs = $this->_conn->query($query);
+    $rs->setFetchMode(8,$this->_DaoRecordClassName);
+    $record = $rs->fetch();
+
+    return $record;
+]]>
+            </body>
+        </method>
+        <method name="countVisibleMessagesByIdForum" type="php">
+            <parameter name="id_forum" />
+            <body>
+<![CDATA[
+    $query = 'SELECT SUM(nb_replies) AS nb_replies, COUNT(nb_replies) AS total_replies '.$this->_fromClause.$this->_whereClause;
+    $query .= ($this->_whereClause == ''?' WHERE ':' AND ');
+    $query .= ' id_forum = '. $this->_prepareValue($id_forum,'integer');
+    $query .= ' AND status <> \'7\'';
+
+    $rs = $this->_conn->query($query);
+    $rs->setFetchMode(8,$this->_DaoRecordClassName);
+    $record = $rs->fetch();
+
+    return $record;
+]]>
+            </body>
+        </method>
+        <method name="countAllPosts" type="php">
+            <body>
+<![CDATA[
+    $query = 'SELECT SUM(nb_replies) AS nb_replies, COUNT(nb_replies) AS total_replies '.$this->_fromClause.$this->_whereClause;
+    $rs = $this->_conn->query($query);
+    $rs->setFetchMode(8,$this->_DaoRecordClassName);
+    $record = $rs->fetch();
+
+    return $record;
+]]>
+            </body>
+        </method>
+        <method name="getFirstIdPost" type="selectfirst">
+            <parameter name="id_first_msg" />
+            <conditions>
+                <eq property="id_first_msg" expr="$id_first_msg" />
+            </conditions>
+        </method>
+        <method name="getLastThreadByIdForum" type="selectfirst">
+            <parameter name="id_forum" />
+            <conditions>
+                <eq property="id_forum_thread" expr="$id_first_msg" />
+            </conditions>
+            <order>
+                <orderitem property="date_last_post" way="desc" />
+            </order>
+        </method>
+        <method name="getLastVisibleThreadByIdForum" type="selectfirst">
+            <parameter name="id_forum" />
+            <conditions logic="AND">
+                <eq property="id_forum_thread" expr="$id_forum" />
+                <neq property="status_thread" value="7"/>
+            </conditions>
+            <order>
+                <orderitem property="date_last_post" way="desc" />
+            </order>
+        </method>
+    </factory>
+</dao>

@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2011-01-27
+name Freenode
+desc Freenode Plugin
+url http://jelix.org

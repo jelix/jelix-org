@@ -1,0 +1,28 @@
+Instructions to install all jelix sites
+=======================================
+
+- copy the scripts/scripts.config.sh.dist to scripts/scripts.config.sh
+- edit the file scripts/scripts.config.sh, and set all config parameters
+
+- you can use all scripts/install/apache/*.conf files for your locale apache configuration
+  perhaps you will have some propertie to change in it.
+  You may add some variables in the envvars apache conf file.
+
+- retrieve backup files (ask to the project leader). Then launch the restore_backup by indicating
+  the path of the directory where backup files are stored:
+  
+  scripts/restore_backup.sh path/to/backup/dir
+
+- You should then put rights for the apache user on some directories. Run this script:
+  
+  sudo scripts/change_rights.sh www-data
+  
+  where www-data is the apache user. Indicate an other name if needed.
+
+- setup mailer configuration in:
+
+  portal/var/config/defaultconfig.ini.php
+
+- install cron scripts stored in scripts/cronscript
+
+- restart apache

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="http://jelix.org/ns/module/1.0">
+    <info id="servinfo@havefnubb.org" name="servinfo" createdate="2009-02-06">
+        <version date="2010-11-03">1.4b1.1</version>
+        <label lang="en_EN">ServInfo</label>
+        <description lang="en_EN">Display any data about the current server on which the module runs</description>
+        <label lang="fr_FR">ServInfo</label>
+        <description lang="fr_FR">Affichage des données propres au serveur où fonctionne ce module</description>
+        <license URL="http://www.gnu.org/licenses/gpl.html">GNU Lesser General Public Licence, see LICENCE file</license>
+        <copyright>2008-2011 FoxMaSk</copyright>
+        <creator name="FoxMaSk" email="foxmask@havefnubb.org" active="true"/>
+        <homepageURL>http://www.havefnubb.org/</homepageURL>
+        <updateURL>http://www.havefnubb.org/update.php?module=servinfo</updateURL>
+    </info>
+    <dependencies>
+        <jelix minversion="1.1.5" maxversion="1.2.*"/>
+        <module name="jacl2db" />
+    </dependencies>
+</module>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<dao xmlns="http://jelix.org/ns/dao/1.0">
+    <datasources>
+        <primarytable name="news" realname="news" primarykey="news_id" />
+    </datasources>
+    <record>
+
+    <property name="news_id" fieldname="news_id" datatype="autoincrement"/>
+    <property name="title" fieldname="title" datatype="string" required="yes"/>
+    <property name="url" fieldname="url" datatype="string" required="yes"/>
+    <property name="abstract" fieldname="abstract" datatype="string"/>
+    <property name="content" fieldname="content" datatype="string" required="yes"/>
+    <property name="date_create" fieldname="date_create" datatype="date" required="yes"/>
+    <property name="lang" fieldname="lang" datatype="string" required="yes"/>
+    <property name="author" fieldname="author" datatype="string"/>
+
+    <!--<property name="" fieldname="" datatype="string/int/float/autoincrement/date"
+        required="yes"
+        maxlength="" minlength="" regexp=""
+        sequence=""
+        updatemotif="" insertmotif="" selectmotif=""
+    />-->
+    </record>
+    <factory>
+        <method name="getFirstByLang" type="selectfirst">
+            <parameter name="lang" />
+            <conditions logic="and">
+                <eq property="lang" expr="$lang" />
+            </conditions>
+            <order>
+                <orderitem property="date_create" way="DESC" />
+            </order>
+        </method>
+        <method name="findAllByLang" type="select">
+            <parameter name="lang" />
+            <conditions logic="and">
+                <eq property="lang" expr="$lang" />
+            </conditions>
+            <order>
+                <orderitem property="date_create" way="DESC" />
+            </order>
+        </method>
+        <method name="getByUrlId" type="selectfirst">
+            <parameter name="url" />
+            <conditions>
+                <eq property="url" expr="$url" />
+            </conditions>
+        </method>
+     </factory>
+</dao>

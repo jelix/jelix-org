@@ -1,0 +1,4 @@
+fr:manuel-1.0  //fr/manuel-1.0
+fr:manuel-1.1  //fr/manuel-1.1
+fr:manuel-1.2  //fr/manuel-1.2
+fr:manuel-1.3  //fr/manuel-1.3

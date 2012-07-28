@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2008-12-16
+name InlineCode Plugin
+desc To specify code inside a paragraph. Syntax is @@some code@@.
+url http://jelix.org

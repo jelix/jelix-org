@@ -1,0 +1,74 @@
+#!/bin/bash
+
+BRANCH=$1
+TAG=$2
+VER=$3
+
+HELP="help: build_release_pack  the_branch_version  the_git_tag the_version_name"
+HELP2="  ex: build_release_pack 1.4.x RELEASE_JELIX_1_4_0  1.4.0 "
+
+if [ "$BRANCH" == "--help" ]; then
+    echo $HELP
+    echo $HELP2
+    exit 1
+fi
+
+if [ "$BRANCH" == "" ]; then
+    echo "Error: branch version is missing"
+    echo $HELP
+    echo $HELP2
+    exit 0
+fi
+
+if [ "$TAG" == "" ]; then
+    echo "Error: tag name is missing"
+    echo $HELP
+    echo $HELP2
+    exit 0
+fi
+
+
+if [ "$VER" == "" ]; then
+    echo "Error: version is missing"
+    echo $HELP
+    echo $HELP2
+    exit 0
+fi
+
+source $(dirname $0)/scripts.config.sh
+
+echo "update sources..."
+
+cd $BUILD_GIT_DIR
+
+git checkout jelix-$BRANCH
+git pull --tags origin jelix-$BRANCH
+git checkout refs/tags/$TAG
+
+echo "build packages..."
+
+if [ -d $BUILD_GIT_DIR/_dist ]; then
+   rm -rf $BUILD_GIT_DIR/_dist
+fi
+
+/usr/bin/php build/buildjelix.php build/config/jelix-dist-dev.ini
+/usr/bin/php build/buildjelix.php build/config/jelix-dist-opt.ini
+/usr/bin/php build/buildjelix.php build/config/jelix-dist-gold.ini
+/usr/bin/php build/buildapp.php   build/config/testapp-dist.ini
+/usr/bin/php build/buildfonts.php build/config/jelix-fonts-dist.ini
+
+cd _dist/
+
+DISTDIR=$DIR_JELIX_SITES/download/www/jelix/releases/$BRANCH/$VER/
+
+if [ ! -d $DISTDIR ]; then
+  mkdir -p $DISTDIR
+fi
+
+echo "copy packages on download.j.o..."
+
+cp -a *.gz $DISTDIR
+cp -a *.zip $DISTDIR
+
+echo "end."
+

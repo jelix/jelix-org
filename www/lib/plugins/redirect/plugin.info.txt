@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2008-06-01
+name Redirect Plugin
+desc 
+url http://jelix.org

@@ -1,0 +1,49 @@
+#!/bin/bash
+
+MLANG=$1
+MID=$2
+MVERSION=$3
+
+
+if [ "$MLANG" == "" ]; then
+    echo "Error: the lang, page id and full version parameters are missing"
+    exit 0
+fi
+
+if [ "$MLANG" != "en" -a "$MLANG" != "fr" ]; then
+    echo "Error: bad lang value. Possible values are: en, fr "
+    exit 0
+fi
+
+if [ "$MID" == "" ]; then
+    echo "Error: the page id and the version parameters are missing"
+    exit 0
+fi
+
+if [ "$MVERSION" == "" ]; then
+    echo "Error: the version parameter is missing"
+    exit 0
+fi
+
+if [ "$MLANG" == "en" ]; then
+  MLANGCODE="en_EN"
+  MFILE="manual-jelix-$MVERSION"
+fi
+
+if [ "$MLANG" == "fr" ]; then  
+  MLANGCODE="fr_FR"
+  MFILE="manuel-jelix-$MVERSION"
+fi
+
+source $(dirname $0)/scripts.config.sh
+
+
+cd $DIR_JELIX_SITES/portail/scripts/
+echo "lang:$MLANGCODE   id:$MID   file:$MFILE.xml"
+php portal.php docbook:index -lang $MLANGCODE $MID $MFILE.xml 2>&1 \
+ && cd $DIR_JELIX_SITES/portail/var/books \
+ && dblatex -V -p $DIR_JELIX_SITES/install/docbuilder/jelixdoc_params.xsl --texstyle=$DIR_JELIX_SITES/install/docbuilder/jelixdoc_$MLANG.sty $MFILE.xml 2>&1 \
+ && mv $MFILE.pdf $DIR_JELIX_SITES/download/www/jelix/documentation/$MLANG/$MFILE.pdf \
+ && mv $MFILE.xml $DIR_JELIX_SITES/download/www/jelix/documentation/$MLANG/$MFILE.xml
+
+cd $DIR_JELIX_SITES/download/www/jelix/documentation/$MLANG/

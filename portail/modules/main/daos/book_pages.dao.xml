@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dao xmlns="http://jelix.org/ns/dao/1.0">
+    <datasources>
+        <primarytable name="book_pages" realname="book_pages" primarykey="book_page_id" />
+    </datasources>
+    <record>
+
+        <property name="id" fieldname="book_page_id" datatype="string" required="true" maxlength="100"/>
+        <property name="book_id" fieldname="book_id" datatype="string" required="true" maxlength="100"/>
+        <property name="title" fieldname="title" datatype="string" required="true" maxlength="255"/>
+        <property name="contents_order" fieldname="contents_order" datatype="int" required="true" default="0"/>
+        <property name="type" fieldname="type" datatype="string" required="true"/>
+        <property name="parent" fieldname="parent" datatype="string" default="" maxlength="100"/>
+        <property name="next" fieldname="next" datatype="string" default="" maxlength="100"/>
+        <property name="prev" fieldname="prev" datatype="string" default="" maxlength="100"/>
+        <property name="path" fieldname="path" datatype="text" default=""/>
+
+
+    <!--<property name="" fieldname="" datatype="string/int/float/autoincrement/date"
+        required="yes"
+        maxlength="" minlength="" regexp=""
+        sequence=""
+        updatepattern="" insertpattern="" selectpattern=""
+    />-->
+    </record>
+    <factory>
+        <method name="findByBook" type="select">
+            <parameter name="book_id" />
+            <conditions>
+                <eq property="book_id" expr="$book_id" />
+            </conditions>
+        </method>
+    </factory>
+</dao>

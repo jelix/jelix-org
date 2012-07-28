@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<module xmlns="http://jelix.org/ns/module/1.0">
+    <info id="main@www.jelix.org" name="main">
+        <version stability="stable">1.0</version>
+        <label lang="en_US">Main module</label>
+        <description lang="en_US">main module of www.jelix.org</description>
+        <license URL="http://www.gnu.org/licenses/gpl.html">GNU General Public Licence</license>
+        <copyright>2006-2012 Laurent Jouanneau</copyright>
+        <creator name="Laurent Jouanneau" email="laurent@jelix.org" active="true"/>
+        <homepageURL>http://jelix.org</homepageURL>
+    </info>
+    <dependencies>
+        <jelix minversion="1.2.2pre.1777" maxversion="1.2.*"/>
+    </dependencies>
+</module>

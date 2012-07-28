@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2008-12-28
+name Language Plugin
+desc 
+url http://jelix.org

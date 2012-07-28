@@ -1,0 +1,15 @@
+;<?php die(''); ?>
+;for security reasons, don't remove or modify the first line
+
+default = portail
+
+[portail]
+
+driver="mysql"
+database = "root"
+host = "localhost"
+user = ""
+password = ""
+persistent = on
+force_encoding=on
+table_prefix=

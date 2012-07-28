@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2008-05-09
+name NotInBook Plugin
+desc To specify contents which should not include in the book
+url http://jelix.org
