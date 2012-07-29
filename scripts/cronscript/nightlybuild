@@ -3,364 +3,91 @@
 source $(dirname $0)/../scripts.config.sh
 FORCE=$1
 
+buildbranch()
+{
+    echo "building $BRANCH branch..."
+    echo "==========================================="
+    rm -rf $BUILD_DIR/dist/*
 
-echo "building trunk..."
-echo "==========================================="
+    cd $BUILD_GIT_DIR/jelix
+    git checkout $BRANCH
+    OLDREV=`cat .git/refs/heads/$BRANCH`
+    git pull origin $BRANCH
+    NEWREV=`cat .git/refs/heads/$BRANCH`
 
-#------ TRUNK
+    if [ "$FORCE" != "" -o "$OLDREV" != "$NEWREV" ]; then
+    
+    export DISTPATH=$BUILD_DIR/dist/
+    export DOWNLOADPATH=$DIR_JELIX_SITES/download/www
+    
+    make nightlies
+    
+    mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH/jelix/nightly/
+    mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH/jelix/nightly/
+    
+    mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH/jelix/nightly/
+    mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH/jelix/nightly/
 
-rm -rf $BUILD_DIR/dist/*
 
-cd $BUILD_GIT_DIR
-git checkout master
-OLDREV=`cat .git/refs/heads/master`
-git pull origin master
-NEWREV=`cat .git/refs/heads/master`
+    PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
+    PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
+    PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
+    
+    cd $DOWNLOADPATH/jelix/nightly
+    if  [ -f latest-nightly-$FILENAME-dev.tar.gz ]
+    then
+        rm latest-nightly-$FILENAME-dev.tar.gz
+    fi
+    if  [ -f latest-nightly-$FILENAME-opt.tar.gz ]
+    then
+        rm latest-nightly-$FILENAME-opt.tar.gz
+    fi
+    if  [ -f latest-nightly-$FILENAME-gold.tar.gz ]
+    then
+        rm latest-nightly-$FILENAME-gold.tar.gz
+    fi
 
-if [ "$FORCE" != "" -o "$OLDREV" != "$NEWREV" ]; then
+    ln -s "$PACKAGE_NAME_DEV".tar.gz latest-nightly-$FILENAME-dev.tar.gz
+    ln -s "$PACKAGE_NAME_OPT".tar.gz latest-nightly-$FILENAME-opt.tar.gz
+    ln -s "$PACKAGE_NAME_GOLD".tar.gz latest-nightly-$FILENAME-gold.tar.gz
+    
+    if  [ -f latest-nightly-$FILENAME-dev.zip ]
+    then
+        rm latest-nightly-$FILENAME-dev.zip
+    fi
+    if  [ -f latest-nightly-$FILENAME-opt.zip ]
+    then
+        rm latest-nightly-$FILENAME-opt.zip
+    fi
+    if  [ -f latest-nightly-$FILENAME-gold.zip ]
+    then
+        rm latest-nightly-$FILENAME-gold.zip
+    fi
+    
+    ln -s "$PACKAGE_NAME_DEV".zip latest-nightly-$FILENAME-dev.zip
+    ln -s "$PACKAGE_NAME_OPT".zip latest-nightly-$FILENAME-opt.zip
+    ln -s "$PACKAGE_NAME_GOLD".zip latest-nightly-$FILENAME-gold.zip
+    fi # new rev
+    
+    echo ""
+    echo ""
+}
 
-export DISTPATH=$BUILD_DIR/dist/
-export DOWNLOADPATH=$DIR_JELIX_SITES/download/www
-
-make nightlies
-
+BRANCH="master"
+FILENAME="jelix-trunk"
+buildbranch
 mv -f "$DISTPATH"jbuildtools-nightly.zip $DOWNLOADPATH/jbuildtools/
 mv -f "$DISTPATH"jbuildtools-nightly.tar.gz $DOWNLOADPATH/jbuildtools/
 
 mv -f "$DISTPATH"jtpl-*.zip    $DOWNLOADPATH/jtpl/
 mv -f "$DISTPATH"jtpl-*.tar.gz $DOWNLOADPATH/jtpl/
 
-#mv -f "$DISTPATH"additionnal-modules-nightly.zip    $DOWNLOADPATH/modules/
-#mv -f "$DISTPATH"additionnal-modules-nightly.tar.gz $DOWNLOADPATH/modules/
-
-mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
-PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
-PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
-
-cd $DOWNLOADPATH/jelix/nightly
-if  [ -f latest-nightly-jelix-trunk-dev.tar.gz ]
-then
-rm latest-nightly-jelix-trunk-dev.tar.gz
-fi
-if  [ -f latest-nightly-jelix-trunk-opt.tar.gz ]
-then
-rm latest-nightly-jelix-trunk-opt.tar.gz
-fi
-if  [ -f latest-nightly-jelix-trunk-gold.tar.gz ]
-then
-rm latest-nightly-jelix-trunk-gold.tar.gz
-fi
-
-ln -s "$PACKAGE_NAME_DEV".tar.gz latest-nightly-jelix-trunk-dev.tar.gz
-ln -s "$PACKAGE_NAME_OPT".tar.gz latest-nightly-jelix-trunk-opt.tar.gz
-ln -s "$PACKAGE_NAME_GOLD".tar.gz latest-nightly-jelix-trunk-gold.tar.gz
-
-
-if  [ -f latest-nightly-jelix-trunk-dev.zip ]
-then
-rm latest-nightly-jelix-trunk-dev.zip
-fi
-if  [ -f latest-nightly-jelix-trunk-opt.zip ]
-then
-rm latest-nightly-jelix-trunk-opt.zip
-fi
-if  [ -f latest-nightly-jelix-trunk-gold.zip ]
-then
-rm latest-nightly-jelix-trunk-gold.zip
-fi
-
-ln -s "$PACKAGE_NAME_DEV".zip latest-nightly-jelix-trunk-dev.zip
-ln -s "$PACKAGE_NAME_OPT".zip latest-nightly-jelix-trunk-opt.zip
-ln -s "$PACKAGE_NAME_GOLD".zip latest-nightly-jelix-trunk-gold.zip
-
-fi # new rev
-
-
-echo ""
-echo ""
-
-#------- 1.3.x BRANCH
-echo "building 1.3.x branch..."
-echo "==========================================="
-
-rm -rf $BUILD_DIR/dist/*
-
-cd $BUILD_GIT_DIR
-git checkout jelix-1.3.x
-OLDREV=`cat .git/refs/heads/jelix-1.3.x`
-git pull origin jelix-1.3.x
-NEWREV=`cat .git/refs/heads/jelix-1.3.x`
-
-if [ "$FORCE" != "" -o "$OLDREV" != "$NEWREV" ]; then
-
-export DISTPATH=$BUILD_DIR/dist/
-export DOWNLOADPATH=$DIR_JELIX_SITES/download/www
-
-make nightlies
-
-mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-
-PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
-PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
-PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
-
-cd $DOWNLOADPATH/jelix/nightly
-if  [ -f latest-nightly-jelix-1.3.x-dev.tar.gz ]
-then
-rm latest-nightly-jelix-1.3.x-dev.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.3.x-opt.tar.gz ]
-then
-rm latest-nightly-jelix-1.3.x-opt.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.3.x-gold.tar.gz ]
-then
-rm latest-nightly-jelix-1.3.x-gold.tar.gz
-fi
-
-ln -s "$PACKAGE_NAME_DEV".tar.gz latest-nightly-jelix-1.3.x-dev.tar.gz
-ln -s "$PACKAGE_NAME_OPT".tar.gz latest-nightly-jelix-1.3.x-opt.tar.gz
-ln -s "$PACKAGE_NAME_GOLD".tar.gz latest-nightly-jelix-1.3.x-gold.tar.gz
-
-if  [ -f latest-nightly-jelix-1.3.x-dev.zip ]
-then
-rm latest-nightly-jelix-1.3.x-dev.zip
-fi
-if  [ -f latest-nightly-jelix-1.3.x-opt.zip ]
-then
-rm latest-nightly-jelix-1.3.x-opt.zip
-fi
-if  [ -f latest-nightly-jelix-1.3.x-gold.zip ]
-then
-rm latest-nightly-jelix-1.3.x-gold.zip
-fi
-
-ln -s "$PACKAGE_NAME_DEV".zip latest-nightly-jelix-1.3.x-dev.zip
-ln -s "$PACKAGE_NAME_OPT".zip latest-nightly-jelix-1.3.x-opt.zip
-ln -s "$PACKAGE_NAME_GOLD".zip latest-nightly-jelix-1.3.x-gold.zip
-fi # new rev
-
-echo ""
-echo ""
-
-#------- 1.2.x BRANCH
-echo "building 1.2.x branch..."
-echo "==========================================="
-
-rm -rf $BUILD_DIR/dist/*
-
-cd $BUILD_GIT_DIR
-git checkout jelix-1.2.x
-OLDREV=`cat .git/refs/heads/jelix-1.2.x`
-git pull origin jelix-1.2.x
-NEWREV=`cat .git/refs/heads/jelix-1.2.x`
-
-if [ "$FORCE" != "" -o "$OLDREV" != "$NEWREV" ]; then
-
-export DISTPATH=$BUILD_DIR/dist/
-export DOWNLOADPATH=$DIR_JELIX_SITES/download/www
-
-make nightlies
-
-mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-
-PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
-PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
-PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
-
-cd $DOWNLOADPATH/jelix/nightly
-if  [ -f latest-nightly-jelix-1.2.x-dev.tar.gz ]
-then
-rm latest-nightly-jelix-1.2.x-dev.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.2.x-opt.tar.gz ]
-then
-rm latest-nightly-jelix-1.2.x-opt.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.2.x-gold.tar.gz ]
-then
-rm latest-nightly-jelix-1.2.x-gold.tar.gz
-fi
-
-ln -s "$PACKAGE_NAME_DEV".tar.gz latest-nightly-jelix-1.2.x-dev.tar.gz
-ln -s "$PACKAGE_NAME_OPT".tar.gz latest-nightly-jelix-1.2.x-opt.tar.gz
-ln -s "$PACKAGE_NAME_GOLD".tar.gz latest-nightly-jelix-1.2.x-gold.tar.gz
-
-if  [ -f latest-nightly-jelix-1.2.x-dev.zip ]
-then
-rm latest-nightly-jelix-1.2.x-dev.zip
-fi
-if  [ -f latest-nightly-jelix-1.2.x-opt.zip ]
-then
-rm latest-nightly-jelix-1.2.x-opt.zip
-fi
-if  [ -f latest-nightly-jelix-1.2.x-gold.zip ]
-then
-rm latest-nightly-jelix-1.2.x-gold.zip
-fi
-
-ln -s "$PACKAGE_NAME_DEV".zip latest-nightly-jelix-1.2.x-dev.zip
-ln -s "$PACKAGE_NAME_OPT".zip latest-nightly-jelix-1.2.x-opt.zip
-ln -s "$PACKAGE_NAME_GOLD".zip latest-nightly-jelix-1.2.x-gold.zip
-fi # new rev
-
-echo ""
-
-
-
-#------- 1.1.x BRANCH
-echo "building 1.1.x branch..."
-echo "==========================================="
-
-rm -rf $BUILD_DIR/dist/*
-
-cd $BUILD_DIR/hgrepo/jelix-1.1.x
-
-OLDREV=`hg tip --template "{rev}"`
-hg pull
-hg update -C
-NEWREV=`hg tip --template "{rev}"`
-
-
-if [ "$FORCE" != "" -o "$OLDREV" != "$NEWREV" ]; then
-
-export DISTPATH=$BUILD_DIR/dist/
-export DOWNLOADPATH=$DIR_JELIX_SITES/download/www
-
-make nightlies
-
-mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-
-PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
-PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
-PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
-
-cd $DOWNLOADPATH/jelix/nightly
-if  [ -f latest-nightly-jelix-1.1.x-dev.tar.gz ]
-then
-rm latest-nightly-jelix-1.1.x-dev.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.1.x-opt.tar.gz ]
-then
-rm latest-nightly-jelix-1.1.x-opt.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.1.x-gold.tar.gz ]
-then
-rm latest-nightly-jelix-1.1.x-gold.tar.gz
-fi
-
-ln -s "$PACKAGE_NAME_DEV".tar.gz latest-nightly-jelix-1.1.x-dev.tar.gz
-ln -s "$PACKAGE_NAME_OPT".tar.gz latest-nightly-jelix-1.1.x-opt.tar.gz
-ln -s "$PACKAGE_NAME_GOLD".tar.gz latest-nightly-jelix-1.1.x-gold.tar.gz
-
-if  [ -f latest-nightly-jelix-1.1.x-dev.zip ]
-then
-rm latest-nightly-jelix-1.1.x-dev.zip
-fi
-if  [ -f latest-nightly-jelix-1.1.x-opt.zip ]
-then
-rm latest-nightly-jelix-1.1.x-opt.zip
-fi
-if  [ -f latest-nightly-jelix-1.1.x-gold.zip ]
-then
-rm latest-nightly-jelix-1.1.x-gold.zip
-fi
-
-ln -s "$PACKAGE_NAME_DEV".zip latest-nightly-jelix-1.1.x-dev.zip
-ln -s "$PACKAGE_NAME_OPT".zip latest-nightly-jelix-1.1.x-opt.zip
-ln -s "$PACKAGE_NAME_GOLD".zip latest-nightly-jelix-1.1.x-gold.zip
-fi # new rev
-
-echo ""
-
-#------- 1.0.x BRANCH
-
-echo "building 1.0.x branch..."
-echo "==========================================="
-
-rm -rf $BUILD_DIR/dist/*
-
-cd $BUILD_DIR/hgrepo/jelix-1.0.x
-
-OLDREV=`hg tip --template "{rev}"`
-hg pull
-hg update -C
-NEWREV=`hg tip --template "{rev}"`
-
-
-if [ "$FORCE" != "" -o "$OLDREV" != "$NEWREV" ]; then
-
-export DISTPATH=$BUILD_DIR/dist/
-export DOWNLOADPATH=$DIR_JELIX_SITES/download/www
-
-make nightlies
-
-mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH/jelix/nightly/
-mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH/jelix/nightly/
-
-PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
-PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
-PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
-
-cd $DOWNLOADPATH/jelix/nightly
-if  [ -f latest-nightly-jelix-1.0.x-dev.tar.gz ]
-then
-rm latest-nightly-jelix-1.0.x-dev.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.0.x-opt.tar.gz ]
-then
-rm latest-nightly-jelix-1.0.x-opt.tar.gz
-fi
-if  [ -f latest-nightly-jelix-1.0.x-gold.tar.gz ]
-then
-rm latest-nightly-jelix-1.0.x-gold.tar.gz
-fi
-
-ln -s "$PACKAGE_NAME_DEV".tar.gz latest-nightly-jelix-1.0.x-dev.tar.gz
-ln -s "$PACKAGE_NAME_OPT".tar.gz latest-nightly-jelix-1.0.x-opt.tar.gz
-ln -s "$PACKAGE_NAME_GOLD".tar.gz latest-nightly-jelix-1.0.x-gold.tar.gz
-
-cd $DOWNLOADPATH/jelix/nightly
-if  [ -f latest-nightly-jelix-1.0.x-dev.zip ]
-then
-rm latest-nightly-jelix-1.0.x-dev.zip
-fi
-if  [ -f latest-nightly-jelix-1.0.x-opt.zip ]
-then
-rm latest-nightly-jelix-1.0.x-opt.zip
-fi
-if  [ -f latest-nightly-jelix-1.0.x-gold.zip ]
-then
-rm latest-nightly-jelix-1.0.x-gold.zip
-fi
-
-ln -s "$PACKAGE_NAME_DEV".zip latest-nightly-jelix-1.0.x-dev.zip
-ln -s "$PACKAGE_NAME_OPT".zip latest-nightly-jelix-1.0.x-opt.zip
-ln -s "$PACKAGE_NAME_GOLD".zip latest-nightly-jelix-1.0.x-gold.zip
-fi # new rev
-
-echo ""
+BRANCH="jelix-1.4.x"
+FILENAME="jelix-1.4.x"
+buildbranch
+BRANCH="jelix-1.3.x"
+FILENAME="jelix-1.3.x"
+buildbranch
+BRANCH="jelix-1.2.x"
+FILENAME="jelix-1.2.x"
+buildbranch
