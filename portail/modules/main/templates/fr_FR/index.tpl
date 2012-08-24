@@ -5,10 +5,10 @@
 
         <div id="releases">
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
-				<a href="/articles/fr/telechargement/stable/1.3">Téléchargez Jelix 1.3.2</a></p>
+				<a href="/articles/fr/telechargement/stable/1.3">Téléchargez Jelix 1.3.3</a></p>
             <p id="other-releases">
 		<a href="/articles/fr/telechargement/nightly#beta"><strong>1.4 beta !</strong></a> -
-		<a href="/articles/fr/telechargement/stable/1.2">1.2.8</a> -
+		<a href="/articles/fr/telechargement/stable/1.2">1.2.9</a> -
                 <a href="/articles/fr/telechargement/stable/1.1">1.1.12</a> -
                 <a href="/articles/fr/telechargement/stable/1.0">1.0.14</a> -
 		<a href="/articles/fr/telechargement/nightly#telechargement-jelix-nightly">nightly</a></p>
