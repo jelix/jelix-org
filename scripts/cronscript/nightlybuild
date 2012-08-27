@@ -9,7 +9,7 @@ buildbranch()
     echo "==========================================="
     rm -rf $BUILD_DIR/dist/*
 
-    cd $BUILD_GIT_DIR/jelix
+    cd $BUILD_GIT_DIR
     git checkout $BRANCH
     OLDREV=`cat .git/refs/heads/$BRANCH`
     git pull origin $BRANCH
@@ -76,11 +76,11 @@ buildbranch()
 BRANCH="master"
 FILENAME="jelix-trunk"
 buildbranch
-mv -f "$DISTPATH"jbuildtools-nightly.zip $DOWNLOADPATH/jbuildtools/
-mv -f "$DISTPATH"jbuildtools-nightly.tar.gz $DOWNLOADPATH/jbuildtools/
+#mv -f "$DISTPATH"jbuildtools-nightly.zip $DOWNLOADPATH/jbuildtools/
+#mv -f "$DISTPATH"jbuildtools-nightly.tar.gz $DOWNLOADPATH/jbuildtools/
 
-mv -f "$DISTPATH"jtpl-*.zip    $DOWNLOADPATH/jtpl/
-mv -f "$DISTPATH"jtpl-*.tar.gz $DOWNLOADPATH/jtpl/
+#mv -f "$DISTPATH"jtpl-*.zip    $DOWNLOADPATH/jtpl/
+#mv -f "$DISTPATH"jtpl-*.tar.gz $DOWNLOADPATH/jtpl/
 
 BRANCH="jelix-1.4.x"
 FILENAME="jelix-1.4.x"
