@@ -53,8 +53,8 @@
 </ul>
 <ul id="submenubar">
    <li><a href="/articles/en/tutorial">Tutorials</a></li>
-   <li><a href="http://docs.jelix.org/en/manual-1.3">Manual 1.3</a></li>
-   <li><a href="http://docs.jelix.org/en/manual-1.4">1.4beta!</a></li>
+   <li><a href="http://docs.jelix.org/en/manual-1.4">Manual 1.4</a></li>
+   <li><a href="http://docs.jelix.org/en/manual-1.3">1.3</a></li>
    <li><a href="http://docs.jelix.org/en/manual-1.2">1.2</a></li>
    <li><a href="http://docs.jelix.org/en/manual-1.1">1.1</a></li>
    <li><a href="http://docs.jelix.org/en/manual-1.0">1.0</a></li>
@@ -70,12 +70,12 @@
              <a href="http://download.jelix.org/jelix/documentation/jelix-trunk-apidoc_html.tar.gz">HTML tar.gz</a> -
              <a href="http://download.jelix.org/jelix/documentation/jelix-trunk-apidoc_html.zip">HTML zip</a>
 	</dd>
-        <dt>release  Jelix 1.4b1:</dt>
-        <dd><a href="1.4b1/">HTML, online</a> -
-             <a href="http://download.jelix.org/jelix/documentation/jelix-1.4b1-apidoc_html.tar.gz">HTML tar.gz</a> -
-             <a href="http://download.jelix.org/jelix/documentation/jelix-1.4b1-apidoc_html.zip">HTML zip</a>
+        <dt>Lastest stable release Jelix 1.4.0:</dt>
+        <dd><a href="1.4.0/">HTML, online</a> -
+             <a href="http://download.jelix.org/jelix/documentation/jelix-1.4.0-apidoc_html.tar.gz">HTML tar.gz</a> -
+             <a href="http://download.jelix.org/jelix/documentation/jelix-1.4.0-apidoc_html.zip">HTML zip</a>
         </dd>
-        <dt>Lastest stable release  Jelix 1.3.3:</dt>
+        <dt>Lastest stable release Jelix 1.3.3:</dt>
         <dd><a href="1.3.3/">HTML, online</a> -
              <a href="http://download.jelix.org/jelix/documentation/jelix-1.3.3-apidoc_html.tar.gz">HTML tar.gz</a> -
              <a href="http://download.jelix.org/jelix/documentation/jelix-1.3.3-apidoc_html.zip">HTML zip</a>
