@@ -55,7 +55,11 @@ fi
 /usr/bin/php build/buildjelix.php build/config/jelix-dist-opt.ini
 /usr/bin/php build/buildjelix.php build/config/jelix-dist-gold.ini
 /usr/bin/php build/buildapp.php   build/config/testapp-dist.ini
-/usr/bin/php build/buildfonts.php build/config/jelix-fonts-dist.ini
+
+if [ "$BRANCH" != "1.5.x" ]
+then
+    /usr/bin/php build/buildfonts.php build/config/jelix-fonts-dist.ini
+fi
 
 cd _dist/
 

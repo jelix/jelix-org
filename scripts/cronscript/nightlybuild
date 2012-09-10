@@ -28,6 +28,10 @@ buildbranch()
     mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH/jelix/nightly/
     mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH/jelix/nightly/
 
+    if [ "$BRANCH" == "master" ]; then
+        mv -f "$DISTPATH"module-*.zip    $DOWNLOADPATH/jelix/nightly/
+        mv -f "$DISTPATH"module-*.tar.gz $DOWNLOADPATH/jelix/nightly/
+    fi
 
     PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
     PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
