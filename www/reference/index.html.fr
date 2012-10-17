@@ -80,10 +80,10 @@
              <a href="http://download.jelix.org/jelix/documentation/jelix-1.3.3-apidoc_html.tar.gz">HTML tar.gz</a> -
              <a href="http://download.jelix.org/jelix/documentation/jelix-1.3.3-apidoc_html.zip">HTML zip</a>
         </dd>
-        <dt>Dernière version stable Jelix 1.2.9 :</dt>
-        <dd><a href="1.2.9/">HTML, en ligne</a> -
-             <a href="http://download.jelix.org/jelix/documentation/jelix-1.2.9-apidoc_html.tar.gz">HTML tar.gz</a> -
-             <a href="http://download.jelix.org/jelix/documentation/jelix-1.2.9-apidoc_html.zip">HTML zip</a>
+        <dt>Dernière version stable Jelix 1.2.10 :</dt>
+        <dd><a href="1.2.10/">HTML, en ligne</a> -
+             <a href="http://download.jelix.org/jelix/documentation/jelix-1.2.10-apidoc_html.tar.gz">HTML tar.gz</a> -
+             <a href="http://download.jelix.org/jelix/documentation/jelix-1.2.10-apidoc_html.zip">HTML zip</a>
         </dd>
         <dt>Dernière version stable Jelix 1.1.12 :</dt>
         <dd> <a href="1.1.12/">HTML, en ligne</a> - 
