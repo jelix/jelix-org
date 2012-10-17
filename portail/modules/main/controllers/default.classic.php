@@ -15,6 +15,13 @@ class defaultCtrl extends jController {
     function index() {
         $rep = $this->getResponse('html');
 		$lang = $GLOBALS['gJConfig']->locale;
+        $langAction = '';
+		if ($lang == 'en_EN')
+			$langAction = 'indexfr';
+		else {
+			$langAction = 'indexen';
+		}
+        $rep->addHeadContent('<link rel="canonical" href="'.jUrl::getFull( 'default:'.$langAction ).'" />');
         $rsslink = jUrl::get('news~default:rss',array('lang'=>$lang),1);
         $rsstitle = htmlspecialchars(jLocale::get('news~news.link.title.rss'));
         $rep->addHeadContent('<link rel="alternate" type="application/rss+xml" title="'.$rsstitle.'" href="'.$rsslink.'" />');
@@ -25,11 +32,7 @@ class defaultCtrl extends jController {
         $tpl->assignZone('news','news~lastestnews', array('lang'=>$GLOBALS['gJConfig']->locale));
 
         $rep->body->assign('MAIN', $tpl->fetch('index'));
-		if ($lang == 'en_EN')
-			$rep->body->assign('link_lang', array('main~indexfr', array()));
-		else {
-			$rep->body->assign('link_lang', array('main~indexen', array()));
-		}
+        $rep->body->assign('link_lang', array('main~'.$langAction, array()));
 		$rep->body->assign('homepage',true);
         return $rep;
     }
