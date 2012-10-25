@@ -7,7 +7,7 @@
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
                 <a href="/articles/en/download/stable/1.4">Download Jelix 1.4.0</a></p>
             <p id="other-releases">
-               <a href="/articles/en/download/stable/1.3">1.3.3</a> -
+               <a href="/articles/en/download/stable/1.3">1.3.4</a> -
                <a href="/articles/en/download/stable/1.2">1.2.10</a> -
                <a href="/articles/en/download/stable/1.1">1.1.12</a> -
                <a href="/articles/en/download/stable/1.0">1.0.14</a> -
