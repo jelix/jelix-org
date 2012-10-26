@@ -5,7 +5,7 @@
 
         <div id="releases">
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
-				<a href="/articles/fr/telechargement/stable/1.4">Téléchargez Jelix 1.4.0</a></p>
+                <a href="/articles/fr/telechargement/stable/1.4">Téléchargez Jelix 1.4.1</a></p>
             <p id="other-releases">
                 <a href="/articles/fr/telechargement/stable/1.3">1.3.4</a> -
                 <a href="/articles/fr/telechargement/stable/1.2">1.2.10</a> -
