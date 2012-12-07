@@ -136,7 +136,7 @@
 
                 <dl>
                     <dt><img src="/design/2011/icons/applications-education.png" />
-                        <a href="/articles/fr/tutoriels/minitutoriel/1.3.x">Mini tutoriel</a></dt>
+                        <a href="/articles/fr/tutoriels/minitutoriel/1.4.x">Mini tutoriel</a></dt>
                     <dd>Pour découvrir Jelix</dd>
                     <dt><img src="/design/2011/icons/applications-office.png" />
                         <a href="http://docs.jelix.org/fr/manuel-1.4/">Manuel complet</a></dt>
