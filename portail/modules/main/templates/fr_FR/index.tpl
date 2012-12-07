@@ -5,12 +5,12 @@
 
         <div id="releases">
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
-                <a href="/articles/fr/telechargement/stable/1.4">Téléchargez Jelix 1.4.1</a></p>
+                <a href="/articles/fr/telechargement/stable/1.4">Téléchargez Jelix {$versions['1.4']}</a></p>
             <p id="other-releases">
-                <a href="/articles/fr/telechargement/stable/1.3">1.3.4</a> -
-                <a href="/articles/fr/telechargement/stable/1.2">1.2.10</a> -
-                <a href="/articles/fr/telechargement/stable/1.1">1.1.12</a> -
-                <a href="/articles/fr/telechargement/stable/1.0">1.0.14</a> -
+                <a href="/articles/fr/telechargement/stable/1.3">{$versions['1.3']}</a> -
+                <a href="/articles/fr/telechargement/stable/1.2">{$versions['1.2']}</a> -
+                <a href="/articles/fr/telechargement/stable/1.1">{$versions['1.1']}</a> -
+                <a href="/articles/fr/telechargement/stable/1.0">{$versions['1.0']}</a> -
                 <a href="/articles/fr/telechargement/nightly#telechargement-jelix-nightly">nightly</a></p>
         </div>
 
