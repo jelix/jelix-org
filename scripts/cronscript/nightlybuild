@@ -124,7 +124,7 @@ for BRANCH in $BRANCHES; do
         FILENAME=$BRANCH
     fi
     
-    if [ "$REQUIRED_BRANCH" == "" -o "$REQUIRED_BRANCH" == "$BRANCH"]
+    if [ "$REQUIRED_BRANCH" == "" -o "$REQUIRED_BRANCH" == "$BRANCH" ]
     then
         buildbranch
     fi
