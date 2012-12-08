@@ -84,8 +84,8 @@ $DIR_JELIX_SITES/docs.jelix.org/update_repo_and_books.sh --force $MANUAL_FR
 $DIR_JELIX_SITES/docs.jelix.org/update_repo_and_books.sh --force $MANUAL_EN
 
 echo "move manual to download.jelix.org"
-mv $DIR_JELIX_SITES/docs.jelix.org/books/pdf/en/jelix-$MANUAL_EN.pdf $SCRIPTDIR/../download/www/jelix/documentation/en/jelix-manual-$VERSION.pdf
-mv $DIR_JELIX_SITES/docs.jelix.org/books/pdf/fr/jelix-$MANUAL_FR.pdf $SCRIPTDIR/../download/www/jelix/documentation/fr/jelix-manuel-$VERSION.pdf
+mv $DIR_JELIX_SITES/docs.jelix.org/books/pdf/en/jelix-$MANUAL_EN.pdf $SCRIPTDIR/../download/www/jelix/releases/${VER_MAJOR}.${VER_MIDDLE}.x/$VERSION/jelix-manual-$VERSION.pdf
+mv $DIR_JELIX_SITES/docs.jelix.org/books/pdf/fr/jelix-$MANUAL_FR.pdf $SCRIPTDIR/../download/www/jelix/releases/${VER_MAJOR}.${VER_MIDDLE}.x/$VERSION/jelix-manuel-$VERSION.pdf
 
 echo "write version into the latest-stable-version file"
 API_DIR="$SCRIPTDIR/../www/api/releases/${VER_MAJOR}.${VER_MIDDLE}"

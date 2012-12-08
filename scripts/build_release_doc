@@ -51,6 +51,6 @@ export PHPDOC=$DIR_JELIX_SITES/lib/phpdoc/
 make docs
 
 cd $DIR_JELIX_SITES/www/reference/$VER
-tar czf $DIR_JELIX_SITES/download/www/jelix/documentation/jelix-"$VER"-apidoc_html.tar.gz *
-zip -r $DIR_JELIX_SITES/download/www/jelix/documentation/jelix-"$VER"-apidoc_html.zip *
+tar czf $DIR_JELIX_SITES/download/www/jelix/releases/$BRANCH/$VER/jelix-"$VER"-apidoc_html.tar.gz *
+zip -r $DIR_JELIX_SITES/download/www/jelix/releases/$BRANCH/$VER/jelix-"$VER"-apidoc_html.zip *
 

@@ -1,21 +1,28 @@
 #!/bin/bash
 
 source $(dirname $0)/../scripts.config.sh
+FORCE=$1
 
 rm -rf $BUILD_DIR/docs/*
 
 cd $BUILD_GIT_DIR
 
 git checkout master
-git pull origin master
 
-export TESTPATH=$BUILD_DIR/docs/
-export DOCSPATH=$DIR_JELIX_SITES/www/reference/trunk
-export PHPDOC=$DIR_JELIX_SITES/lib/phpdoc/
+OLDREV=`cat .git/refs/heads/master`
+git pull origin $BRANCH
+NEWREV=`cat .git/refs/heads/master`
 
-make docs
+if [ "$FORCE" != "" -o "$OLDREV" != "$NEWREV" ]; then
 
-cd $DIR_JELIX_SITES/www/reference/trunk
-tar czf $DIR_JELIX_SITES/download/www/jelix/documentation/jelix-trunk-apidoc_html.tar.gz *
-zip -r $DIR_JELIX_SITES/download/www/jelix/documentation/jelix-trunk-apidoc_html.zip *
+    export TESTPATH=$BUILD_DIR/docs/
+    export DOCSPATH=$DIR_JELIX_SITES/www/reference/trunk
+    export PHPDOC=$DIR_JELIX_SITES/lib/phpdoc/
+    
+    make docs
+    
+    cd $DIR_JELIX_SITES/www/reference/trunk
+    tar czf $DIR_JELIX_SITES/download/www/jelix/nightly/$CURRENT_MASTER_VERSION/jelix-$CURRENT_MASTER_VERSION-apidoc_html.tar.gz *
+    zip -r  $DIR_JELIX_SITES/download/www/jelix/nightly/$CURRENT_MASTER_VERSION/jelix-$CURRENT_MASTER_VERSION-apidoc_html.zip *
 
+fi
