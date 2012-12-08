@@ -1,7 +1,45 @@
 #!/bin/bash
 
 source $(dirname $0)/../scripts.config.sh
-FORCE=$1
+FORCE=""
+REQUIRED_BRANCH=""
+usage()
+{
+    echo "nightlybuild [options] [branch name]"
+    echo ""
+    echo "options:"
+    echo "  -f|--force  :  force the generation of archives files, even if there are no changes"
+    echo ""
+}
+
+for i in $*
+do
+case $i in
+    -f|--force)
+    FORCE="1"
+    ;;
+    -h|--help)
+    usage
+    ;;
+    -*)
+      echo "ERROR: Unknown option: $i"
+      echo ""
+      usage
+      exit 1
+    ;;
+    *)
+    if [ "$REQUIRED_BRANCH" == "" ]
+    then
+        REQUIRED_BRANCH=$i
+    else
+        echo "ERROR: Too many parameters: $i"
+        echo ""
+        usage
+        exit 1
+    fi
+    ;;
+esac
+done
 
 buildbranch()
 {
@@ -77,21 +115,17 @@ buildbranch()
     echo ""
 }
 
-BRANCH="master"
-FILENAME="jelix-trunk"
-buildbranch
-#mv -f "$DISTPATH"jbuildtools-nightly.zip $DOWNLOADPATH/jbuildtools/
-#mv -f "$DISTPATH"jbuildtools-nightly.tar.gz $DOWNLOADPATH/jbuildtools/
-
-#mv -f "$DISTPATH"jtpl-*.zip    $DOWNLOADPATH/jtpl/
-#mv -f "$DISTPATH"jtpl-*.tar.gz $DOWNLOADPATH/jtpl/
-
-BRANCH="jelix-1.4.x"
-FILENAME="jelix-1.4.x"
-buildbranch
-BRANCH="jelix-1.3.x"
-FILENAME="jelix-1.3.x"
-buildbranch
-BRANCH="jelix-1.2.x"
-FILENAME="jelix-1.2.x"
-buildbranch
+BRANCHES="master jelix-1.4.x jelix-1.3.x jelix-1.2.x"
+for BRANCH in $BRANCHES; do
+    if [ "$BRANCH" == "master" ]
+    then
+        FILENAME="jelix-trunk"
+    else
+        FILENAME=$BRANCH
+    fi
+    
+    if [ "$REQUIRED_BRANCH" == "" -o "$REQUIRED_BRANCH" == "$BRANCH"]
+    then
+        buildbranch
+    fi
+done
