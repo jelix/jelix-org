@@ -49,7 +49,7 @@ class syntax_plugin_latestbranchversion extends DokuWiki_Syntax_Plugin {
     function handle($match, $state, $pos, &$handler){
         if($state == DOKU_LEXER_SPECIAL) {
             if (preg_match("/^~~version\s+(\d+(\.\d+)*)~~$/", $match, $m)) {
-                return array($state, $m[1]);
+                return array($state, trim($m[1]));
             }
         }
         return false;

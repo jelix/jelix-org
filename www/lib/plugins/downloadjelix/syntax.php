@@ -49,7 +49,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
     function handle($match, $state, $pos, &$handler){
         if($state == DOKU_LEXER_SPECIAL) {
             if (preg_match("/^~~download\s+([a-z]+)\s+(\d+(\.\d+)*)~~$/", $match, $m)) {
-                return array($state, $m[1], $m[2]);
+                return array($state, $m[1], trim($m[2]));
             }
         }
         return false;
@@ -97,7 +97,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
                 $html = '<a href="'.$this->baseUrl.$filename.'">'.$file.'</a>';
                 if (isset($attr['zip'])) {
                     $filename = str_replace('.tar.gz', 'zip', $filename);
-                    $html .= '(<a href="'.$this->baseUrl.$filename.'">zip</a>)';
+                    $html .= ' (<a href="'.$this->baseUrl.$filename.'">zip</a>)';
                 }
                 $renderer->doc .= $html;
             }
