@@ -93,11 +93,15 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
                 $attr = self::$filetypes[$type];
                 
                 $filename = str_replace(array('%branch%', '%version%'), array($branch.'.x', $version), $attr['name']);
+                
+                $size = $this->getSize(__DIR__.$this->basePath.$filename);
+
                 $file = basename($filename);
-                $html = '<a href="'.$this->baseUrl.$filename.'">'.$file.'</a>';
+                $html = '<a href="'.$this->baseUrl.$filename.'">'.$file.'</a>'.$size;
                 if (isset($attr['zip'])) {
                     $filename = str_replace('.tar.gz', 'zip', $filename);
-                    $html .= ' (<a href="'.$this->baseUrl.$filename.'">zip</a>)';
+                    $size = $this->getSize(__DIR__.$this->basePath.$filename);
+                    $html .= ' (<a href="'.$this->baseUrl.$filename.'">zip</a>'.$size.')';
                 }
                 $renderer->doc .= $html;
             }
@@ -106,4 +110,18 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
       return false;
     }
 
+    protected function getSize($filename) {
+        $size = '';
+        if (file_exists($filename)) {
+            $size = filesize($filename);
+            if ($size > 1024*1024) {
+                $size = ' / '.(round($size / (1024*1024), 1)) . ' MB';
+            }
+            else if ($size > 1024) {
+                $size = ' / '.(round($size/1024, 1)) . ' KB';
+            }
+            else $size = ' / '.$size.' bytes';
+        }
+        return $size;
+    }
 }
