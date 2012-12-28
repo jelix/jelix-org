@@ -24,7 +24,7 @@ class syntax_plugin_latestbranchversion extends DokuWiki_Syntax_Plugin {
             'email'  => '',
             'date'   => '2012-12-21',
             'name'   => 'LatestBranchVersion Plugin',
-            'desc'   => 'display the last version of Jelix in the given branch. Syntax: <version 1.3>',
+            'desc'   => 'display the last version of Jelix in the given branch. Syntax: ~~version 1.3~~',
             'url'    => '',
         );
     }
@@ -37,10 +37,10 @@ class syntax_plugin_latestbranchversion extends DokuWiki_Syntax_Plugin {
         return array('disabled' );
     }
 
-    function getSort(){ return 140; }
+    function getSort(){ return 150; }
 
     function connectTo($mode) {
-      $this->Lexer->addSpecialPattern('<version\s+([^>]+)>',$mode,'plugin_latestbranchversion'); //
+        $this->Lexer->addSpecialPattern('~~version\s+(?:[^~]+)~~',$mode,'plugin_latestbranchversion');
     }
 
     /**
@@ -48,36 +48,34 @@ class syntax_plugin_latestbranchversion extends DokuWiki_Syntax_Plugin {
      */
     function handle($match, $state, $pos, &$handler){
         if($state == DOKU_LEXER_SPECIAL) {
-            if (isset(self::$versions[$match])) {
-                return array($state, self::$versions[$match]);
+            if (preg_match("/^~~version\s+(\d+(\.\d+)*)~~$/", $match, $m)) {
+                return array($state, $m[1]);
             }
-            
-            
-            if (preg_match("/^\d+(\.\d+)*$/", $match)) {
-                $path = __DIR__.'/../../api/releases/'.$match.'/latest-stable-version';
-                if (file_exists($path)) {
-                    $version = file_get_contents();
-                    self::$versions[$match] = $version;
-                    return array($state, self::$versions[$match]);
-                }
-            }
-            return array($state, $match);
         }
         return false;
     }
-
-    
-
     /**
      * Create output
      */
     function render($mode, &$renderer, $data) {
-      if($mode == 'xhtml'){
-        if($data[0] == DOKU_LEXER_SPECIAL) {
-            $renderer->doc .= $data[1];
+        if($mode == 'xhtml'){
+            if($data[0] == DOKU_LEXER_SPECIAL) {
+                $version = $branch = $data[1];
+                if (isset(self::$versions[$branch])) {
+                    $version = self::$versions[$branch];
+                }
+                else {
+                    $path = __DIR__.'/../../../api/releases/'.$branch.'/latest-stable-version';
+                    if (file_exists($path)) {
+                        $version = file_get_contents($path);
+                        self::$versions[$branch] = $version;
+                    }
+                }
+                $renderer->doc .= $version;
+            }
+            return true;
         }
-        return true;
-      }
       return false;
     }
+
 }
