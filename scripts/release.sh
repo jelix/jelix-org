@@ -95,6 +95,10 @@ then
 fi
 echo $VERSION > "$API_DIR/latest-stable-version"
 
+echo "clear wiki cache"
+
+rm -rf $DIR_JELIX_SITES/jelix.org/www/data/cache/*
+
 echo ""
 echo "End of the release!"
 echo ""

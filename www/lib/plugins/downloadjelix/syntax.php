@@ -56,7 +56,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
     }
 
     protected $baseUrl = 'http://download.jelix.org/';
-    protected $basePath = '../../../../download/www/';
+    protected $basePath = '/../../../../download/www/';
     static protected $filetypes = array(
         // 'type'=>array('filename%branch%/%version%', 'downloadbaseurl', 'systembasepath')
         'jelixgold' =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-gold.tar.gz',   'zip'=>true),
@@ -64,6 +64,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
         'jelixdev'  =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-dev.tar.gz',    'zip'=>true),
         'fonts'     =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-pdf-fonts.zip'),
         'manual'    =>array('name'=>'jelix/releases/%branch%/%version%/jelix-manual-%version%.pdf'),
+        'manuel'    =>array('name'=>'jelix/releases/%branch%/%version%/jelix-manuel-%version%.pdf'),
         'apiref'    =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-apidoc_html.zip'),
         'testapp'   =>array('name'=>'jelix/releases/%branch%/%version%/testapp-%version%.tar.gz',      'zip'=>true)
     );
@@ -99,7 +100,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
                 $file = basename($filename);
                 $html = '<a href="'.$this->baseUrl.$filename.'">'.$file.'</a>'.$size;
                 if (isset($attr['zip'])) {
-                    $filename = str_replace('.tar.gz', 'zip', $filename);
+                    $filename = str_replace('.tar.gz', '.zip', $filename);
                     $size = $this->getSize(__DIR__.$this->basePath.$filename);
                     $html .= ' (<a href="'.$this->baseUrl.$filename.'">zip</a>'.$size.')';
                 }
