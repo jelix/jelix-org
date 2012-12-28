@@ -48,7 +48,7 @@ class syntax_plugin_latestbranchversion extends DokuWiki_Syntax_Plugin {
      */
     function handle($match, $state, $pos, &$handler){
         if($state == DOKU_LEXER_SPECIAL) {
-            if (preg_match("/^~~version\s+(\d+(\.\d+)*)~~$/", $match, $m)) {
+            if (preg_match("/^~~version\s+(\d+(\.\d+)*)\s*~~$/", $match, $m)) {
                 return array($state, trim($m[1]));
             }
         }
@@ -67,7 +67,7 @@ class syntax_plugin_latestbranchversion extends DokuWiki_Syntax_Plugin {
                 else {
                     $path = __DIR__.'/../../../api/releases/'.$branch.'/latest-stable-version';
                     if (file_exists($path)) {
-                        $version = file_get_contents($path);
+                        $version = trim(file_get_contents($path));
                         self::$versions[$branch] = $version;
                     }
                 }

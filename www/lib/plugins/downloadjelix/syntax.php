@@ -48,7 +48,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
      */
     function handle($match, $state, $pos, &$handler){
         if($state == DOKU_LEXER_SPECIAL) {
-            if (preg_match("/^~~download\s+([a-z]+)\s+(\d+(\.\d+)*)~~$/", $match, $m)) {
+            if (preg_match("/^~~download\s+([a-z]+)\s+(\d+(\.\d+)*)\s*~~$/", $match, $m)) {
                 return array($state, $m[1], trim($m[2]));
             }
         }
@@ -83,7 +83,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
                 else {
                     $path = __DIR__.'/../../../api/releases/'.$branch.'/latest-stable-version';
                     if (file_exists($path)) {
-                        $version = file_get_contents($path);
+                        $version = trim(file_get_contents($path));
                         self::$versions[$branch] = $version;
                     }
                 }
