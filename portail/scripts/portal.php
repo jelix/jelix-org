@@ -7,7 +7,7 @@
 * @copyright
 */
 
-require_once ('../application-cli.init.php');
+require_once (__DIR__.'/../application-cli.init.php');
 
 require_once (JELIX_LIB_CORE_PATH.'jCmdlineCoordinator.class.php');
 

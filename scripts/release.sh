@@ -82,17 +82,16 @@ echo "BRANCH_VERSION=$BRANCH_VERSION"
 echo "TAG_NAME=$TAG_NAME"
 echo "MANUAL_FR=$MANUAL_FR"
 echo "MANUAL_EN=$MANUAL_EN"
-exit 0
 
 $SCRIPTDIR/build_release_pack $BRANCH_VERSION $TAG_NAME $VERSION
 $SCRIPTDIR/build_release_doc $BRANCH_VERSION $TAG_NAME $VERSION
 
-$DIR_JELIX_SITES/docs.jelix.org/update_repo_and_books.sh --force $MANUAL_FR
-$DIR_JELIX_SITES/docs.jelix.org/update_repo_and_books.sh --force $MANUAL_EN
+$DIR_JELIX_SITES/../docs.jelix.org/update_repo_and_books.sh --force $MANUAL_FR
+$DIR_JELIX_SITES/../docs.jelix.org/update_repo_and_books.sh --force $MANUAL_EN
 
 echo "move manual to download.jelix.org"
-mv $DIR_JELIX_SITES/docs.jelix.org/books/pdf/en/jelix-$MANUAL_EN.pdf $SCRIPTDIR/../download/www/jelix/releases/${VER_MAJOR}.${VER_MIDDLE}.x/$VERSION/jelix-manual-$VERSION.pdf
-mv $DIR_JELIX_SITES/docs.jelix.org/books/pdf/fr/jelix-$MANUAL_FR.pdf $SCRIPTDIR/../download/www/jelix/releases/${VER_MAJOR}.${VER_MIDDLE}.x/$VERSION/jelix-manuel-$VERSION.pdf
+mv $DIR_JELIX_SITES/../docs.jelix.org/books/pdf/en/jelix-$MANUAL_EN.pdf $SCRIPTDIR/../download/www/jelix/releases/${VER_MAJOR}.${VER_MIDDLE}.x/$VERSION/jelix-manual-$VERSION.pdf
+mv $DIR_JELIX_SITES/../docs.jelix.org/books/pdf/fr/jelix-$MANUAL_FR.pdf $SCRIPTDIR/../download/www/jelix/releases/${VER_MAJOR}.${VER_MIDDLE}.x/$VERSION/jelix-manuel-$VERSION.pdf
 
 echo "write version into the latest-stable-version file"
 API_DIR="$SCRIPTDIR/../www/api/releases/${VER_MAJOR}.${VER_MIDDLE}"
@@ -104,10 +103,10 @@ echo $VERSION > "$API_DIR/latest-stable-version"
 
 echo "clear wiki cache"
 
-rm -rf $DIR_JELIX_SITES/jelix.org/www/data/cache/*
+rm -rf $DIR_JELIX_SITES/www/data/cache/*
 
 echo "Trac: close milestone and create a new one"
-php $DIR_JELIX_SITES/jelix.org/portail/scripts/portal.php main~trac:closeroadmap $VERSION $NEXTVERSION
+php $DIR_JELIX_SITES/portail/scripts/portal.php main~trac:closeroadmap $VERSION $NEXTVERSION
 
 echo ""
 echo "End of the release!"
