@@ -101,7 +101,7 @@ buildbranch()
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".tar.gz latest-nightly-$FILENAME-dev.tar.gz
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".tar.gz latest-nightly-$FILENAME-opt.tar.gz
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".tar.gz latest-nightly-$FILENAME-gold.tar.gz
-    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".tar.gz latest-nightly-$TESTAPPFILENAME-gold.tar.gz
+    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".tar.gz latest-nightly-$TESTAPPFILENAME.tar.gz
     
     if  [ -f latest-nightly-$FILENAME-dev.zip ]
     then
@@ -122,7 +122,7 @@ buildbranch()
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".zip latest-nightly-$FILENAME-dev.zip
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".zip latest-nightly-$FILENAME-opt.zip
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".zip latest-nightly-$FILENAME-gold.zip
-    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".zip latest-nightly-$TESTAPPFILENAME-gold.zip
+    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".zip latest-nightly-$TESTAPPFILENAME.zip
 
     if [ "$FONTSFILENAME" != "" ]
     then
