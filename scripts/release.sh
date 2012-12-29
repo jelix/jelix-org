@@ -9,6 +9,13 @@ if [ "$VERSION" == "" ]; then
     exit 1
 fi
 
+NEXTVERSION=$2
+if [ "$NEXTVERSION" == "" ]; then
+    echo "Error: next version is missing"
+    exit 1
+fi
+
+
 VER_MAJOR=""
 VER_MIDDLE=""
 VER_MINOR=""
@@ -98,6 +105,9 @@ echo $VERSION > "$API_DIR/latest-stable-version"
 echo "clear wiki cache"
 
 rm -rf $DIR_JELIX_SITES/jelix.org/www/data/cache/*
+
+echo "Trac: close milestone and create a new one"
+php $DIR_JELIX_SITES/jelix.org/portail/scripts/portal.php main~trac:closeroadmap $VERSION $NEXTVERSION
 
 echo ""
 echo "End of the release!"
