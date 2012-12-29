@@ -78,7 +78,8 @@ buildbranch()
     PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
     PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
     PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
-    
+    PACKAGE_TESTAPP_NAME=`cat "$DISTPATH"PACKAGE_TESTAPP_NAME`
+
     cd $DIR_JELIX_SITES/download/www/jelix/nightly/
     if  [ -f latest-nightly-$FILENAME-dev.tar.gz ]
     then
@@ -92,10 +93,15 @@ buildbranch()
     then
         rm latest-nightly-$FILENAME-gold.tar.gz
     fi
+    if  [ -f latest-nightly-$TESTAPPFILENAME.tar.gz ]
+    then
+        rm latest-nightly-$TESTAPPFILENAME.tar.gz
+    fi
 
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".tar.gz latest-nightly-$FILENAME-dev.tar.gz
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".tar.gz latest-nightly-$FILENAME-opt.tar.gz
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".tar.gz latest-nightly-$FILENAME-gold.tar.gz
+    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".tar.gz latest-nightly-$TESTAPPFILENAME-gold.tar.gz
     
     if  [ -f latest-nightly-$FILENAME-dev.zip ]
     then
@@ -109,17 +115,45 @@ buildbranch()
     then
         rm latest-nightly-$FILENAME-gold.zip
     fi
-    
+    if  [ -f latest-nightly-$TESTAPPFILENAME.zip ]
+    then
+        rm latest-nightly-$TESTAPPFILENAME.zip
+    fi
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".zip latest-nightly-$FILENAME-dev.zip
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".zip latest-nightly-$FILENAME-opt.zip
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".zip latest-nightly-$FILENAME-gold.zip
+    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".zip latest-nightly-$TESTAPPFILENAME-gold.zip
+
+    if [ "$FONTSFILENAME" != "" ]
+    then
+        PACKAGE_FONTS_NAME=`cat "$DISTPATH"PACKAGE_FONTS_NAME`
+        if  [ -f latest-nightly-$FONTSFILENAME.zip ]
+        then
+            rm latest-nightly-$FONTSFILENAME.zip
+        fi
+        ln -s $BRANCHVERSION/"$PACKAGE_FONTS_NAME".zip latest-nightly-$FONTSFILENAME.zip
+    fi
+
     fi # new rev
     
     echo ""
     echo ""
 }
 
-BRANCHEVERSIONLIST="1.5.x 1.4.x 1.3.x 1.2.x"
+BRANCHEVERSIONLIST="1.4.x 1.3.x 1.2.x"
+for BRANCHVERSION in $BRANCHEVERSIONLIST; do
+    BRANCH="jelix-$BRANCHVERSION"
+    FILENAME="jelix-$BRANCHVERSION"
+    TESTAPPFILENAME="testapp-$BRANCHVERSION"
+    FONTSFILENAME="jelix-$BRANCHVERSION-pdf-fonts"
+
+    if [ "$REQUIRED_BRANCH" == "" -o "$REQUIRED_BRANCH" == "$BRANCH" ]
+    then
+        buildbranch
+    fi
+done
+
+BRANCHEVERSIONLIST="1.5.x"
 for BRANCHVERSION in $BRANCHEVERSIONLIST; do
     if [ "$BRANCHVERSION" == "$CURRENT_MASTER_VERSION" ]
     then
@@ -128,8 +162,13 @@ for BRANCHVERSION in $BRANCHEVERSIONLIST; do
         BRANCH="jelix-$BRANCHVERSION"
     fi
     FILENAME="jelix-$BRANCHVERSION"
+    TESTAPPFILENAME="testapp-$BRANCHVERSION"
+    FONTSFILENAME=""
+
     if [ "$REQUIRED_BRANCH" == "" -o "$REQUIRED_BRANCH" == "$BRANCH" ]
     then
         buildbranch
     fi
 done
+
+
