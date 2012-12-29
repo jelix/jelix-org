@@ -70,6 +70,9 @@ class tracCtrl extends jControllerCmdLine {
         $sql="UPDATE ticket SET milestone = ".$nextmilestone." WHERE status <> 'closed' and milestone = ".$milestone;
         $db->exec($sql);
 
+        $sql="INSERT INTO version (name, time, description) VALUES(".$db->quote($newversion).', '.$d.", '')";
+        $db->exec($sql);
+        
         return $rep;
     }
 }
