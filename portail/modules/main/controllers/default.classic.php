@@ -31,7 +31,7 @@ class defaultCtrl extends jController {
         $tpl = new jTpl();
         $tpl->assignZone('news','news~lastestnews', array('lang'=>$GLOBALS['gJConfig']->locale));
 
-        $versions = array('1.0'=>'', '1.1'=>'', '1.2'=>'', '1.3'=>'', '1.4'=>'');
+        $versions = array('1.0'=>'', '1.1'=>'', '1.2'=>'', '1.3'=>'', '1.4'=>'', '1.5'=>'');
         foreach ($versions as $branch=>$v) {
             $versions[$branch] = file_get_contents(JELIX_APP_WWW_PATH.'api/releases/'.$branch.'/latest-stable-version');
         }

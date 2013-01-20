@@ -7,10 +7,10 @@
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
                 <a href="/articles/en/download/stable/1.4">Download Jelix {$versions['1.4']}</a></p>
             <p id="other-releases">
+               
                <a href="/articles/en/download/stable/1.3">{$versions['1.3']}</a> -
                <a href="/articles/en/download/stable/1.2">{$versions['1.2']}</a> -
-               <a href="/articles/en/download/stable/1.1">{$versions['1.1']}</a> -
-               <a href="/articles/en/download/stable/1.0">{$versions['1.0']}</a> -
+               Try <a href="/articles/en/download/stable/1.5">{$versions['1.5']}</a>! -
                <a href="/articles/en/download/nightly#nightly-builds">nightly</a></p>
         </div>
 
