@@ -11,8 +11,7 @@ fi
 
 NEXTVERSION=$2
 if [ "$NEXTVERSION" == "" ]; then
-    echo "Error: next version is missing"
-    exit 1
+    echo "Warning: next version is missing. Roadmap in trac will not be updated."
 fi
 
 
@@ -105,9 +104,10 @@ echo "clear wiki cache"
 
 rm -rf $DIR_JELIX_SITES/www/data/cache/*
 
-echo "Trac: close milestone and create a new one"
-php $DIR_JELIX_SITES/portail/scripts/portal.php main~trac:closeroadmap $VERSION $NEXTVERSION
-
+if [ "$NEXTVERSION" != "" ]; then
+    echo "Trac: close milestone and create a new one"
+    php $DIR_JELIX_SITES/portail/scripts/portal.php main~trac:closeroadmap $VERSION $NEXTVERSION
+fi
 echo ""
 echo "End of the release!"
 echo ""
