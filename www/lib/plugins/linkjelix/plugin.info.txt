@@ -1,0 +1,6 @@
+author Laurent Jouanneau
+email laurent@jelix.org
+date 2013-02-20
+name link for jelix pages
+desc Generate a link to some page dedicated to the given branch
+url http://jelix.org
