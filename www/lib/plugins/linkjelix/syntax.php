@@ -49,14 +49,14 @@ class syntax_plugin_linkjelix extends DokuWiki_Syntax_Plugin {
     function handle($match, $state, $pos, &$handler){
         if($state == DOKU_LEXER_SPECIAL) {
             if (preg_match("/^~~jlink\s+([a-z]+)\s+(\d+(\.\d+)*)\s+(.*)~~$/", $match, $m)) {
-                return array($state, $m[1], trim($m[2]), $m[3]);
+                return array($state, $m[1], trim($m[2]), $m[4]);
             }
         }
         return false;
     }
 
     static protected $filetypes = array(
-        'apiref'    =>array('url'=>'http://jelix.org/references/%version%/'),
+        'apiref'    =>array('url'=>'http://jelix.org/reference/%version%/'),
     );
 
     /**
