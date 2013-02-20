@@ -106,24 +106,25 @@
 
         <div class="content-box" id="jelix-users">
             <h2>Ils utilisent Jelix</h2>
-			
+
             <ul>
                 <li><a href="#jelix-users-1"><img src="/design/2011/users/transatel.png" alt="Transatel" /></a></li>
-                <li><a href="#jelix-users-2"><img src="/design/2011/users/overblog.png" alt="Over-Blog"/></a></li>
-                <li><a href="#jelix-users-3"><img src="/design/2011/users/bp2i.png" alt="BNP Parisbas"/></a></li>
-                <li><a href="#jelix-users-4"><img src="/design/2011/users/kayuko.png" alt="Kayuko" /></a></li>
-                <!--<li><a href="#jelix-users-5"><img src="/design/2011/users/eads.png" alt="EADS" /></a></li>-->
+                <li><a href="#jelix-users-2"><img src="/design/2011/users/3liz.png" alt="3Liz"/></a></li>
+                <li><a href="#jelix-users-3"><img src="/design/2011/users/overblog.png" alt="Over-Blog"/></a></li>
+                <li><a href="#jelix-users-4"><img src="/design/2011/users/bp2i.png" alt="BNP Parisbas"/></a></li>
+                <li><a href="#jelix-users-5"><img src="/design/2011/users/kayuko.png" alt="Kayuko" /></a></li>
             </ul>
-			<div id="jelix-users-description">
+            <div id="jelix-users-description">
                 <p id="jelix-users-1">Depuis 2011, <a href="http://transatel.com">Transatel</a> a choisi Jelix pour développer ses applications B2B qui
-					servent à gérer des millions de carte SIM (individuels ou 'Machine To Machine') pour leurs clients
+                    servent à gérer des millions de carte SIM (individuels ou 'Machine To Machine') pour leurs clients
                     professionnels. Parmi eux, Everything Everywhere (joint-venture de Orange et T-Mobile au Royaume Uni), Mobistars et
                     d'autres MVNOs.</p>
-                <p id="jelix-users-2">De 2006 à 2012, Jelix a motorisé la plus grosse plateforme de blog européène, over-blog.com.
-					<br/>Over-Blog était l'un des premiers utilisateurs historique de Jelix.</p>
-                <p id="jelix-users-3">BNP Parisbas utilise jelix dans des applications intranet.</p>
-                <p id="jelix-users-4">Jelix motorise le comparateur de prix de DVD Kayuko, et les projets clients de Kayuko.</p>
-				<!--<p id="jelix-users-5">EADS utilise Jelix dans des projets internes.</p>-->
+                <p id="jelix-users-2"><a href="http://3liz.com">3Liz</a>, spécialisé dans les solutions pour les systèmes d'informations géographiques,
+                fournis des applications web comme <a href="http://hub.qgis.org/wiki/lizmapwebclient/">LizMap</a>, reposant sur Jelix.</p>
+                <p id="jelix-users-3">De 2006 à 2012, Jelix a motorisé la plus grosse plateforme de blog européène, over-blog.com.
+                    <br/>Over-Blog était l'un des premiers utilisateurs historique de Jelix.</p>
+                <p id="jelix-users-4">BNP Parisbas utilise jelix dans des applications intranet.</p>
+                <p id="jelix-users-5">Jelix motorise le comparateur de prix de DVD Kayuko, et les projets clients de Kayuko.</p>
             </div>
             <p>Et <a href="/articles/fr/hall-of-fame">bien plus encore...</a></p>
         </div>

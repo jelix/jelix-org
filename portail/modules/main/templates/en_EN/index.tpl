@@ -109,24 +109,27 @@
             <h2>They use Jelix</h2>
             <ul>
                 <li><a href="#jelix-users-1"><img src="/design/2011/users/transatel.png" alt="Transatel" /></a></li>
-                <li><a href="#jelix-users-2"><img src="/design/2011/users/overblog.png" alt="Over-Blog"/></a></li>
-                <li><a href="#jelix-users-3"><img src="/design/2011/users/bp2i.png" alt="BNP Parisbas"/></a></li>
-                <li><a href="#jelix-users-4"><img src="/design/2011/users/kayuko.png" alt="Kayuko" /></a></li>
-               <!-- <li><a href="#jelix-users-5"><img src="/design/2011/users/eads.png" alt="EADS" /></a></li>-->
+                <li><a href="#jelix-users-2"><img src="/design/2011/users/3liz.png" alt="3Liz"/></a></li>
+                <li><a href="#jelix-users-3"><img src="/design/2011/users/overblog.png" alt="Over-Blog"/></a></li>
+                <li><a href="#jelix-users-4"><img src="/design/2011/users/bp2i.png" alt="BNP Parisbas"/></a></li>
+                <li><a href="#jelix-users-5"><img src="/design/2011/users/kayuko.png" alt="Kayuko" /></a></li>
             </ul>
-			<div id="jelix-users-description">
+            <div id="jelix-users-description">
                 <p id="jelix-users-1">
                     Since 2011, <a href="http://transatel.com">Transatel</a> has chosen Jelix to develop their frontend applications,
                     used by their business customers. These applications allow to manage millions of SIM cards
                     (Individual or 'Machine To Machine' cards). Their customers are Everything Everywhere (a joint-venture of Orange and T-Mobile in UK),
                     Mobistars and many others MVNO.
                 </p>
-                <p id="jelix-users-2">Jelix motorized the biggest european blog platform, over-blog.com (2006-2012).
+                <p id="jelix-users-2"><a href="http://3liz.com">3Liz</a>, specialized into solutions on geographic information systems,
+                provides web applications like <a href="http://hub.qgis.org/wiki/lizmapwebclient/">LizMap</a>, using Jelix
+                </p>
+                <p id="jelix-users-3">Jelix motorized the biggest european blog platform, over-blog.com (2006-2012).
                     <br/>Over-blog was one of the first user of Jelix.</p>
-                <p id="jelix-users-3">BNP Parisbas, one of the biggest french bank, use jelix in some
+                <p id="jelix-users-4">BNP Parisbas, one of the biggest french bank, use jelix in some
                     of their intranet applications.</p>
-                <p id="jelix-users-4">Jelix motorized the DVD prices comparison engine of Kayuko, and their customer projects.</p>
-				<!--<p id="jelix-users-5">EADS use Jelix in some of their internal projects.</p>-->
+                <p id="jelix-users-5">Jelix motorized the DVD prices comparison engine of Kayuko, and their customer projects.</p>
+
             </div>
             <p>And <a href="/articles/en/hall-of-fame">much more...</a></p>
         </div>
