@@ -2,8 +2,7 @@
 <dao xmlns="http://jelix.org/ns/dao/1.0">
     <datasources>
         <primarytable name="threads" realname="hfnu_threads"  primarykey="id_thread" />
-        <foreigntable name="posts" realname="hfnu_posts"  primarykey="thread_id" onforeignkey="id_thread" />
-        <optionalforeigntable name="usr"   realname="community_users" primarykey="id"  onforeignkey="id_user" />
+        <foreigntable name="posts" realname="hfnu_posts"  primarykey="id_post" onforeignkey="id_last_msg" />
         <optionalforeigntable name="forum" realname="hfnu_forum"  primarykey="id_forum" onforeignkey="id_forum" />
     </datasources>
     <record>
@@ -46,17 +45,6 @@
         <property name="poster_ip"     table="posts"  fieldname="poster_ip" datatype="string" required="true"/>
         <property name="censored_msg"  table="posts"  fieldname="censored_msg" datatype="string" required="false" maxlength="50"/>
         <property name="read_by_mod"   table="posts"  fieldname="read_by_mod" datatype="int" required="false" maxlength="1"/>
-        <!-- properties from member table -->
-        <property name="id"         fieldname="id" datatype="int" table="usr"/>
-        <property name="email"      fieldname="email" datatype="string" table="usr" maxlength="255" />
-        <property name="login"      fieldname="login" table="usr" required="yes" datatype="string"  maxlength="50" />
-        <property name="nickname"      fieldname="nickname" table="usr" required="yes" datatype="string"  maxlength="50" />
-        <property name="member_comment" fieldname="comment" datatype="string" table="usr" maxlength="255"/>
-        <property name="member_town"    fieldname="town" datatype="string" table="usr" maxlength="100"/>
-        <property name="member_avatar"  fieldname="avatar" datatype="string" table="usr" maxlength="255"/>
-        <property name="member_website"	fieldname="website" datatype="string" table="usr" maxlength="255"/>
-        <property name="nb_msg"     fieldname="nb_msg" table="usr" datatype="integer" />
-        <property name="member_last_post"   fieldname="last_post" table="usr"  datatype="integer" />
         <!-- properties from forum table -->
         <property name="forum_parent_id" fieldname="parent_id" table="forum" datatype="int" required="true"/>
         <property name="forum_name"      fieldname="forum_name" table="forum" datatype="int" required="true"/>
@@ -67,53 +55,22 @@
         countXXX uses type="count"
     -->
     <factory>
-
-       <!-- for stats purpose -->
-        <method name="findUnreadThreadByMod" type="select">
-            <conditions>
-                <eq property="read_by_mod" value="0" />
-            </conditions>
+        <method name="findLastPosts" type="select">
+            <parameter name="count" default="5" />
             <order>
-                <orderitem property="date_modified" way="desc" />
+                <orderitem property="date_last_post" way="desc" />
             </order>
+            <limit offset="0" count="$count"/>
         </method>
-        <method name="getUserLastCommentOnForums" type="selectfirst">
-            <parameter name="id_forum" />
-            <conditions>
-                <eq property="id_forum" expr="$id_forum" />
-            </conditions>
-            <order>
-                <orderitem property="p_date_created" way="desc" />
-            </order>
-        </method>
-        <method name="getUserLastVisibleCommentOnForums" type="selectfirst">
-            <parameter name="id_forum" />
-            <conditions>
-                <eq property="id_forum" expr="$id_forum" />
-                <neq property="status_thread" value="7" />
-            </conditions>
-            <order>
-                <orderitem property="p_date_created" way="desc" />
-            </order>
-        </method>
-        <method name="getUserLastCommentOnPosts" type="selectfirst">
-            <parameter name="id_post" />
-            <conditions>
-                <eq property="thread_id" expr="$id_post" />
-            </conditions>
-            <order>
-                <orderitem property="p_date_created" way="desc" />
-            </order>
-        </method>
-        <method name="getUserLastVisibleCommentOnPosts" type="selectfirst">
-            <parameter name="id_post" />
-            <conditions>
-                <eq property="thread_id" expr="$id_post" />
+        <method name="findLastVisiblePosts" type="select">
+            <parameter name="count" default="5" />
+           <conditions>
                 <neq property="status" value="7" />
             </conditions>
             <order>
-                <orderitem property="p_date_created" way="desc" />
+                <orderitem property="date_last_post" way="desc" />
             </order>
+            <limit offset="0" count="$count"/>
         </method>
     </factory>
 </dao>
