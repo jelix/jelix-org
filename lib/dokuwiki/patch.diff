@@ -1,11 +1,6 @@
-# HG changeset patch
-# Parent 988100d80f70fa8ffd80e7f74ace015acb84db3c
-# User Laurent Jouanneau <laurent@xulfr.org>
-apply patch on new dokuwiki
-
-diff --git a/lib/dokuwiki/inc/form.php b/lib/dokuwiki/inc/form.php
---- a/lib/dokuwiki/inc/form.php
-+++ b/lib/dokuwiki/inc/form.php
+diff --git a/www/inc/form.php b/www/inc/form.php
+--- a/www/inc/form.php
++++ b/www/inc/form.php
 @@ -360,17 +360,17 @@ function form_makeCloseTag($tag) {
   *
   * @param   string  $text   Text to fill the field with.
@@ -25,62 +20,9 @@ diff --git a/lib/dokuwiki/inc/form.php b/lib/dokuwiki/inc/form.php
   *
   * Create a form element for an action button.
   * A title will automatically be generated using the value and
-diff --git a/lib/dokuwiki/inc/init.php b/lib/dokuwiki/inc/init.php
---- a/lib/dokuwiki/inc/init.php
-+++ b/lib/dokuwiki/inc/init.php
-@@ -14,19 +14,16 @@ global $config_cascade;
- 
- // if available load a preload config file
- $preload = fullpath(dirname(__FILE__)).'/preload.php';
- if (@file_exists($preload)) include($preload);
- 
- // define the include path
- if(!defined('DOKU_INC')) define('DOKU_INC',fullpath(dirname(__FILE__).'/../').'/');
- 
--// define Plugin dir
--if(!defined('DOKU_PLUGIN'))  define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
--
- // define config path (packagers may want to change this to /etc/dokuwiki/)
- if(!defined('DOKU_CONF')) define('DOKU_CONF',DOKU_INC.'conf/');
- 
- // check for error reporting override or set error reporting to sane values
- if (!defined('DOKU_E_LEVEL') && @file_exists(DOKU_CONF.'report_e_all')) {
-     define('DOKU_E_LEVEL', E_ALL);
- }
- if (!defined('DOKU_E_LEVEL')) {
-@@ -91,16 +88,19 @@ foreach (array('default','local') as $co
-             include($config_file);
-         }
-     }
- }
- 
- // set timezone (as in pre 5.3.0 days)
- date_default_timezone_set(@date_default_timezone_get());
- 
-+// define Plugin dir
-+if(!defined('DOKU_PLUGIN'))  define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
-+
- // define baseURL
- if(!defined('DOKU_REL')) define('DOKU_REL',getBaseURL(false));
- if(!defined('DOKU_URL')) define('DOKU_URL',getBaseURL(true));
- if(!defined('DOKU_BASE')){
-     if($conf['canonical']){
-         define('DOKU_BASE',DOKU_URL);
-     }else{
-         define('DOKU_BASE',DOKU_REL);
-@@ -553,9 +553,8 @@ function fullpath($path,$exists=false){
-     $finalpath = $root.implode('/', $newpath);
- 
-     // check for existance when needed (except when unit testing)
-     if($exists && !defined('DOKU_UNITTEST') && !@file_exists($finalpath)) {
-         return false;
-     }
-     return $finalpath;
- }
--
-diff --git a/lib/dokuwiki/inc/lang/en/lang.php b/lib/dokuwiki/inc/lang/en/lang.php
---- a/lib/dokuwiki/inc/lang/en/lang.php
-+++ b/lib/dokuwiki/inc/lang/en/lang.php
+diff --git a/www/inc/lang/en/lang.php b/www/inc/lang/en/lang.php
+--- a/www/inc/lang/en/lang.php
++++ b/www/inc/lang/en/lang.php
 @@ -336,9 +336,29 @@
  $lang['media_meta_edited']     = 'metadata edited';
  $lang['media_perm_read']       = 'Sorry, you don\'t have enough rights to read files.';
@@ -111,9 +53,9 @@ diff --git a/lib/dokuwiki/inc/lang/en/lang.php b/lib/dokuwiki/inc/lang/en/lang.p
 +$lang['book_current_f'] = 'Section';
 +
  //Setup VIM: ex: et ts=2 :
-diff --git a/lib/dokuwiki/inc/lang/fr/lang.php b/lib/dokuwiki/inc/lang/fr/lang.php
---- a/lib/dokuwiki/inc/lang/fr/lang.php
-+++ b/lib/dokuwiki/inc/lang/fr/lang.php
+diff --git a/www/inc/lang/fr/lang.php b/www/inc/lang/fr/lang.php
+--- a/www/inc/lang/fr/lang.php
++++ b/www/inc/lang/fr/lang.php
 @@ -51,17 +51,17 @@
  $lang['btn_logout']            = 'Déconnexion';
  $lang['btn_admin']             = 'Administrer';
@@ -170,9 +112,9 @@ diff --git a/lib/dokuwiki/inc/lang/fr/lang.php b/lib/dokuwiki/inc/lang/fr/lang.p
  $lang['media_historytab']      = 'Historique';
  $lang['media_list_thumbs']     = 'Aperçus';
  $lang['media_list_rows']       = 'Lignes';
-diff --git a/lib/dokuwiki/inc/pageutils.php b/lib/dokuwiki/inc/pageutils.php
---- a/lib/dokuwiki/inc/pageutils.php
-+++ b/lib/dokuwiki/inc/pageutils.php
+diff --git a/www/inc/pageutils.php b/www/inc/pageutils.php
+--- a/www/inc/pageutils.php
++++ b/www/inc/pageutils.php
 @@ -24,41 +24,45 @@ function getID($param='id',$clean=true){
      $id = isset($_REQUEST[$param]) ? $_REQUEST[$param] : null;
  
@@ -237,9 +179,9 @@ diff --git a/lib/dokuwiki/inc/pageutils.php b/lib/dokuwiki/inc/pageutils.php
      return urldecode($file);
  }
 -
-diff --git a/lib/dokuwiki/inc/parser/xhtml.php b/lib/dokuwiki/inc/parser/xhtml.php
---- a/lib/dokuwiki/inc/parser/xhtml.php
-+++ b/lib/dokuwiki/inc/parser/xhtml.php
+diff --git a/www/inc/parser/xhtml.php b/www/inc/parser/xhtml.php
+--- a/www/inc/parser/xhtml.php
++++ b/www/inc/parser/xhtml.php
 @@ -176,19 +176,19 @@ class Doku_Renderer_xhtml extends Doku_R
              $this->finishSectionEdit($pos - 1);
          }
@@ -262,33 +204,9 @@ diff --git a/lib/dokuwiki/inc/parser/xhtml.php b/lib/dokuwiki/inc/parser/xhtml.p
  
      function section_close() {
          $this->doc .= DOKU_LF.'</div>'.DOKU_LF;
-diff --git a/lib/dokuwiki/inc/template.php b/lib/dokuwiki/inc/template.php
---- a/lib/dokuwiki/inc/template.php
-+++ b/lib/dokuwiki/inc/template.php
-@@ -12,20 +12,20 @@ if(!defined('DOKU_INC')) die('meh.');
-  * Returns the path to the given template, uses
-  * default one if the custom version doesn't exist.
-  *
-  * @author Andreas Gohr <andi@splitbrain.org>
-  */
- function template($tpl){
-     global $conf;
- 
--    if(@is_readable(DOKU_INC.'lib/tpl/'.$conf['template'].'/'.$tpl))
--        return DOKU_INC.'lib/tpl/'.$conf['template'].'/'.$tpl;
-+    if(@is_readable(DOKU_TPLINC.'/'.$tpl))
-+       return DOKU_TPLINC.'/'.$tpl;
- 
--    return DOKU_INC.'lib/tpl/default/'.$tpl;
-+    return DOKU_TPLINC_DEF.$tpl;
- }
- 
- /**
-  * Print the content
-  *
-  * This function is used for printing all the usual content
-  * (defined by the global $ACT var) by calling the appropriate
-  * outputfunction(s) from html.php
+diff --git a/www/inc/template.php b/www/inc/template.php
+--- a/www/inc/template.php
++++ b/www/inc/template.php
 @@ -249,17 +249,17 @@ function tpl_metaheaders($alt=true){
      $tseed = 0;
      $depends = getConfigFiles('main');
@@ -308,9 +226,9 @@ diff --git a/lib/dokuwiki/inc/template.php b/lib/dokuwiki/inc/template.php
                  'title'=>$lang['btn_index'] );
      }
  
-diff --git a/lib/dokuwiki/inc/utf8.php b/lib/dokuwiki/inc/utf8.php
---- a/lib/dokuwiki/inc/utf8.php
-+++ b/lib/dokuwiki/inc/utf8.php
+diff --git a/www/inc/utf8.php b/www/inc/utf8.php
+--- a/www/inc/utf8.php
++++ b/www/inc/utf8.php
 @@ -518,17 +518,17 @@ if(!function_exists('utf8_decode_numeric
              default:
                  $cp = intval($ent[3]);
@@ -342,7 +260,7 @@ diff --git a/www/articles.php b/www/articles.php
  
  //  xdebug_start_profiling();
  
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
+ if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 +// HACK LJ >>>>>>>>>
 +  $lang ='en';
 +  if(isset($_SERVER['PATH_INFO']) && (!isset($_REQUEST['do']) ||$_REQUEST['do'] != 'search')){
@@ -356,10 +274,6 @@ diff --git a/www/articles.php b/www/articles.php
 +    }
 +  }
 +  define('DOKU_LANG', $lang);
-+  //define('DOKU_INC','../lib/dokuwiki/');
-+
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../lib/dokuwiki/').'/');
-+//if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 +// <<<<<<<<<< HACK LJ
  
  if (isset($_SERVER['HTTP_X_DOKUWIKI_DO'])){
@@ -396,401 +310,19 @@ diff --git a/www/articles.php b/www/articles.php
  $DATE  = $_REQUEST['date'];
  $RANGE = $_REQUEST['range'];
  $HIGH  = $_REQUEST['s'];
-diff --git a/www/feed.php b/www/feed.php
---- a/www/feed.php
-+++ b/www/feed.php
-@@ -1,17 +1,17 @@
- <?php
- /**
-  * XML feed export
-  *
-  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
- 
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../lib/dokuwiki/').'/');
- require_once(DOKU_INC.'inc/init.php');
- 
- //close session
- session_write_close();
- 
- // get params
- $opt = rss_parseOptions();
- 
-diff --git a/www/lib/exe/ajax.php b/www/lib/exe/ajax.php
---- a/www/lib/exe/ajax.php
-+++ b/www/lib/exe/ajax.php
-@@ -1,17 +1,17 @@
- <?php
- /**
-  * DokuWiki AJAX call handler
-  *
-  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
- 
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
- require_once(DOKU_INC.'inc/init.php');
- //close session
- session_write_close();
- 
- header('Content-Type: text/html; charset=utf-8');
- 
- 
- //call the requested function
-diff --git a/www/lib/exe/css.php b/www/lib/exe/css.php
---- a/www/lib/exe/css.php
-+++ b/www/lib/exe/css.php
-@@ -1,17 +1,17 @@
- <?php
- /**
-  * DokuWiki StyleSheet creator
-  *
-  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
- 
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
- if(!defined('NOSESSION')) define('NOSESSION',true); // we do not use a session or authentication here (better caching)
- if(!defined('DOKU_DISABLE_GZIP_OUTPUT')) define('DOKU_DISABLE_GZIP_OUTPUT',1); // we gzip ourself here
- require_once(DOKU_INC.'inc/init.php');
- 
- // Main (don't run when UNIT test)
- if(!defined('SIMPLE_TEST')){
-     header('Content-Type: text/css; charset=utf-8');
-     css_out();
-@@ -33,17 +33,17 @@ function css_out(){
-     $mediatype = 'screen';
-     if (isset($_REQUEST['s']) &&
-         in_array($_REQUEST['s'], array('all', 'print', 'feed'))) {
-         $mediatype = $_REQUEST['s'];
-     }
- 
-     $tpl = trim(preg_replace('/[^\w-]+/','',$_REQUEST['t']));
-     if($tpl){
--        $tplinc = DOKU_INC.'lib/tpl/'.$tpl.'/';
-+        $tplinc = DOKU_LIB.'tpl/'.$tpl.'/';
-         $tpldir = DOKU_BASE.'lib/tpl/'.$tpl.'/';
-     }else{
-         $tplinc = DOKU_TPLINC;
-         $tpldir = DOKU_TPL;
-     }
- 
-     // The generated script depends on some dynamic options
-     $cache = new cache('styles'.$_SERVER['HTTP_HOST'].$_SERVER['SERVER_PORT'].DOKU_BASE.$tplinc.$mediatype,'.css');
-@@ -56,19 +56,19 @@ function css_out(){
-             $tplstyles[$mode][$tplinc.$file] = $tpldir;
-         }
-     }
- 
-     // Array of needed files and their web locations, the latter ones
-     // are needed to fix relative paths in the stylesheets
-     $files   = array();
-     // load core styles
--    $files[DOKU_INC.'lib/styles/'.$mediatype.'.css'] = DOKU_BASE.'lib/styles/';
-+    $files[DOKU_LIB.'styles/'.$mediatype.'.css'] = DOKU_BASE.'lib/styles/';
-     // load jQuery-UI theme
--    $files[DOKU_INC.'lib/scripts/jquery/jquery-ui-theme/smoothness.css'] = DOKU_BASE.'lib/scripts/jquery/jquery-ui-theme/';
-+    $files[DOKU_LIB.'scripts/jquery/jquery-ui-theme/smoothness.css'] = DOKU_BASE.'lib/scripts/jquery/jquery-ui-theme/';
-     // load plugin styles
-     $files = array_merge($files, css_pluginstyles($mediatype));
-     // load template styles
-     if (isset($tplstyles[$mediatype])) {
-         $files = array_merge($files, $tplstyles[$mediatype]);
-     }
-     // if old 'default' userstyle setting exists, make it 'screen' userstyle for backwards compatibility
-     if (isset($config_cascade['userstyle']['default'])) {
-@@ -164,21 +164,21 @@ function css_interwiki(){
-     echo ' background: transparent url('.DOKU_BASE.'lib/images/interwiki.png) 0px 1px no-repeat;';
-     echo ' padding: 1px 0px 1px 16px;';
-     echo '}';
- 
-     // additional styles when icon available
-     $iwlinks = getInterwiki();
-     foreach(array_keys($iwlinks) as $iw){
-         $class = preg_replace('/[^_\-a-z0-9]+/i','_',$iw);
--        if(@file_exists(DOKU_INC.'lib/images/interwiki/'.$iw.'.png')){
-+        if(@file_exists(DOKU_LIB.'images/interwiki/'.$iw.'.png')){
-             echo "a.iw_$class {";
-             echo '  background-image: url('.DOKU_BASE.'lib/images/interwiki/'.$iw.'.png)';
-             echo '}';
--        }elseif(@file_exists(DOKU_INC.'lib/images/interwiki/'.$iw.'.gif')){
-+        }elseif(@file_exists(DOKU_LIB.'images/interwiki/'.$iw.'.gif')){
-             echo "a.iw_$class {";
-             echo '  background-image: url('.DOKU_BASE.'lib/images/interwiki/'.$iw.'.gif)';
-             echo '}';
-         }
-     }
- }
- 
- /**
-@@ -193,17 +193,17 @@ function css_filetypes(){
-     echo ' background: transparent url('.DOKU_BASE.'lib/images/fileicons/file.png) 0px 1px no-repeat;';
-     echo ' padding-left: 18px;';
-     echo ' padding-bottom: 1px;';
-     echo '}';
- 
-     // additional styles when icon available
-     // scan directory for all icons
-     $exts = array();
--    if($dh = opendir(DOKU_INC.'lib/images/fileicons')){
-+    if($dh = opendir(DOKU_LIB.'images/fileicons')){
-         while(false !== ($file = readdir($dh))){
-             if(preg_match('/([_\-a-z0-9]+(?:\.[_\-a-z0-9]+)*?)\.(png|gif)/i',$file,$match)){
-                 $ext = strtolower($match[1]);
-                 $type = '.'.strtolower($match[2]);
-                 if($ext!='file' && (!isset($exts[$ext]) || $type=='.png')){
-                     $exts[$ext] = $type;
-                 }
-             }
-diff --git a/www/lib/exe/detail.php b/www/lib/exe/detail.php
---- a/www/lib/exe/detail.php
-+++ b/www/lib/exe/detail.php
-@@ -1,10 +1,10 @@
- <?php
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
- define('DOKU_MEDIADETAIL',1);
- require_once(DOKU_INC.'inc/init.php');
- //close session
- session_write_close();
- 
- $IMG  = getID('media');
- $ID   = cleanID($_REQUEST['id']);
- 
-@@ -40,9 +40,8 @@ if($AUTH >= AUTH_READ){
- 
- // this makes some general infos available as well as the info about the
- // "parent" page
- $INFO = pageinfo();
- 
- //start output and load template
- header('Content-Type: text/html; charset=utf-8');
- include(template('detail.php'));
--
-diff --git a/www/lib/exe/fetch.php b/www/lib/exe/fetch.php
---- a/www/lib/exe/fetch.php
-+++ b/www/lib/exe/fetch.php
-@@ -1,17 +1,17 @@
- <?php
- /**
-  * DokuWiki media passthrough file
-  *
-  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
- 
--  if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+  if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
-   define('DOKU_DISABLE_GZIP_OUTPUT', 1);
-   require_once(DOKU_INC.'inc/init.php');
- 
-   //close session
-   session_write_close();
- 
-   $mimetypes = getMimeTypes();
- 
-diff --git a/www/lib/exe/indexer.php b/www/lib/exe/indexer.php
---- a/www/lib/exe/indexer.php
-+++ b/www/lib/exe/indexer.php
-@@ -1,16 +1,16 @@
- <?php
- /**
-  * DokuWiki indexer
-  *
-  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
- define('DOKU_DISABLE_GZIP_OUTPUT',1);
- require_once(DOKU_INC.'inc/init.php');
- session_write_close();  //close session
- if(!defined('NL')) define('NL',"\n");
- 
- // keep running after browser closes connection
- @ignore_user_abort(true);
- 
-diff --git a/www/lib/exe/js.php b/www/lib/exe/js.php
---- a/www/lib/exe/js.php
-+++ b/www/lib/exe/js.php
-@@ -1,17 +1,17 @@
- <?php
- /**
-  * DokuWiki JavaScript creator
-  *
-  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
- 
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
- if(!defined('NOSESSION')) define('NOSESSION',true); // we do not use a session or authentication here (better caching)
- if(!defined('NL')) define('NL',"\n");
- if(!defined('DOKU_DISABLE_GZIP_OUTPUT')) define('DOKU_DISABLE_GZIP_OUTPUT',1); // we gzip ourself here
- require_once(DOKU_INC.'inc/init.php');
- 
- // Main (don't run when UNIT test)
- if(!defined('SIMPLE_TEST')){
-     header('Content-Type: text/javascript; charset=utf-8');
-@@ -35,41 +35,41 @@ function js_out(){
-     $cache = new cache('scripts'.$_SERVER['HTTP_HOST'].$_SERVER['SERVER_PORT'],
-                        '.js');
- 
-     // load minified version for some files
-     $min = $conf['compress'] ? '.min' : '';
- 
-     // array of core files
-     $files = array(
--                DOKU_INC."lib/scripts/jquery/jquery$min.js",
--                DOKU_INC.'lib/scripts/jquery/jquery.cookie.js',
--                DOKU_INC."lib/scripts/jquery/jquery-ui$min.js",
--                DOKU_INC."lib/scripts/fileuploader.js",
--                DOKU_INC."lib/scripts/fileuploaderextended.js",
--                DOKU_INC.'lib/scripts/helpers.js',
--                DOKU_INC.'lib/scripts/delay.js',
--                DOKU_INC.'lib/scripts/cookie.js',
--                DOKU_INC.'lib/scripts/script.js',
--                DOKU_INC.'lib/scripts/tw-sack.js',
--                DOKU_INC.'lib/scripts/qsearch.js',
--                DOKU_INC.'lib/scripts/tree.js',
--                DOKU_INC.'lib/scripts/index.js',
--                DOKU_INC.'lib/scripts/drag.js',
--                DOKU_INC.'lib/scripts/textselection.js',
--                DOKU_INC.'lib/scripts/toolbar.js',
--                DOKU_INC.'lib/scripts/edit.js',
--                DOKU_INC.'lib/scripts/editor.js',
--                DOKU_INC.'lib/scripts/locktimer.js',
--                DOKU_INC.'lib/scripts/linkwiz.js',
--                DOKU_INC.'lib/scripts/media.js',
--                DOKU_INC.'lib/scripts/compatibility.js',
--# disabled for FS#1958                DOKU_INC.'lib/scripts/hotkeys.js',
--                DOKU_INC.'lib/scripts/behaviour.js',
--                DOKU_INC.'lib/scripts/page.js',
-+                DOKU_LIB."scripts/jquery/jquery$min.js",
-+                DOKU_LIB.'scripts/jquery/jquery.cookie.js',
-+                DOKU_LIB."scripts/jquery/jquery-ui$min.js",
-+                DOKU_LIB."scripts/fileuploader.js",
-+                DOKU_LIB."scripts/fileuploaderextended.js",
-+                DOKU_LIB.'scripts/helpers.js',
-+                DOKU_LIB.'scripts/delay.js',
-+                DOKU_LIB.'scripts/cookie.js',
-+                DOKU_LIB.'scripts/script.js',
-+                DOKU_LIB.'scripts/tw-sack.js',
-+                DOKU_LIB.'scripts/qsearch.js',
-+                DOKU_LIB.'scripts/tree.js',
-+                DOKU_LIB.'scripts/index.js',
-+                DOKU_LIB.'scripts/drag.js',
-+                DOKU_LIB.'scripts/textselection.js',
-+                DOKU_LIB.'scripts/toolbar.js',
-+                DOKU_LIB.'scripts/edit.js',
-+                DOKU_LIB.'scripts/editor.js',
-+                DOKU_LIB.'scripts/locktimer.js',
-+                DOKU_LIB.'scripts/linkwiz.js',
-+                DOKU_LIB.'scripts/media.js',
-+                DOKU_LIB.'scripts/compatibility.js',
-+# disabled for FS#1958                DOKU_LIB.'scripts/hotkeys.js',
-+                DOKU_LIB.'scripts/behaviour.js',
-+                DOKU_LIB.'scripts/page.js',
-                 DOKU_TPLINC.'script.js',
-             );
- 
-     // add possible plugin scripts and userscript
-     $files   = array_merge($files,js_pluginscripts());
-     if(isset($config_cascade['userscript']['default'])){
-         $files[] = $config_cascade['userscript']['default'];
-     }
-diff --git a/www/lib/exe/mediamanager.php b/www/lib/exe/mediamanager.php
---- a/www/lib/exe/mediamanager.php
-+++ b/www/lib/exe/mediamanager.php
-@@ -1,10 +1,10 @@
- <?php
--    if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
-     define('DOKU_MEDIAMANAGER',1);
- 
-     // for multi uploader:
-     @ini_set('session.use_only_cookies',0);
- 
-     require_once(DOKU_INC.'inc/init.php');
- 
-     trigger_event('MEDIAMANAGER_STARTED',$tmp=array());
-diff --git a/www/lib/exe/opensearch.php b/www/lib/exe/opensearch.php
---- a/www/lib/exe/opensearch.php
-+++ b/www/lib/exe/opensearch.php
-@@ -3,23 +3,23 @@
-  * DokuWiki OpenSearch creator
-  *
-  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
-  * @link       http://www.opensearch.org/
-  * @author     Mike Frysinger <vapier@gentoo.org>
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
- 
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
- if(!defined('NOSESSION')) define('NOSESSION',true); // we do not use a session or authentication here (better caching)
- if(!defined('NL')) define('NL',"\n");
- require_once(DOKU_INC.'inc/init.php');
- 
- // try to be clever about the favicon location
--if(file_exists(DOKU_INC.'favicon.ico')){
-+if(file_exists(DOKU_LIB.'../favicon.ico')){
-     $ico = DOKU_URL.'favicon.ico';
- }elseif(file_exists(DOKU_TPLINC.'images/favicon.ico')){
-     $ico = DOKU_URL.'lib/tpl/'.$conf['template'].'/images/favicon.ico';
- }elseif(file_exists(DOKU_TPLINC.'favicon.ico')){
-     $ico = DOKU_URL.'lib/tpl/'.$conf['template'].'/favicon.ico';
- }else{
-     $ico = DOKU_URL.'lib/tpl/default/images/favicon.ico';
- }
-diff --git a/www/lib/exe/xmlrpc.php b/www/lib/exe/xmlrpc.php
---- a/www/lib/exe/xmlrpc.php
-+++ b/www/lib/exe/xmlrpc.php
-@@ -1,10 +1,10 @@
- <?php
--if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
-+if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
- 
- // fix when '< ?xml' isn't on the very first line
- if(isset($HTTP_RAW_POST_DATA)) $HTTP_RAW_POST_DATA = trim($HTTP_RAW_POST_DATA);
- 
- /**
-  * Increased whenever the API is changed
-  */
- define('DOKU_XMLRPC_API_VERSION', 6);
-diff --git a/www/lib/plugins/config/settings/config.metadata.php b/www/lib/plugins/config/settings/config.metadata.php
---- a/www/lib/plugins/config/settings/config.metadata.php
-+++ b/www/lib/plugins/config/settings/config.metadata.php
-@@ -85,17 +85,17 @@
- // - order the settings in the order you wish them to appear
- // - any settings not mentioned will come after the last setting listed and
- //   will use the default class with no parameters
- 
- $meta['_basic']   = array('fieldset');
- $meta['title']    = array('string');
- $meta['start']    = array('string','_pattern' => '!^[^:;/]+$!'); // don't accept namespaces
- $meta['lang']     = array('dirchoice','_dir' => DOKU_INC.'inc/lang/');
--$meta['template'] = array('dirchoice','_dir' => DOKU_INC.'lib/tpl/','_pattern' => '/^[\w-]+$/');
-+$meta['template'] = array('dirchoice','_dir' => DOKU_LIB.'tpl/','_pattern' => '/^[\w-]+$/');
- $meta['license']  = array('license');
- $meta['savedir']  = array('savedir');
- $meta['basedir']  = array('string');
- $meta['baseurl']  = array('string');
- $meta['cookiedir'] = array('string');
- $meta['dmode']    = array('numeric','_pattern' => '/0[0-7]{3,4}/'); // only accept octal representation
- $meta['fmode']    = array('numeric','_pattern' => '/0[0-7]{3,4}/'); // only accept octal representation
- $meta['allowdebug']  = array('onoff');
-@@ -206,9 +206,8 @@
- $meta['proxy____ssl']  = array('onoff');
- $meta['proxy____except'] = array('string');
- $meta['safemodehack'] = array('onoff');
- $meta['ftp____host']  = array('string','_pattern' => '#^(|[a-z0-9\-\.+]+)$#i');
- $meta['ftp____port']  = array('numericopt');
- $meta['ftp____user']  = array('string');
- $meta['ftp____pass']  = array('password','_code' => 'base64');
- $meta['ftp____root']  = array('string');
--
+diff --git a/www/inc/infoutils.php b/www/inc/infoutils.php
+index 2b84869..22b02ab 100644
+--- a/www/inc/infoutils.php
++++ b/www/inc/infoutils.php
+@@ -49,9 +49,9 @@ function checkUpdateMessages(){
+ function getVersionData(){
+     $version = array();
+     //import version string
+-    if(@file_exists(DOKU_INC.'VERSION')){
++    if(@file_exists(DOKU_INC.'/../../lib/dokuwiki/VERSION')){
+         //official release
+-        $version['date'] = trim(io_readfile(DOKU_INC.'VERSION'));
++        $version['date'] = trim(io_readfile(DOKU_INC.'/../../lib/dokuwiki/VERSION'));
+         $version['type'] = 'Release';
+     }elseif(is_dir(DOKU_INC.'.git')){
+         $version['type'] = 'Git';

@@ -19,6 +19,9 @@ if (@file_exists($preload)) include($preload);
 // define the include path
 if(!defined('DOKU_INC')) define('DOKU_INC',fullpath(dirname(__FILE__).'/../').'/');
 
+// define Plugin dir
+if(!defined('DOKU_PLUGIN'))  define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
+
 // define config path (packagers may want to change this to /etc/dokuwiki/)
 if(!defined('DOKU_CONF')) define('DOKU_CONF',DOKU_INC.'conf/');
 
@@ -92,9 +95,6 @@ foreach (array('default','local') as $config_group) {
 
 // set timezone (as in pre 5.3.0 days)
 date_default_timezone_set(@date_default_timezone_get());
-
-// define Plugin dir
-if(!defined('DOKU_PLUGIN'))  define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
 
 // define baseURL
 if(!defined('DOKU_REL')) define('DOKU_REL',getBaseURL(false));
@@ -558,3 +558,4 @@ function fullpath($path,$exists=false){
     }
     return $finalpath;
 }
+

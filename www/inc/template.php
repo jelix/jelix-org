@@ -17,10 +17,10 @@ if(!defined('DOKU_INC')) die('meh.');
 function template($tpl){
     global $conf;
 
-    if(@is_readable(DOKU_TPLINC.'/'.$tpl))
-       return DOKU_TPLINC.'/'.$tpl;
+    if(@is_readable(DOKU_INC.'lib/tpl/'.$conf['template'].'/'.$tpl))
+        return DOKU_INC.'lib/tpl/'.$conf['template'].'/'.$tpl;
 
-    return DOKU_TPLINC_DEF.$tpl;
+    return DOKU_INC.'lib/tpl/default/'.$tpl;
 }
 
 /**
@@ -1151,7 +1151,7 @@ function tpl_mediaFileList(){
     echo '<div class="panelHeader">'.NL;
     echo '<h3>';
     $tabTitle = ($NS) ? $NS : '['.$lang['mediaroot'].']';
-    printf($lang['media_' . $opened_tab], '<strong>'.$tabTitle.'</strong>');
+    printf($lang['media_' . $opened_tab], '<strong>'.hsc($tabTitle).'</strong>');
     echo '</h3>'.NL;
     if ($opened_tab === 'search' || $opened_tab === 'files') {
         media_tab_files_options();

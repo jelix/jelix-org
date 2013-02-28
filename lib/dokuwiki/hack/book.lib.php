@@ -204,5 +204,3 @@ function tpl_book_lang($label='') {
     }
 }
 
-
-?>

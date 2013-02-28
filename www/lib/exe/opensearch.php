@@ -8,13 +8,13 @@
  * @author     Andreas Gohr <andi@splitbrain.org>
  */
 
-if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
+if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
 if(!defined('NOSESSION')) define('NOSESSION',true); // we do not use a session or authentication here (better caching)
 if(!defined('NL')) define('NL',"\n");
 require_once(DOKU_INC.'inc/init.php');
 
 // try to be clever about the favicon location
-if(file_exists(DOKU_LIB.'../favicon.ico')){
+if(file_exists(DOKU_INC.'favicon.ico')){
     $ico = DOKU_URL.'favicon.ico';
 }elseif(file_exists(DOKU_TPLINC.'images/favicon.ico')){
     $ico = DOKU_URL.'lib/tpl/'.$conf['template'].'/images/favicon.ico';

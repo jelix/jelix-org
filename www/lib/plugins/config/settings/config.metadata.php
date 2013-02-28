@@ -90,7 +90,7 @@ $meta['_basic']   = array('fieldset');
 $meta['title']    = array('string');
 $meta['start']    = array('string','_pattern' => '!^[^:;/]+$!'); // don't accept namespaces
 $meta['lang']     = array('dirchoice','_dir' => DOKU_INC.'inc/lang/');
-$meta['template'] = array('dirchoice','_dir' => DOKU_LIB.'tpl/','_pattern' => '/^[\w-]+$/');
+$meta['template'] = array('dirchoice','_dir' => DOKU_INC.'lib/tpl/','_pattern' => '/^[\w-]+$/');
 $meta['license']  = array('license');
 $meta['savedir']  = array('savedir');
 $meta['basedir']  = array('string');

@@ -31,11 +31,9 @@ $updateVersion = 36.1;
     }
   }
   define('DOKU_LANG', $lang);
-  //define('DOKU_INC','../lib/dokuwiki/');
-
-if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../lib/dokuwiki/').'/');
-//if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 // <<<<<<<<<< HACK LJ
+
+if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
 
 if (isset($_SERVER['HTTP_X_DOKUWIKI_DO'])){
     $ACT = trim(strtolower($_SERVER['HTTP_X_DOKUWIKI_DO']));

@@ -6,7 +6,7 @@
  * @author     Andreas Gohr <andi@splitbrain.org>
  */
 
-if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
+if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
 if(!defined('NOSESSION')) define('NOSESSION',true); // we do not use a session or authentication here (better caching)
 if(!defined('NL')) define('NL',"\n");
 if(!defined('DOKU_DISABLE_GZIP_OUTPUT')) define('DOKU_DISABLE_GZIP_OUTPUT',1); // we gzip ourself here
@@ -40,31 +40,31 @@ function js_out(){
 
     // array of core files
     $files = array(
-                DOKU_LIB."scripts/jquery/jquery$min.js",
-                DOKU_LIB.'scripts/jquery/jquery.cookie.js',
-                DOKU_LIB."scripts/jquery/jquery-ui$min.js",
-                DOKU_LIB."scripts/fileuploader.js",
-                DOKU_LIB."scripts/fileuploaderextended.js",
-                DOKU_LIB.'scripts/helpers.js',
-                DOKU_LIB.'scripts/delay.js',
-                DOKU_LIB.'scripts/cookie.js',
-                DOKU_LIB.'scripts/script.js',
-                DOKU_LIB.'scripts/tw-sack.js',
-                DOKU_LIB.'scripts/qsearch.js',
-                DOKU_LIB.'scripts/tree.js',
-                DOKU_LIB.'scripts/index.js',
-                DOKU_LIB.'scripts/drag.js',
-                DOKU_LIB.'scripts/textselection.js',
-                DOKU_LIB.'scripts/toolbar.js',
-                DOKU_LIB.'scripts/edit.js',
-                DOKU_LIB.'scripts/editor.js',
-                DOKU_LIB.'scripts/locktimer.js',
-                DOKU_LIB.'scripts/linkwiz.js',
-                DOKU_LIB.'scripts/media.js',
-                DOKU_LIB.'scripts/compatibility.js',
-# disabled for FS#1958                DOKU_LIB.'scripts/hotkeys.js',
-                DOKU_LIB.'scripts/behaviour.js',
-                DOKU_LIB.'scripts/page.js',
+                DOKU_INC."lib/scripts/jquery/jquery$min.js",
+                DOKU_INC.'lib/scripts/jquery/jquery.cookie.js',
+                DOKU_INC."lib/scripts/jquery/jquery-ui$min.js",
+                DOKU_INC."lib/scripts/fileuploader.js",
+                DOKU_INC."lib/scripts/fileuploaderextended.js",
+                DOKU_INC.'lib/scripts/helpers.js',
+                DOKU_INC.'lib/scripts/delay.js',
+                DOKU_INC.'lib/scripts/cookie.js',
+                DOKU_INC.'lib/scripts/script.js',
+                DOKU_INC.'lib/scripts/tw-sack.js',
+                DOKU_INC.'lib/scripts/qsearch.js',
+                DOKU_INC.'lib/scripts/tree.js',
+                DOKU_INC.'lib/scripts/index.js',
+                DOKU_INC.'lib/scripts/drag.js',
+                DOKU_INC.'lib/scripts/textselection.js',
+                DOKU_INC.'lib/scripts/toolbar.js',
+                DOKU_INC.'lib/scripts/edit.js',
+                DOKU_INC.'lib/scripts/editor.js',
+                DOKU_INC.'lib/scripts/locktimer.js',
+                DOKU_INC.'lib/scripts/linkwiz.js',
+                DOKU_INC.'lib/scripts/media.js',
+                DOKU_INC.'lib/scripts/compatibility.js',
+# disabled for FS#1958                DOKU_INC.'lib/scripts/hotkeys.js',
+                DOKU_INC.'lib/scripts/behaviour.js',
+                DOKU_INC.'lib/scripts/page.js',
                 DOKU_TPLINC.'script.js',
             );
 

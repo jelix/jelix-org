@@ -6,7 +6,7 @@
  * @author     Andreas Gohr <andi@splitbrain.org>
  */
 
-if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../../lib/dokuwiki/').'/');
+if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/../../');
 if(!defined('NOSESSION')) define('NOSESSION',true); // we do not use a session or authentication here (better caching)
 if(!defined('DOKU_DISABLE_GZIP_OUTPUT')) define('DOKU_DISABLE_GZIP_OUTPUT',1); // we gzip ourself here
 require_once(DOKU_INC.'inc/init.php');
@@ -38,7 +38,7 @@ function css_out(){
 
     $tpl = trim(preg_replace('/[^\w-]+/','',$_REQUEST['t']));
     if($tpl){
-        $tplinc = DOKU_LIB.'tpl/'.$tpl.'/';
+        $tplinc = DOKU_INC.'lib/tpl/'.$tpl.'/';
         $tpldir = DOKU_BASE.'lib/tpl/'.$tpl.'/';
     }else{
         $tplinc = DOKU_TPLINC;
@@ -61,9 +61,9 @@ function css_out(){
     // are needed to fix relative paths in the stylesheets
     $files   = array();
     // load core styles
-    $files[DOKU_LIB.'styles/'.$mediatype.'.css'] = DOKU_BASE.'lib/styles/';
+    $files[DOKU_INC.'lib/styles/'.$mediatype.'.css'] = DOKU_BASE.'lib/styles/';
     // load jQuery-UI theme
-    $files[DOKU_LIB.'scripts/jquery/jquery-ui-theme/smoothness.css'] = DOKU_BASE.'lib/scripts/jquery/jquery-ui-theme/';
+    $files[DOKU_INC.'lib/scripts/jquery/jquery-ui-theme/smoothness.css'] = DOKU_BASE.'lib/scripts/jquery/jquery-ui-theme/';
     // load plugin styles
     $files = array_merge($files, css_pluginstyles($mediatype));
     // load template styles
@@ -169,11 +169,11 @@ function css_interwiki(){
     $iwlinks = getInterwiki();
     foreach(array_keys($iwlinks) as $iw){
         $class = preg_replace('/[^_\-a-z0-9]+/i','_',$iw);
-        if(@file_exists(DOKU_LIB.'images/interwiki/'.$iw.'.png')){
+        if(@file_exists(DOKU_INC.'lib/images/interwiki/'.$iw.'.png')){
             echo "a.iw_$class {";
             echo '  background-image: url('.DOKU_BASE.'lib/images/interwiki/'.$iw.'.png)';
             echo '}';
-        }elseif(@file_exists(DOKU_LIB.'images/interwiki/'.$iw.'.gif')){
+        }elseif(@file_exists(DOKU_INC.'lib/images/interwiki/'.$iw.'.gif')){
             echo "a.iw_$class {";
             echo '  background-image: url('.DOKU_BASE.'lib/images/interwiki/'.$iw.'.gif)';
             echo '}';
@@ -198,7 +198,7 @@ function css_filetypes(){
     // additional styles when icon available
     // scan directory for all icons
     $exts = array();
-    if($dh = opendir(DOKU_LIB.'images/fileicons')){
+    if($dh = opendir(DOKU_INC.'lib/images/fileicons')){
         while(false !== ($file = readdir($dh))){
             if(preg_match('/([_\-a-z0-9]+(?:\.[_\-a-z0-9]+)*?)\.(png|gif)/i',$file,$match)){
                 $ext = strtolower($match[1]);
