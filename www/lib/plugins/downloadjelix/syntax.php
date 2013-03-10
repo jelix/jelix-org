@@ -48,7 +48,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
      */
     function handle($match, $state, $pos, &$handler){
         if($state == DOKU_LEXER_SPECIAL) {
-            if (preg_match("/^~~download\s+([a-z]+)\s+(\d+(\.\d+)*)\s*~~$/", $match, $m)) {
+            if (preg_match("/^~~download\s+([a-z\\-]+)\s+(\d+(\.\d+)*)\s*~~$/", $match, $m)) {
                 return array($state, $m[1], trim($m[2]));
             }
         }
@@ -66,7 +66,8 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
         'manual'    =>array('name'=>'jelix/releases/%branch%/%version%/jelix-manual-%version%.pdf'),
         'manuel'    =>array('name'=>'jelix/releases/%branch%/%version%/jelix-manuel-%version%.pdf'),
         'apiref'    =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-apidoc_html.zip'),
-        'testapp'   =>array('name'=>'jelix/releases/%branch%/%version%/testapp-%version%.tar.gz',      'zip'=>true)
+        'testapp'   =>array('name'=>'jelix/releases/%branch%/%version%/testapp-%version%.tar.gz',      'zip'=>true),
+        'module-jtcpdf' =>array('name'=>'jelix/releases/%branch%/%version%/module-jtcpdf-%version%.tar.gz',   'zip'=>true),
     );
 
     /**

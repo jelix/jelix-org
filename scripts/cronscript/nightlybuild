@@ -70,7 +70,7 @@ buildbranch()
     mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH
     mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH
 
-    if [ "$BRANCH" == "master" ]; then
+    if [ "$HASMODULES" == "Y" ]; then
         mv -f "$DISTPATH"module-*.zip    $DOWNLOADPATH
         mv -f "$DISTPATH"module-*.tar.gz $DOWNLOADPATH
     fi
@@ -146,6 +146,7 @@ for BRANCHVERSION in $BRANCHEVERSIONLIST; do
     FILENAME="jelix-$BRANCHVERSION"
     TESTAPPFILENAME="testapp-$BRANCHVERSION"
     FONTSFILENAME="jelix-$BRANCHVERSION-pdf-fonts"
+    HASMODULES=""
 
     if [ "$REQUIRED_BRANCH" == "" -o "$REQUIRED_BRANCH" == "$BRANCH" ]
     then
@@ -164,6 +165,7 @@ for BRANCHVERSION in $BRANCHEVERSIONLIST; do
     FILENAME="jelix-$BRANCHVERSION"
     TESTAPPFILENAME="testapp-$BRANCHVERSION"
     FONTSFILENAME=""
+    HASMODULES="Y"
 
     if [ "$REQUIRED_BRANCH" == "" -o "$REQUIRED_BRANCH" == "$BRANCH" ]
     then
