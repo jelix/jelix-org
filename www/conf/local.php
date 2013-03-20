@@ -6,7 +6,7 @@
  */
 if(!defined('DOKU_LANG')) define('DOKU_LANG', 'en');
 
-define('DOKU_LIB', realpath(dirname(__FILE__).'/../../../www/lib/').'/');
+define('DOKU_LIB', realpath(dirname(__FILE__).'/../lib/').'/');
 define('DOKU_PLUGIN',DOKU_LIB.'plugins/');
 define('DOKU_SCRIPT','articles');
 
@@ -17,7 +17,7 @@ $conf['dmode']       = 0775;
 
 $conf['lang']        = DOKU_LANG;              //your language
 $conf['basedir']     = '/';
-$conf['savedir']     = realpath(dirname(__FILE__).'/../../../www/data').'/';
+$conf['savedir']     = realpath(dirname(__FILE__).'/../data').'/';
 
 /* Display Options */
 

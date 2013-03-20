@@ -15,8 +15,8 @@
    <link rel="top"   href="/" title="Page d'accueil du site" />
    <link rel="section"   href="/forums/" title="Forums" />
    <link rel="section"   href="/articles/" title="Wiki" />
-   <link rel="stylesheet" type="text/css" href="/design/2011/design.css?<?php echo filemtime(DOKU_INC.'../../design/2011/design.css')?>" media="all" title="jelix" />
-   <link rel="stylesheet" type="text/css" href="/design/2011/print.css?<?php echo filemtime(DOKU_INC.'../../design/2011/print.css')?>" media="print" title="jelix" />
+   <link rel="stylesheet" type="text/css" href="/design/2011/design.css?<?php echo filemtime(DOKU_INC.'../../jelix-design/www/design.css')?>" media="all" title="jelix" />
+   <link rel="stylesheet" type="text/css" href="/design/2011/print.css?<?php echo filemtime(DOKU_INC.'../../jelix-design/www/print.css')?>" media="print" title="jelix" />
    <?php tpl_metaheaders()?>
 </head>
 <body>

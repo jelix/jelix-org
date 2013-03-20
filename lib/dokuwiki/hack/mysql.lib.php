@@ -9,7 +9,7 @@ class mysqlDb {
 
         if  ($this->cnx === null) {
 
-            $conf = parse_ini_file(DOKU_INC.'../../portail/var/config/dbprofils.ini.php',true);
+            $conf = parse_ini_file(dirname(__FILE__).'/../../../portail/var/config/dbprofils.ini.php',true);
 
             $this->conf = $conf[$conf['default']];
             if($this->cnx = @mysql_pconnect($this->conf['host'], $this->conf['user'], $this->conf['password'])) {
@@ -30,7 +30,7 @@ class mysqlDb {
         if($qI = mysql_query($query, $this->cnx)){
             return $qI;
         }else{
-	echo '##'.$query.'####';
+	//echo '##'.$query.'####';
             throw new Exception('bad mysql query: '.mysql_error($this->cnx).'  ('.$query.')  ');
         }
     }

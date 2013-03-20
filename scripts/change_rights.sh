@@ -31,8 +31,8 @@ chmod -R g+w $DIR_JELIX_SITES/planet/fr/temp $DIR_JELIX_SITES/planet/en/temp
 
 #------- portail
 
-chown -R :$WWWUSER $DIR_JELIX_SITES/portail/var/log $DIR_JELIX_SITES/www/cache $DIR_JELIX_SITES/www/data $DIR_JELIX_SITES/lib/dokuwiki/conf/users.auth.php
-chmod -R g+w  $DIR_JELIX_SITES/portail/var/log $DIR_JELIX_SITES/www/cache $DIR_JELIX_SITES/www/data $DIR_JELIX_SITES/lib/dokuwiki/conf/users.auth.php
+chown -R :$WWWUSER $DIR_JELIX_SITES/portail/var/log $DIR_JELIX_SITES/www/cache $DIR_JELIX_SITES/www/data $DIR_JELIX_SITES/www/conf/users.auth.php
+chmod -R g+w  $DIR_JELIX_SITES/portail/var/log $DIR_JELIX_SITES/www/cache $DIR_JELIX_SITES/www/data $DIR_JELIX_SITES/www/conf/users.auth.php
 
 chown -R :$WWWUSER  $DIR_JELIX_SITES/temp/portail $DIR_JELIX_SITES/temp/portail-cli
 chmod -R g+w  $DIR_JELIX_SITES/temp/portail $DIR_JELIX_SITES/temp/portail-cli
