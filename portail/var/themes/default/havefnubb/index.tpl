@@ -200,18 +200,18 @@
 {/if}
 {hook 'hfbAfterCategoryList'}
 <div class="medium-boxes">
-    <div>
+    <div>{*
     {ifacl2 'hfnu.admin.post'}
     {zone 'havefnubb~lastposts',array('admin'=>true)}
     {else}
     {zone 'havefnubb~lastposts',array('admin'=>false)}
-    {/ifacl2}
+    {/ifacl2}*}
     {zone 'havefnubb~stats'}
     </div>
 
-    <div>
+    <div>{*
         {zone 'activeusers~onlineusers'}
-        {zone 'activeusers~online_today'}
+        {zone 'activeusers~online_today'}*}
     </div>
 
     <div>
