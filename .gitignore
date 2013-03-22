@@ -20,6 +20,8 @@ temp/portail-cli/
 temp/portail-scripts/
 !temp/portail-scripts/.dummy
 
+www/conf/users.auth.php
+www/conf/plugins.local.php
 www/data/*
 !www/data/.htaccess
 !www/data/security.png
@@ -29,8 +31,6 @@ www/reference/trunk
 www/cache/images/
 www/temp/*
 
-lib/dokuwiki/conf/users.auth.php
-lib/dokuwiki/conf/plugins.local.php
 portail/var/config/dbprofils.ini.php
 portail/var/config/dbprofils_forum.ini.php
 portail/var/config/defaultconfig.ini.php
