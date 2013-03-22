@@ -209,8 +209,8 @@
 </div>
 
 <div class="grid_5">
-    {zone 'activeusers~onlineusers'}
-    {zone 'activeusers~online_today'}
+    {*zone 'activeusers~onlineusers'*}
+    {*zone 'activeusers~online_today'*}
 </div>
 
 <div class="grid_6 omega">
