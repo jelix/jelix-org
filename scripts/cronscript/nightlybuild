@@ -77,7 +77,9 @@ buildbranch()
 
     PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
     PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
-    PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
+    if [ "$BRANCH" != "master" ]; then
+        PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
+    fi
     PACKAGE_TESTAPP_NAME=`cat "$DISTPATH"PACKAGE_TESTAPP_NAME`
 
     cd $DIR_JELIX_SITES/download/www/jelix/nightly/
@@ -89,10 +91,6 @@ buildbranch()
     then
         rm latest-nightly-$FILENAME-opt.tar.gz
     fi
-    if  [ -f latest-nightly-$FILENAME-gold.tar.gz ]
-    then
-        rm latest-nightly-$FILENAME-gold.tar.gz
-    fi
     if  [ -f latest-nightly-$TESTAPPFILENAME.tar.gz ]
     then
         rm latest-nightly-$TESTAPPFILENAME.tar.gz
@@ -100,7 +98,6 @@ buildbranch()
 
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".tar.gz latest-nightly-$FILENAME-dev.tar.gz
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".tar.gz latest-nightly-$FILENAME-opt.tar.gz
-    ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".tar.gz latest-nightly-$FILENAME-gold.tar.gz
     ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".tar.gz latest-nightly-$TESTAPPFILENAME.tar.gz
     
     if  [ -f latest-nightly-$FILENAME-dev.zip ]
@@ -111,18 +108,26 @@ buildbranch()
     then
         rm latest-nightly-$FILENAME-opt.zip
     fi
-    if  [ -f latest-nightly-$FILENAME-gold.zip ]
-    then
-        rm latest-nightly-$FILENAME-gold.zip
-    fi
     if  [ -f latest-nightly-$TESTAPPFILENAME.zip ]
     then
         rm latest-nightly-$TESTAPPFILENAME.zip
     fi
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".zip latest-nightly-$FILENAME-dev.zip
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".zip latest-nightly-$FILENAME-opt.zip
-    ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".zip latest-nightly-$FILENAME-gold.zip
     ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".zip latest-nightly-$TESTAPPFILENAME.zip
+
+    if [ "$BRANCH" != "master" ]; then
+        if  [ -f latest-nightly-$FILENAME-gold.tar.gz ]
+        then
+            rm latest-nightly-$FILENAME-gold.tar.gz
+        fi
+        ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".tar.gz latest-nightly-$FILENAME-gold.tar.gz
+        if  [ -f latest-nightly-$FILENAME-gold.zip ]
+        then
+            rm latest-nightly-$FILENAME-gold.zip
+        fi
+        ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".zip latest-nightly-$FILENAME-gold.zip
+    fi
 
     if [ "$FONTSFILENAME" != "" ]
     then
