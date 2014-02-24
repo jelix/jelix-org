@@ -40,20 +40,3 @@ make tests
 
 echo ""
 
-#------- 1.2.x BRANCH
-
-echo "building 1.2.x branch..."
-echo "==========================================="
-
-cd $BUILD_GIT_DIR
-git checkout jelix-1.2.x
-
-export TESTS_DBPROFILES=$BUILD_DIR/dbprofils12x.ini.php
-export TESTPATH=$BUILD_DIR/tests/1.2.x/
-
-rm -rf $BUILD_DIR/tests/1.2.x/temp/testapp-cli/*
-
-make tests
-
-echo ""
-
