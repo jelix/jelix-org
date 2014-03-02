@@ -83,10 +83,10 @@ $menuCommunity = (strpos($ID,'en:community') === 0 || $ID=='en:goodies');
          
          <?php }elseif($menuDocumentation) { ?>
              <li<?php if($isTutorial) echo ' class="selected"';?>><a href="/articles/en/tutorials">Tutorials</a></li>
-             <li><a href="http://docs.jelix.org/en/manual-1.5">Manual 1.5</a></li>
+             <li><a href="http://docs.jelix.org/en/manual-1.6">Manual 1.6</a></li>
+             <li><a href="http://docs.jelix.org/en/manual-1.5">1.5</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.4">1.4</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.3">1.3</a></li>
-             <li><a href="http://docs.jelix.org/en/manual-1.2">1.2</a></li>
              <li><a href="http://docs.jelix.org/en/">others</a></li>
              <li><a href="/reference/index.php.en">API reference</a></li>
          
@@ -202,7 +202,7 @@ $menuCommunity = (strpos($ID,'en:community') === 0 || $ID=='en:goodies');
         </div>
 
         <p id="footer-legend">
-            Copyright 2006-2013 Jelix team. <br/>
+            Copyright 2006-2014 Jelix team. <br/>
             Icons used on this page come from <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             and <a href="http://www.oxygen-icons.org/">Oxygen</a> icons sets.<br/>
             Design by Laurentj. <br/>

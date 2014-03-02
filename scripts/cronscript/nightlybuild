@@ -63,7 +63,7 @@ buildbranch()
     fi
 
     make nightlies
-    
+
     mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH
     mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH
     
@@ -164,8 +164,10 @@ done
 BRANCHEVERSIONLIST="1.5.x 1.6.x 1.7.x"
 for BRANCHVERSION in $BRANCHEVERSIONLIST; do
 
-    if [ "$BRANCHVERSION" != "1.5.x" ]
+    if [ "$BRANCHVERSION" == "1.5.x" ]
     then
+        BUILD_GOLD='Y'
+    else
         BUILD_GOLD='N'
     fi
 

@@ -8,9 +8,9 @@
                 <a href="/articles/en/download/stable/1.5">Download Jelix {$versions['1.5']}</a></p>
             <p id="other-releases">
                
+               <a href="/articles/en/download/stable/1.6">{$versions['1.6']}</a> -
                <a href="/articles/en/download/stable/1.4">{$versions['1.4']}</a> -
                <a href="/articles/en/download/stable/1.3">{$versions['1.3']}</a> -
-               <a href="/articles/en/download/stable/1.2">{$versions['1.2']}</a> -
                <a href="/articles/en/download/nightly#nightly-builds">nightly</a></p>
         </div>
 

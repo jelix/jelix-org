@@ -84,10 +84,10 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
          
          <?php }elseif($menuDocumentation) { ?>
              <li<?php if($isTutorial)   echo ' class="selected"';?>><a href="/articles/fr/tutoriels">Tutoriels</a></li>
-             <li><a href="http://docs.jelix.org/fr/manuel-1.5">Manuel 1.5</a></li>
+             <li><a href="http://docs.jelix.org/fr/manuel-1.6">Manuel 1.6</a></li>
+             <li><a href="http://docs.jelix.org/fr/manuel-1.5">1.5</a></li>
              <li><a href="http://docs.jelix.org/fr/manuel-1.4">1.4</a></li>
              <li><a href="http://docs.jelix.org/fr/manuel-1.3">1.3</a></li>
-             <li><a href="http://docs.jelix.org/fr/manuel-1.2">1.2</a></li>
              <li><a href="http://docs.jelix.org/fr/">autres</a></li>
              <li><a href="/reference/index.php.fr">reference API</a></li>
          
@@ -210,7 +210,7 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
         </div>-->
 
         <p id="footer-legend">
-            Copyright 2006-2013 Jelix team. <br/>
+            Copyright 2006-2014 Jelix team. <br/>
             Les icônes utilisées sur cette page viennent des paquets
             <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             et <a href="http://www.oxygen-icons.org/">Oxygen</a>.<br/>
