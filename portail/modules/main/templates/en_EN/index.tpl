@@ -193,7 +193,7 @@
             <div class="home-item" id="home-news">
             
                 <h2>News</h2>
-			   {$news}
+                {$news}
                 <p>
                     <a href="{jurl 'news~default:index', array('lang'=>'en_EN')}">Other news</a>,
                     <a href="{jurl 'news~default:rss', array('lang'=>'en_EN')}">News feed</a>
@@ -202,54 +202,23 @@
             </div>
 
             <div class="home-item">
-            	<h2>Mailing List</h2>
-				<p>Receive news about the project by email, and
+                <h2>Mailing List</h2>
+                <p>Receive news about the project by email, and
                 discuss wwith others users and contributors.</p>
                 <div><img width="132" height="26" alt="Google Groups" src="http://groups.google.com/groups/img/3/groups_bar.gif">
-					<form action="http://groups.google.com/group/jelix/boxsubscribe">
-					  Email : <input type="text" name="email"> <input type="submit" value="Subscribe" name="sub">
-					</form>
-				</div>
+                    <form action="http://groups.google.com/group/jelix/boxsubscribe">
+                      Email : <input type="text" name="email"> <input type="submit" value="Subscribe" name="sub">
+                    </form>
+                </div>
             </div>  
             <div class="home-item">
             <h2>Jelix on twitter</h2>
-    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>{literal}
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 3,
-  interval: 6000,
-  width: 250,
-  height: 200,
-  theme: {
-    shell: {
-      background: '#83B1C1',
-      color: '#002830'
-    },
-    tweets: {
-      background: '#ffffff',
-      color: '#002830',
-      links: '#3f7f7a'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: false,
-    live: false,
-    hashtags: true,
-    timestamp: true,
-    avatars: true,
-    behavior: 'all'
-  }
-}).render().setUser('jelixfmk').start();
-{/literal}
-</script>
-    <p>Follow us also on  
-			<a href="http://identi.ca/jelixfmk"> Identi.ca <img src="/design/2011/icons/identica.png" alt="identi.ca" /></a>
+    {literal}
+<a class="twitter-timeline"  href="https://twitter.com/jelixfmk"  data-widget-id="446274608707022848">Tweets by @jelixfmk</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+    {/literal}
+
             </div>
-
-          
-
             <hr />
         </div>

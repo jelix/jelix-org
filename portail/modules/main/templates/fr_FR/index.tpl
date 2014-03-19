@@ -202,40 +202,16 @@
             </div>  
             <div class="home-item">
             <h2>Jelix Sur twitter</h2>
-    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>{literal}
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 3,
-  interval: 6000,
-  width: 250,
-  height: 200,
-  theme: {
-    shell: {
-      background: '#83B1C1',
-      color: '#002830'
-    },
-    tweets: {
-      background: '#ffffff',
-      color: '#002830',
-      links: '#3f7f7a'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: false,
-    live: false,
-    hashtags: true,
-    timestamp: true,
-    avatars: true,
-    behavior: 'all'
-  }
-}).render().setUser('jelixfmk').start();
-{/literal}
-</script>
-    <p>Suivez-nous aussi sur 
-			<a href="http://identi.ca/jelixfmk"> Identi.ca <img src="/design/2011/icons/identica.png" alt="identi.ca" /></a>
+    {literal}
+<a class="twitter-timeline"  href="https://twitter.com/jelixfmk"  data-widget-id="446274608707022848">Tweets by @jelixfmk</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+    {/literal}
+
+
+    
+    
             </div>
 
           
