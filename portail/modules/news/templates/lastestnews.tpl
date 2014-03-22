@@ -12,5 +12,5 @@ title="{@news~news.permanent.link@}"># {$news->date_create|jdatetime}</a>, {$new
 {/if}
 
 {else}
-<p>No news</p>
+<p>No news.</p>
 {/if}
