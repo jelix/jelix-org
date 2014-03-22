@@ -20,7 +20,7 @@ title="{@news~news.permanent.link@}"># {$news->date_create|jdatetime}</a>
 </div>
 {/foreach}
 {else}
-<p>No news</p>
+<p>No news.</p>
 {/if}
 
 </div>
