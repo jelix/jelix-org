@@ -88,7 +88,7 @@ $menuCommunity = (strpos($ID,'en:community') === 0 || $ID=='en:goodies');
              <li><a href="http://docs.jelix.org/en/manual-1.4">1.4</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.3">1.3</a></li>
              <li><a href="http://docs.jelix.org/en/">others</a></li>
-             <li><a href="/reference/index.php.en">API reference</a></li>
+             <li><a href="/reference/index.php">API reference</a></li>
          
          <?php }elseif($menuCommunity) { ?>
              <li><a href="/forums/forum/cat/2-english">Forums</a></li>

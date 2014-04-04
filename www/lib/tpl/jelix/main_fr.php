@@ -89,7 +89,7 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
              <li><a href="http://docs.jelix.org/fr/manuel-1.4">1.4</a></li>
              <li><a href="http://docs.jelix.org/fr/manuel-1.3">1.3</a></li>
              <li><a href="http://docs.jelix.org/fr/">autres</a></li>
-             <li><a href="/reference/index.php.fr">reference API</a></li>
+             <li><a href="/reference/index.php">reference API</a></li>
          
          <?php }elseif($menuCommunity) { ?>
              <li><a href="/forums/forum/cat/1-francais">Forums</a></li>
