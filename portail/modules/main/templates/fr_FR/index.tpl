@@ -5,9 +5,9 @@
 
         <div id="releases">
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
-                <a href="/articles/fr/telechargement/stable/1.5">Téléchargez Jelix {$versions['1.5']}</a></p>
+                <a href="/articles/fr/telechargement/stable/1.6">Téléchargez Jelix {$versions['1.6']}</a></p>
             <p id="other-releases">
-                <a href="/articles/fr/telechargement/stable/1.6">{$versions['1.6']}</a> -
+                <a href="/articles/fr/telechargement/stable/1.5">{$versions['1.5']}</a> -
                 <a href="/articles/fr/telechargement/stable/1.4">{$versions['1.4']}</a> -
                 <a href="/articles/fr/telechargement/stable/1.3">{$versions['1.3']}</a> -
                 <a href="/articles/fr/telechargement/nightly#telechargement-jelix-nightly">nightly</a></p>
@@ -42,12 +42,12 @@
                         <div class="section-screenshot"><img src="/design/2011/carroussel/admin-debug.png" alt="screenshot" /></div>
                         <p>Jelix offre des composants et outils pour développer plus rapidement&nbsp;:</p>
                         <ul>
-                            <li><a href="http://docs.jelix.org/fr/manuel-1.5/controleurs/crud">Contrôleur CRUD générique</a>,
-                                module d'<a href="http://docs.jelix.org/fr/manuel-1.5/creer-application/creer-administration">interface d'administration</a>,
-                                <a href="http://docs.jelix.org/fr/manuel-1.5/vues/">vues dédiées</a> à (X)HTML, ATOM, RSS,
+                            <li><a href="http://docs.jelix.org/fr/manuel-1.6/controleurs/crud">Contrôleur CRUD générique</a>,
+                                module d'<a href="http://docs.jelix.org/fr/manuel-1.6/creer-application/creer-administration">interface d'administration</a>,
+                                <a href="http://docs.jelix.org/fr/manuel-1.6/vues/">vues dédiées</a> à (X)HTML, ATOM, RSS,
                                 ZIP, PDF, RDF, XUL...</li>
-                            <li><a href="http://docs.jelix.org/fr/manuel-1.5/jelix-scripts">Scripts en lignes de commande</a> pour générer rapidement du code</li>
-                            <li><a href="http://docs.jelix.org/fr/manuel-1.5/deboggage#la-debug-barre">Debug bar</a> pour faciliter le debuggage.</li>
+                            <li><a href="http://docs.jelix.org/fr/manuel-1.6/jelix-scripts">Scripts en lignes de commande</a> pour générer rapidement du code</li>
+                            <li><a href="http://docs.jelix.org/fr/manuel-1.6/deboggage#la-debug-barre">Debug bar</a> pour faciliter le debuggage.</li>
                         </ul>
                         <p>Réutilisez dans vos applications les modules et plugins proposés sur <strong><a href="http://booster.jelix.org">booster.jelix.org</a></strong></p>
                     </div>
@@ -55,19 +55,19 @@
                         <h2>Fonctionnalités</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/soap-tpl.png" alt="screenshot" /></div>
                         <p>Le framework fourni une multitude de composants&nbsp;:
-                            <a href="http://docs.jelix.org/fr/manuel-1.5/daos">un ORM</a>,
-                            un <a href="http://docs.jelix.org/fr/manuel-1.5/jforms">système de formulaire</a>,
-                            un <a href="http://docs.jelix.org/fr/manuel-1.5/templates">moteur de template</a>,
-                            un <a href="http://docs.jelix.org/fr/manuel-1.5/events">système évenementiel</a>,
-                            un module d'<a href="http://docs.jelix.org/fr/manuel-1.5/authentification">authentification</a>,
-                            de <a href="http://docs.jelix.org/fr/manuel-1.5/droits2">gestion de droits</a>...</p>
-                        <p>Sans oublier l'aspect <a href="http://docs.jelix.org/fr/manuel-1.5/locales">multi-langue</a> et
-                            la gestion de <a href="http://docs.jelix.org/fr/manuel-1.5/themes">themes</a> graphiques.</p>
+                            <a href="http://docs.jelix.org/fr/manuel-1.6/daos">un ORM</a>,
+                            un <a href="http://docs.jelix.org/fr/manuel-1.6/jforms">système de formulaire</a>,
+                            un <a href="http://docs.jelix.org/fr/manuel-1.6/templates">moteur de template</a>,
+                            un <a href="http://docs.jelix.org/fr/manuel-1.6/events">système évenementiel</a>,
+                            un module d'<a href="http://docs.jelix.org/fr/manuel-1.6/authentification">authentification</a>,
+                            de <a href="http://docs.jelix.org/fr/manuel-1.6/droits2">gestion de droits</a>...</p>
+                        <p>Sans oublier l'aspect <a href="http://docs.jelix.org/fr/manuel-1.6/locales">multi-langue</a> et
+                            la gestion de <a href="http://docs.jelix.org/fr/manuel-1.6/themes">themes</a> graphiques.</p>
                         <p>Développez aisement vos services Web, qu'ils soient
-                            <a href="http://docs.jelix.org/fr/manuel-1.5/controleurs/rest-full">REST-Full</a>,
-                            en <a href="http://docs.jelix.org/fr/manuel-1.5/services-web/soap">SOAP</a>,
-                            en <a href="http://docs.jelix.org/fr/manuel-1.5/services-web/xml-rpc">xml-rpc</a>,
-                            en <a href="http://docs.jelix.org/fr/manuel-1.5/services-web/ajax">ajax</a> etc.</p>
+                            <a href="http://docs.jelix.org/fr/manuel-1.6/controleurs/rest-full">REST-Full</a>,
+                            en <a href="http://docs.jelix.org/fr/manuel-1.6/services-web/soap">SOAP</a>,
+                            en <a href="http://docs.jelix.org/fr/manuel-1.6/services-web/xml-rpc">xml-rpc</a>,
+                            en <a href="http://docs.jelix.org/fr/manuel-1.6/services-web/ajax">ajax</a> etc.</p>
                     </div>
                     <div class="section">
                         <h2>Qualité et robustesse</h2>
@@ -84,10 +84,10 @@
                         <h2>Deploiement</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/wizard.png" alt="screenshot" /></div>
                         <p>Un deploiement aisé et rapide grâce au
-                            <a href="http://docs.jelix.org/fr/manuel-1.5/creer-script-installation">système d'installation et de mise à jour</a> de Jelix.</p>
+                            <a href="http://docs.jelix.org/fr/manuel-1.6/creer-script-installation">système d'installation et de mise à jour</a> de Jelix.</p>
                         <p>Les éditions optimisées de Jelix, "Optimized" ou "Gold", vous offre des performances accrues dans vos environnements de production.</p>
                         <p>Vous diffusez votre application à un large public ? Utilisez
-                            <a href="http://docs.jelix.org/fr/manuel-1.5/creer-wizard">le wizard</a> de jelix,
+                            <a href="http://docs.jelix.org/fr/manuel-1.6/creer-wizard">le wizard</a> de jelix,
                             et en quelques clics l'application est installée et prête à l'emploi</p>
                     </div>
                     <div class="section">
@@ -140,9 +140,9 @@
                         <a href="/articles/fr/tutoriels/minitutoriel/1.5.x">Mini tutoriel</a></dt>
                     <dd>Pour découvrir Jelix</dd>
                     <dt><img src="/design/2011/icons/applications-office.png" />
-                        <a href="http://docs.jelix.org/fr/manuel-1.5/">Manuel complet</a></dt>
-                    <dd>En français, <a href="http://docs.jelix.org/fr/manuel-1.5/">en ligne</a> et
-                        <a href="http://download.jelix.org/jelix/releases/1.5.x/1.5.0/jelix-manuel-1.5.0.pdf">en PDF</a>,
+                        <a href="http://docs.jelix.org/fr/manuel-1.6/">Manuel complet</a></dt>
+                    <dd>En français, <a href="http://docs.jelix.org/fr/manuel-1.6/">en ligne</a> et
+                        <a href="http://download.jelix.org/jelix/releases/1.6.x/1.6.0/jelix-manuel-1.6.0.pdf">en PDF</a>,
                     pour bien apprendre les concepts et
                     l'utilisation des composants de Jelix</dd>
                     <!--<dt><img src="icons/applications-science.png" /><a href="">Cookbook</a></dt>
