@@ -45,7 +45,7 @@ FILENAME="jelix-$BRANCHVERSION"
 TESTAPPFILENAME="testapp-$BRANCHVERSION"
 FONTSFILENAME="jelix-$BRANCHVERSION-pdf-fonts"
 
-DISTPATH="_dist/"
+DISTPATH=`pwd`"/_dist/"
 
 echo "building $BRANCH branch..."
 echo "=========================="
