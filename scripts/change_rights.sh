@@ -36,3 +36,5 @@ chmod -R g+w  $DIR_JELIX_SITES/portail/var/log $DIR_JELIX_SITES/www/cache $DIR_J
 
 chown -R :$WWWUSER  $DIR_JELIX_SITES/temp/portail $DIR_JELIX_SITES/temp/portail-cli
 chmod -R g+w  $DIR_JELIX_SITES/temp/portail $DIR_JELIX_SITES/temp/portail-cli
+
+
