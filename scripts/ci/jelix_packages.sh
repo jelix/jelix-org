@@ -57,6 +57,10 @@ if [ ! -d $DOWNLOADPATH ]; then
 fi
 
 make nightlies
+if [ "$?" != "0" ]; then
+    echo "--- error"
+    exit 1
+fi
 
 mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH
 mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH
@@ -123,7 +127,7 @@ if [ "$BUILD_GOLD" == "Y" ]; then
     ln -s $BRANCHVERSION/"$PACKAGE_NAME_GOLD".zip latest-nightly-$FILENAME-gold.zip
 fi
 
-if [ "$BUILD_FONT_PACKAGE" != "" ]
+if [ "$BUILD_FONT_PACKAGE" == "Y" ]
 then
     PACKAGE_FONTS_NAME=`cat "$DISTPATH"PACKAGE_FONTS_NAME`
     if  [ -f latest-nightly-$FONTSFILENAME.zip ]
@@ -131,6 +135,11 @@ then
         rm latest-nightly-$FONTSFILENAME.zip
     fi
     ln -s $BRANCHVERSION/"$PACKAGE_FONTS_NAME".zip latest-nightly-$FONTSFILENAME.zip
+fi
+
+if [ "$?" != "0" ]; then
+    echo "--- error"
+    exit 1
 fi
 
 echo "----- end"
