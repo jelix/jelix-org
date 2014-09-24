@@ -10,22 +10,21 @@ define('DOKU_LIB', realpath(dirname(__FILE__).'/../lib/').'/');
 define('DOKU_PLUGIN',DOKU_LIB.'plugins/');
 define('DOKU_SCRIPT','articles');
 
-$conf['fmode']       = 0664;              //set file creation mode
-$conf['dmode']       = 0775;
 
-/* Datastorage and Permissions */
-
-$conf['lang']        = DOKU_LANG;              //your language
-$conf['basedir']     = '/';
-$conf['savedir']     = realpath(dirname(__FILE__).'/../data').'/';
-
-/* Display Options */
-
-$conf['start']       = 'accueil';           //name of start page
+/* Basic Settings */
 $conf['title']       = 'Jelix';        //what to show in the title
-$conf['template']    = 'jelix';         //see tpl directory
+$conf['start']       = 'accueil';           //name of start page
+$conf['lang']        = DOKU_LANG;              //your language
+$conf['template']    = 'jelix';         //see lib/tpl directory
+$conf['savedir']     = realpath(dirname(__FILE__).'/../data').'/';          //where to store all the files
+$conf['basedir']     = '/';                //absolute dir from serveroot - blank for autodetection
+$conf['dmode']       = 0775;              //set directory creation mode
+$conf['fmode']       = 0664;              //set file creation mode
+
 define('DOKU_TPLINC',DOKU_LIB.'tpl/'.$conf['template'].'/');
 define('DOKU_TPLINC_DEF',DOKU_LIB.'tpl/default/');
+
+
 
 /* Authentication Options - read http://www.splitbrain.org/dokuwiki/wiki:acl */
 $conf['useacl']      = 1;                //Use Access Control Lists to restrict access?
