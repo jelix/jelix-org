@@ -1,12 +1,57 @@
+diff --git a/www/articles.php b/www/articles.php
+index 7f5cf9c..9332292 100644
+--- a/www/articles.php
++++ b/www/articles.php
+@@ -13,6 +13,28 @@ $updateVersion = 38;
+ 
+ //  xdebug_start_profiling();
+ 
++// HACK LJ >>>>>>>>>
++  if (isset($_SERVER['PATH_INFO'])) {
++    if (preg_match("!^/(en|fr)/manu(a|e)l\-!", $_SERVER['PATH_INFO'])) {
++      header("Location: http://docs.jelix.org".$_SERVER['PATH_INFO'], true, 301);
++      exit;
++    }
++  }
++
++  $lang ='en';
++  if(isset($_SERVER['PATH_INFO']) && (!isset($_REQUEST['do']) ||$_REQUEST['do'] != 'search')){
++    $_REQUEST['id'] = str_replace('/',':',$_SERVER['PATH_INFO']);
++    if($_REQUEST['id']{0} == ':')
++      $_REQUEST['id'] = substr($_REQUEST['id'],1);
++  }
++  if(isset($_REQUEST['id'])){
++    if($_REQUEST['id'] == 'fr' || strpos($_REQUEST['id'],'fr:')===0){
++       $lang='fr';
++    }
++  }
++  define('DOKU_LANG', $lang);
++// <<<<<<<<<< HACK LJ
++
+ if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
+ 
+ if (isset($_SERVER['HTTP_X_DOKUWIKI_DO'])){
+@@ -33,6 +55,15 @@ $_REQUEST['id'] = str_replace("\xC2\xAD", '', $INPUT->str('id')); //soft-hyphen
+ $QUERY          = trim($INPUT->str('id'));
+ $ID             = getID();
+ 
++if($ACT == 'show' && !isset($_GET['noredirect']) && $_SERVER["REQUEST_METHOD"] =='GET') {
++    $file = metaFN($ID, '.redirect');
++    if(@file_exists($file) && ($redirect = file_get_contents($file)) != '') {
++        $url = '/articles/'.str_replace(':','/', $redirect);
++        header("HTTP/1.0 301 Redirect");
++        header('Location: '.$url);
++        exit();
++    }
++}
+ 
+ $REV   = $INPUT->int('rev');
+ $IDX   = $INPUT->str('idx');
 diff --git a/www/inc/form.php b/www/inc/form.php
+index bdf520a..af39dce 100644
 --- a/www/inc/form.php
 +++ b/www/inc/form.php
-@@ -360,17 +360,17 @@ function form_makeCloseTag($tag) {
-  *
-  * @param   string  $text   Text to fill the field with.
-  * @param   array   $attrs  Optional attributes.
-  * @return  array   pseudo-tag
-  * @author  Tom N Harris <tnharris@whoopdedo.org>
+@@ -366,7 +366,7 @@ function form_makeCloseTag($tag) {
   */
  function form_makeWikiText($text, $attrs=array()) {
      $elem = array('_elem'=>'wikitext', '_text'=>$text,
@@ -15,22 +60,29 @@ diff --git a/www/inc/form.php b/www/inc/form.php
      return array_merge($elem, $attrs);
  }
  
- /**
-  * form_makeButton
-  *
-  * Create a form element for an action button.
-  * A title will automatically be generated using the value and
+diff --git a/www/inc/infoutils.php b/www/inc/infoutils.php
+index 7ceeae8..8042259 100644
+--- a/www/inc/infoutils.php
++++ b/www/inc/infoutils.php
+@@ -52,9 +52,9 @@ function checkUpdateMessages(){
+ function getVersionData(){
+     $version = array();
+     //import version string
+-    if(@file_exists(DOKU_INC.'VERSION')){
++    if(@file_exists(DOKU_INC.'/../../lib/dokuwiki/VERSION')){
+         //official release
+-        $version['date'] = trim(io_readfile(DOKU_INC.'VERSION'));
++        $version['date'] = trim(io_readfile(DOKU_INC.'/../../lib/dokuwiki/VERSION'));
+         $version['type'] = 'Release';
+     }elseif(is_dir(DOKU_INC.'.git')){
+         $version['type'] = 'Git';
 diff --git a/www/inc/lang/en/lang.php b/www/inc/lang/en/lang.php
+index 0e5a9ac..6750f4e 100644
 --- a/www/inc/lang/en/lang.php
 +++ b/www/inc/lang/en/lang.php
-@@ -336,9 +336,29 @@
- $lang['media_meta_edited']     = 'metadata edited';
- $lang['media_perm_read']       = 'Sorry, you don\'t have enough rights to read files.';
- $lang['media_perm_upload']     = 'Sorry, you don\'t have enough rights to upload files.';
+@@ -347,4 +347,24 @@ $lang['media_perm_upload']     = 'Sorry, you don\'t have enough rights to upload
  $lang['media_update']          = 'Upload new version';
  $lang['media_restore']         = 'Restore this version';
- 
- $lang['plugin_install_err']    = "Plugin installed incorrectly. Rename plugin directory '%s' to '%s'.";
  
 +$lang['book_next_c'] = 'Next chapter';
 +$lang['book_prev_c'] = 'Previous chapter';
@@ -54,36 +106,13 @@ diff --git a/www/inc/lang/en/lang.php b/www/inc/lang/en/lang.php
 +
  //Setup VIM: ex: et ts=2 :
 diff --git a/www/inc/lang/fr/lang.php b/www/inc/lang/fr/lang.php
+index c4080bc..b92e03a 100644
 --- a/www/inc/lang/fr/lang.php
 +++ b/www/inc/lang/fr/lang.php
-@@ -51,17 +51,17 @@
- $lang['btn_logout']            = 'Déconnexion';
- $lang['btn_admin']             = 'Administrer';
- $lang['btn_update']            = 'Mettre à jour';
- $lang['btn_delete']            = 'Effacer';
- $lang['btn_back']              = 'Retour';
- $lang['btn_backlink']          = 'Liens vers cette page';
- $lang['btn_backtomedia']       = 'Retour à la sélection du fichier média';
- $lang['btn_subscribe']         = 'S\'abonner à la page';
--$lang['btn_profile']           = 'Mettre à jour le profil';
-+$lang['btn_profile']           = 'Éditer votre profil';
- $lang['btn_reset']             = 'Réinitialiser';
- $lang['btn_resendpwd']         = 'Envoyer le mot de passe';
- $lang['btn_draft']             = 'Modifier le brouillon';
- $lang['btn_recover']           = 'Récupérer le brouillon';
- $lang['btn_draftdel']          = 'Effacer le brouillon';
- $lang['btn_revert']            = 'Restaurer';
- $lang['btn_register']          = 'S\'enregistrer';
- $lang['btn_apply']             = 'Appliquer';
-@@ -296,16 +296,36 @@
- $lang['years']                 = 'il y a %d ans';
- $lang['months']                = 'il y a %d mois';
- $lang['weeks']                 = 'il y a %d semaines';
- $lang['days']                  = 'il y a %d jours';
- $lang['hours']                 = 'il y a %d heures';
- $lang['minutes']               = 'il y a %d minutes';
- $lang['seconds']               = 'il y a %d secondes';
- $lang['wordblock']             = 'Vos modifications n\'ont pas été sauvegardées parce qu\'elles contiennent des textes non autorisé (spam).';
+@@ -333,3 +333,23 @@ $lang['media_perm_read']       = 'Désolé, vous n\'avez pas les droits pour lir
+ $lang['media_perm_upload']     = 'Désolé, vous n\'avez pas les droits pour télécharger des fichiers.';
+ $lang['media_update']          = 'Télécharger une nouvelle version';
+ $lang['media_restore']         = 'Restaurer cette version';
 +
 +$lang['book_next_c'] = 'Chapitre suivant';
 +$lang['book_prev_c'] = 'Chapitre précédent ';
@@ -104,23 +133,12 @@ diff --git a/www/inc/lang/fr/lang.php b/www/inc/lang/fr/lang.php
 +$lang['book_prev_f'] = 'Section précédente ';
 +$lang['book_up_f'] = 'Section parente';
 +$lang['book_current_f'] = 'Section ';
- $lang['media_uploadtab']       = 'Télécharger';
- $lang['media_searchtab']       = 'Rechercher';
- $lang['media_file']            = 'Fichier';
- $lang['media_viewtab']         = 'Voir';
- $lang['media_edittab']         = 'Éditer';
- $lang['media_historytab']      = 'Historique';
- $lang['media_list_thumbs']     = 'Aperçus';
- $lang['media_list_rows']       = 'Lignes';
+\ No newline at end of file
 diff --git a/www/inc/pageutils.php b/www/inc/pageutils.php
+index 55cc081..74bae36 100644
 --- a/www/inc/pageutils.php
 +++ b/www/inc/pageutils.php
-@@ -24,41 +24,45 @@ function getID($param='id',$clean=true){
-     $id = isset($_REQUEST[$param]) ? $_REQUEST[$param] : null;
- 
-     //construct page id from request URI
-     if(empty($id) && $conf['userewrite'] == 2){
-         $request = $_SERVER['REQUEST_URI'];
+@@ -30,7 +30,9 @@ function getID($param='id',$clean=true){
          $script = '';
  
          //get the script URL
@@ -131,16 +149,7 @@ diff --git a/www/inc/pageutils.php b/www/inc/pageutils.php
              $relpath = '';
              if($param != 'id') {
                  $relpath = 'lib/exe/';
-             }
-             $script = $conf['basedir'].$relpath.basename($_SERVER['SCRIPT_FILENAME']);
- 
-         }elseif($_SERVER['PATH_INFO']){
-             $request = $_SERVER['PATH_INFO'];
-         }elseif($_SERVER['SCRIPT_NAME']){
-             $script = $_SERVER['SCRIPT_NAME'];
-         }elseif($_SERVER['DOCUMENT_ROOT'] && $_SERVER['SCRIPT_FILENAME']){
-             $script = preg_replace ('/^'.preg_quote($_SERVER['DOCUMENT_ROOT'],'/').'/','',
-                     $_SERVER['SCRIPT_FILENAME']);
+@@ -47,14 +49,16 @@ function getID($param='id',$clean=true){
              $script = '/'.$script;
          }
  
@@ -151,178 +160,45 @@ diff --git a/www/inc/pageutils.php b/www/inc/pageutils.php
 +            //clean script and request (fixes a windows problem)
 +            $script  = preg_replace('/\/\/+/','/',$script);
 +            $request = preg_replace('/\/\/+/','/',$request);
- 
--        //remove script URL and Querystring to gain the id
--        if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
--            $id = preg_replace ('/\?.*/','',$match[1]);
--        }
 +            //remove script URL and Querystring to gain the id
 +            if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
 +                $id = preg_replace ('/\?.*/','',$match[1]);
 +            }
 +        }// end HACK_LJ
+ 
+-        //remove script URL and Querystring to gain the id
+-        if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
+-            $id = preg_replace ('/\?.*/','',$match[1]);
+-        }
          $id = urldecode($id);
          //strip leading slashes
          $id = preg_replace('!^/+!','',$id);
-     }
- 
-     // Namespace autolinking from URL
-     if(substr($id,-1) == ':' || ($conf['useslash'] && substr($id,-1) == '/')){
-         if(page_exists($id.$conf['start'])){
-@@ -614,9 +618,8 @@ function utf8_decodeFN($file){
-     if($conf['fnencode'] == 'utf-8') return $file;
- 
-     if($conf['fnencode'] == 'safe'){
-         return SafeFN::decode($file);
-     }
- 
-     return urldecode($file);
- }
--
 diff --git a/www/inc/parser/xhtml.php b/www/inc/parser/xhtml.php
+index b4e78a5..7e6ae10 100644
 --- a/www/inc/parser/xhtml.php
 +++ b/www/inc/parser/xhtml.php
-@@ -176,19 +176,19 @@ class Doku_Renderer_xhtml extends Doku_R
-             $this->finishSectionEdit($pos - 1);
-         }
- 
-         // write the header
-         $this->doc .= DOKU_LF.'<h'.$level;
+@@ -181,9 +181,9 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
          if ($level <= $conf['maxseclevel']) {
              $this->doc .= ' class="' . $this->startSectionEdit($pos, 'section', $text) . '"';
          }
--        $this->doc .= '><a name="'.$hid.'" id="'.$hid.'">';
-+        $this->doc .= ' id="'.$hid.'">';
+-        $this->doc .= ' id="'.$hid.'">';
++        $this->doc .= '><a name="'.$hid.'" id="'.$hid.'">';
          $this->doc .= $this->_xmlEntities($text);
--        $this->doc .= "</a></h$level>".DOKU_LF;
+-        $this->doc .= "</h$level>".DOKU_LF;
 +        $this->doc .= '<a title="Link to this section" class="anchor" href="#'.$hid.'"> ¶</a></h'.$level.'>'.DOKU_LF;
      }
  
      function section_open($level) {
-         $this->doc .= '<div class="level' . $level . '">' . DOKU_LF;
-     }
- 
-     function section_close() {
-         $this->doc .= DOKU_LF.'</div>'.DOKU_LF;
-diff --git a/www/inc/template.php b/www/inc/template.php
---- a/www/inc/template.php
-+++ b/www/inc/template.php
-@@ -249,17 +249,17 @@ function tpl_metaheaders($alt=true){
-     $tseed = 0;
-     $depends = getConfigFiles('main');
-     foreach($depends as $f) {
-         $time = @filemtime($f);
-         if($time > $tseed) $tseed = $time;
-     }
- 
-     // the usual stuff
--    $head['meta'][] = array( 'name'=>'generator', 'content'=>'DokuWiki');
-+    //$head['meta'][] = array( 'name'=>'generator', 'content'=>'DokuWiki');
-     $head['link'][] = array( 'rel'=>'search', 'type'=>'application/opensearchdescription+xml',
-             'href'=>DOKU_BASE.'lib/exe/opensearch.php', 'title'=>$conf['title'] );
-     $head['link'][] = array( 'rel'=>'start', 'href'=>DOKU_BASE );
-     if(actionOK('index')){
-         $head['link'][] = array( 'rel'=>'contents', 'href'=> wl($ID,'do=index',false,'&'),
-                 'title'=>$lang['btn_index'] );
-     }
- 
 diff --git a/www/inc/utf8.php b/www/inc/utf8.php
+index 6fab850..43536ed 100644
 --- a/www/inc/utf8.php
 +++ b/www/inc/utf8.php
-@@ -518,17 +518,17 @@ if(!function_exists('utf8_decode_numeric
-             default:
-                 $cp = intval($ent[3]);
-                 break;
-         }
-         return unicode_to_utf8(array($cp));
+@@ -561,7 +561,7 @@ if(!function_exists('utf8_decode_numeric')){
      }
  }
  
 -if(!class_exists('utf8_entity_decoder')){
 +if(!class_exists('utf8_entity_decoder', false)){
-     class utf8_entity_decoder {
-         var $table;
-         function utf8_entity_decoder() {
-             $table = get_html_translation_table(HTML_ENTITIES);
-             $table = array_flip($table);
-             $this->table = array_map(array(&$this,'makeutf8'), $table);
-         }
-         function makeutf8($c) {
-diff --git a/www/articles.php b/www/articles.php
---- a/www/articles.php
-+++ b/www/articles.php
-@@ -6,17 +6,34 @@
-  * @author     Andreas Gohr <andi@splitbrain.org>
-  */
- 
- // update message version
- $updateVersion = 36.1;
- 
- //  xdebug_start_profiling();
- 
- if(!defined('DOKU_INC')) define('DOKU_INC',dirname(__FILE__).'/');
-+// HACK LJ >>>>>>>>>
-+  $lang ='en';
-+  if(isset($_SERVER['PATH_INFO']) && (!isset($_REQUEST['do']) ||$_REQUEST['do'] != 'search')){
-+    $_REQUEST['id'] = str_replace('/',':',$_SERVER['PATH_INFO']);
-+    if($_REQUEST['id']{0} == ':')
-+      $_REQUEST['id'] = substr($_REQUEST['id'],1);
-+  }
-+  if(isset($_REQUEST['id'])){
-+    if($_REQUEST['id'] == 'fr' || strpos($_REQUEST['id'],'fr:')===0){
-+       $lang='fr';
-+    }
-+  }
-+  define('DOKU_LANG', $lang);
-+// <<<<<<<<<< HACK LJ
- 
- if (isset($_SERVER['HTTP_X_DOKUWIKI_DO'])){
-     $ACT = trim(strtolower($_SERVER['HTTP_X_DOKUWIKI_DO']));
- } elseif (!empty($_REQUEST['idx'])) {
-     $ACT = 'index';
- } elseif (isset($_REQUEST['do'])) {
-     $ACT = $_REQUEST['do'];
- } else {
-@@ -26,16 +43,26 @@ if (isset($_SERVER['HTTP_X_DOKUWIKI_DO']
- // load and initialize the core system
- require_once(DOKU_INC.'inc/init.php');
- 
- //import variables
- $_REQUEST['id'] = str_replace("\xC2\xAD",'',$_REQUEST['id']); //soft-hyphen
- $QUERY = trim($_REQUEST['id']);
- $ID    = getID();
- 
-+if($ACT == 'show' && !isset($_GET['noredirect']) && $_SERVER["REQUEST_METHOD"] =='GET') {
-+    $file = metaFN($ID, '.redirect');
-+    if(@file_exists($file) && ($redirect = file_get_contents($file)) != '') {
-+        $url = '/articles/'.str_replace(':','/', $redirect);
-+        header("HTTP/1.0 301 Redirect");
-+        header('Location: '.$url);
-+        exit();
-+    }
-+}
-+
- // deprecated 2011-01-14
- $NS    = getNS($ID);
- 
- $REV   = $_REQUEST['rev'];
- $IDX   = $_REQUEST['idx'];
- $DATE  = $_REQUEST['date'];
- $RANGE = $_REQUEST['range'];
- $HIGH  = $_REQUEST['s'];
-diff --git a/www/inc/infoutils.php b/www/inc/infoutils.php
-index 2b84869..22b02ab 100644
---- a/www/inc/infoutils.php
-+++ b/www/inc/infoutils.php
-@@ -49,9 +49,9 @@ function checkUpdateMessages(){
- function getVersionData(){
-     $version = array();
-     //import version string
--    if(@file_exists(DOKU_INC.'VERSION')){
-+    if(@file_exists(DOKU_INC.'/../../lib/dokuwiki/VERSION')){
-         //official release
--        $version['date'] = trim(io_readfile(DOKU_INC.'VERSION'));
-+        $version['date'] = trim(io_readfile(DOKU_INC.'/../../lib/dokuwiki/VERSION'));
-         $version['type'] = 'Release';
-     }elseif(is_dir(DOKU_INC.'.git')){
-         $version['type'] = 'Git';
+     /**
+      * Encapsulate HTML entity decoding tables
+      */

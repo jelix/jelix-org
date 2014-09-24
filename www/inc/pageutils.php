@@ -30,7 +30,9 @@ function getID($param='id',$clean=true){
         $script = '';
 
         //get the script URL
-        if($conf['basedir']){
+        if($_SERVER['PATH_INFO']) { // HACK_LJ
+            $id = substr($_SERVER['PATH_INFO'],1);
+        }elseif($conf['basedir']){ // end HACK_LJ
             $relpath = '';
             if($param != 'id') {
                 $relpath = 'lib/exe/';
@@ -47,14 +49,16 @@ function getID($param='id',$clean=true){
             $script = '/'.$script;
         }
 
-        //clean script and request (fixes a windows problem)
-        $script  = preg_replace('/\/\/+/','/',$script);
-        $request = preg_replace('/\/\/+/','/',$request);
+        if ($script) {// HACK_LJ
+            //clean script and request (fixes a windows problem)
+            $script  = preg_replace('/\/\/+/','/',$script);
+            $request = preg_replace('/\/\/+/','/',$request);
+            //remove script URL and Querystring to gain the id
+            if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
+                $id = preg_replace ('/\?.*/','',$match[1]);
+            }
+        }// end HACK_LJ
 
-        //remove script URL and Querystring to gain the id
-        if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
-            $id = preg_replace ('/\?.*/','',$match[1]);
-        }
         $id = urldecode($id);
         //strip leading slashes
         $id = preg_replace('!^/+!','',$id);

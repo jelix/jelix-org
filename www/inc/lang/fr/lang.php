@@ -333,3 +333,23 @@ $lang['media_perm_read']       = 'Désolé, vous n\'avez pas les droits pour lir
 $lang['media_perm_upload']     = 'Désolé, vous n\'avez pas les droits pour télécharger des fichiers.';
 $lang['media_update']          = 'Télécharger une nouvelle version';
 $lang['media_restore']         = 'Restaurer cette version';
+
+$lang['book_next_c'] = 'Chapitre suivant';
+$lang['book_prev_c'] = 'Chapitre précédent ';
+$lang['book_up_c'] = 'Chapitre ';
+$lang['book_current_c'] = 'Chapitre ';
+
+$lang['book_next_p'] = 'Partie suivante';
+$lang['book_prev_p'] = 'Partie précédente ';
+$lang['book_up_p'] = 'Partie ';
+$lang['book_current_p'] = 'Partie ';
+
+$lang['book_next_s'] = 'Section suivante';
+$lang['book_prev_s'] = 'Section précédente ';
+$lang['book_up_s'] = 'Section parente';
+$lang['book_current_s'] = 'Section ';
+
+$lang['book_next_f'] = 'Section suivante';
+$lang['book_prev_f'] = 'Section précédente ';
+$lang['book_up_f'] = 'Section parente';
+$lang['book_current_f'] = 'Section ';
