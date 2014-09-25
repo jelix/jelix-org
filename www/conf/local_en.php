@@ -36,6 +36,7 @@ $conf['defaultgroup']= 'user';           //Default groups new Users are added to
 $conf['superuser']   = 'laurent';    //The admin can be user or @group
 $conf['manager']     = 'laurent,bbalizlife,bibo';
 $conf['mailfrom']    = 'webmaster@jelix.org';
+$conf['disableactions'] = 'register';
 
 //Set target to use when creating links - leave empty for same window
 $conf['target']['wiki']      = '';
