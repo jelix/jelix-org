@@ -366,4 +366,25 @@ $lang['currentns']             = 'Current namespace';
 $lang['searchresult']          = 'Search Result';
 $lang['plainhtml']             = 'Plain HTML';
 $lang['wikimarkup']            = 'Wiki Markup';
+
+$lang['book_next_c'] = 'Next chapter';
+$lang['book_prev_c'] = 'Previous chapter';
+$lang['book_up_c'] = 'Chapter';
+$lang['book_current_c'] = 'Chapter';
+
+$lang['book_next_p'] = 'Next part';
+$lang['book_prev_p'] = 'Previous part';
+$lang['book_up_p'] = 'Part';
+$lang['book_current_p'] = 'Part';
+
+$lang['book_next_s'] = 'Next section';
+$lang['book_prev_s'] = 'Previous section';
+$lang['book_up_s'] = 'Section';
+$lang['book_current_s'] = 'Section';
+
+$lang['book_next_f'] = 'Next section';
+$lang['book_prev_f'] = 'Previous section';
+$lang['book_up_f'] = 'Section';
+$lang['book_current_f'] = 'Section';
+
 //Setup VIM: ex: et ts=2 :

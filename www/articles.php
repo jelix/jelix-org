@@ -13,6 +13,28 @@ $updateVersion = 44;
 
 //  xdebug_start_profiling();
 
+// HACK LJ >>>>>>>>>
+  if (isset($_SERVER['PATH_INFO'])) {
+    if (preg_match("!^/(en|fr)/manu(a|e)l\-!", $_SERVER['PATH_INFO'])) {
+      header("Location: http://docs.jelix.org".$_SERVER['PATH_INFO'], true, 301);
+      exit;
+    }
+  }
+
+  $lang ='en';
+  if(isset($_SERVER['PATH_INFO']) && (!isset($_REQUEST['do']) ||$_REQUEST['do'] != 'search')){
+    $_REQUEST['id'] = str_replace('/',':',$_SERVER['PATH_INFO']);
+    if($_REQUEST['id']{0} == ':')
+      $_REQUEST['id'] = substr($_REQUEST['id'],1);
+  }
+  if(isset($_REQUEST['id'])){
+    if($_REQUEST['id'] == 'fr' || strpos($_REQUEST['id'],'fr:')===0){
+       $lang='fr';
+    }
+  }
+  define('DOKU_LANG', $lang);
+// <<<<<<<<<< HACK LJ
+
 if(!defined('DOKU_INC')) define('DOKU_INC', dirname(__FILE__).'/');
 
 if(isset($_SERVER['HTTP_X_DOKUWIKI_DO'])) {
@@ -32,6 +54,16 @@ require_once(DOKU_INC.'inc/init.php');
 $INPUT->set('id', str_replace("\xC2\xAD", '', $INPUT->str('id'))); //soft-hyphen
 $QUERY          = trim($INPUT->str('id'));
 $ID             = getID();
+
+if($ACT == 'show' && !isset($_GET['noredirect']) && $_SERVER["REQUEST_METHOD"] =='GET') {
+    $file = metaFN($ID, '.redirect');
+    if(@file_exists($file) && ($redirect = file_get_contents($file)) != '') {
+        $url = '/articles/'.str_replace(':','/', $redirect);
+        header("HTTP/1.0 301 Redirect");
+        header('Location: '.$url);
+        exit();
+    }
+}
 
 $REV   = $INPUT->int('rev');
 $IDX   = $INPUT->str('idx');
