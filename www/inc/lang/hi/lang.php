@@ -1,15 +1,11 @@
 <?php
+
 /**
- * hi language file
- *
- * This file was initially built by fetching translations from other
- * Wiki projects. See the @url lines below. Additional translations
- * and fixes where done for DokuWiki by the people mentioned in the
- * lines starting with @author
- *
- * @url http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/languages/messages/MessagesHi.php?view=co
+ * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
+ * 
  * @author Abhinav Tyagi <abhinavtyagi11@gmail.com>
  * @author yndesai@gmail.com
+ * @author Santosh Joshi <sanjujoshhi@gmail.com>
  */
 $lang['encoding']              = 'utf-8';
 $lang['direction']             = 'ltr';
@@ -44,6 +40,12 @@ $lang['btn_backlink']          = 'पिछली कड़ियाँ';
 $lang['btn_backtomedia']       = 'मीडिया फाइल चयन पर पीछे जायें';
 $lang['btn_subscribe']         = 'सदस्यता प्रबंधन';
 $lang['btn_profile']           = 'परिचय संपादित करें';
+$lang['btn_resendpwd']         = 'नया पासवर्ड सेट करें';
+$lang['btn_draft']             = 'प्रारूप सम्पादित करें';
+$lang['btn_draftdel']          = 'प्रारूप मिटायें';
+$lang['btn_revert']            = 'वापस लौटाएं';
+$lang['btn_apply']             = 'लागू करें';
+$lang['btn_deleteuser']        = 'खाता मिटायें';
 $lang['user']                  = 'उपयोगकर्ता का नाम';
 $lang['pass']                  = 'गुप्त शब्द';
 $lang['newpass']               = 'नव गुप्त शब्द';
@@ -84,7 +86,6 @@ $lang['lastmod']               = 'अंतिम बार संशोधि�
 $lang['by']                    = 'के द्वारा';
 $lang['deleted']               = 'हटाया';
 $lang['created']               = 'निर्मित';
-$lang['restored']              = 'पुराने संशोधन बहाल';
 $lang['external_edit']         = 'बाह्य सम्पादित';
 $lang['summary']               = 'सारांश संपादित करें';
 $lang['mail_newpage']          = 'पृष्ठ जोड़ा:';
@@ -102,7 +103,7 @@ $lang['qb_extlink']            = 'बाह्य कड़ी';
 $lang['qb_hr']                 = 'खड़ी रेखा';
 $lang['qb_sig']                = 'हस्ताक्षर डालें';
 $lang['admin_register']        = 'नया उपयोगकर्ता जोड़ें';
-$lang['img_backto']            = 'वापस जाना';
+$lang['btn_img_backto']            = 'वापस जाना %s';
 $lang['img_title']             = 'शीर्षक';
 $lang['img_caption']           = 'सहशीर्षक';
 $lang['img_date']              = 'तिथि';

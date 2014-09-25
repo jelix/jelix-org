@@ -1,8 +1,8 @@
 <?php
+
 /**
- * Italian language file
- *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
+ * 
  * @author Giorgio Vecchiocattivi <giorgio@vecchio.it>
  * @author Roberto Bolli [http://www.rbnet.it/]
  * @author Silvia Sargentoni <polinnia@tin.it>
@@ -15,6 +15,8 @@
  * @author Jacopo Corbetta <jacopo.corbetta@gmail.com>
  * @author Matteo Pasotti <matteo@xquiet.eu>
  * @author snarchio@gmail.com
+ * @author Edmondo Di Tucci <snarchio@gmail.com>
+ * @author Claudio Lanconelli <lancos@libero.it>
  */
 $lang['encoding']              = 'utf-8';
 $lang['direction']             = 'ltr';
@@ -58,6 +60,7 @@ $lang['btn_revert']            = 'Ripristina';
 $lang['btn_register']          = 'Registrazione';
 $lang['btn_apply']             = 'Applica';
 $lang['btn_media']             = 'Gestore Media';
+$lang['btn_deleteuser']        = 'Rimuovi il mio account';
 $lang['loggedinas']            = 'Collegato come';
 $lang['user']                  = 'Nome utente';
 $lang['pass']                  = 'Password';
@@ -69,6 +72,7 @@ $lang['fullname']              = 'Nome completo';
 $lang['email']                 = 'Email';
 $lang['profile']               = 'Profilo utente';
 $lang['badlogin']              = 'Il nome utente o la password non sono validi.';
+$lang['badpassconfirm']        = 'La password è errata';
 $lang['minoredit']             = 'Modifiche minori';
 $lang['draftdate']             = 'Bozza salvata in automatico il';
 $lang['nosecedit']             = 'La pagina è stata modificata nel frattempo; è impossibile modificare solo la sezione scelta, quindi è stata caricata la pagina intera.';
@@ -85,6 +89,11 @@ $lang['profna']                = 'Questo wiki non supporta modifiche al profilo'
 $lang['profnochange']          = 'Nessuna modifica, niente da aggiornare.';
 $lang['profnoempty']           = 'Nome o indirizzo email vuoti non sono consentiti.';
 $lang['profchanged']           = 'Aggiornamento del profilo utente riuscito.';
+$lang['profnodelete']          = 'Questa wiki non supporta la cancellazione degli utenti';
+$lang['profdeleteuser']        = 'Elimina account';
+$lang['profdeleted']           = 'Il tuo account utente è stato rimosso da questa wiki';
+$lang['profconfdelete']        = 'Voglio rimuovere il mio account da questa wiki. <br/> Questa operazione non può essere annullata.';
+$lang['profconfdeletemissing'] = 'La check box di conferma non è selezionata';
 $lang['pwdforget']             = 'Hai dimenticato la password? Richiedine una nuova';
 $lang['resendna']              = 'Questo wiki non supporta l\'invio di nuove password.';
 $lang['resendpwd']             = 'Imposta nuova password per';
@@ -187,7 +196,7 @@ $lang['lastmod']               = 'Ultima modifica';
 $lang['by']                    = 'da';
 $lang['deleted']               = 'eliminata';
 $lang['created']               = 'creata';
-$lang['restored']              = 'versione precedente ripristinata';
+$lang['restored']              = 'versione precedente ripristinata (%s)';
 $lang['external_edit']         = 'modifica esterna';
 $lang['summary']               = 'Oggetto della modifica';
 $lang['noflash']               = 'E\' necessario <a href="http://www.adobe.com/products/flashplayer/">il plugin Adobe Flash</a> per visualizzare questo contenuto.';
@@ -205,6 +214,7 @@ $lang['mail_new_user']         = 'nuovo utente:';
 $lang['mail_upload']           = 'file caricato:';
 $lang['changes_type']          = 'Guarda cambiamenti di';
 $lang['pages_changes']         = 'Pagine';
+$lang['media_changes']         = 'File multimediali';
 $lang['both_changes']          = 'Sia pagine che media files';
 $lang['qb_bold']               = 'Grassetto';
 $lang['qb_italic']             = 'Corsivo';
@@ -235,7 +245,7 @@ $lang['admin_register']        = 'Aggiungi un nuovo utente';
 $lang['metaedit']              = 'Modifica metadati';
 $lang['metasaveerr']           = 'Scrittura metadati fallita';
 $lang['metasaveok']            = 'Metadati salvati';
-$lang['img_backto']            = 'Torna a';
+$lang['btn_img_backto']            = 'Torna a %s';
 $lang['img_title']             = 'Titolo';
 $lang['img_caption']           = 'Descrizione';
 $lang['img_date']              = 'Data';
@@ -248,7 +258,7 @@ $lang['img_camera']            = 'Camera';
 $lang['img_keywords']          = 'Parole chiave';
 $lang['img_width']             = 'Larghezza';
 $lang['img_height']            = 'Altezza';
-$lang['img_manager']           = 'Guarda nel gestore media';
+$lang['btn_mediaManager']           = 'Guarda nel gestore media';
 $lang['subscr_subscribe_success'] = 'Aggiunto %s alla lista di sottoscrizioni %s';
 $lang['subscr_subscribe_error'] = 'Impossibile aggiungere %s alla lista di sottoscrizioni %s';
 $lang['subscr_subscribe_noaddress'] = 'Non esiste alcun indirizzo associato al tuo account, non puoi essere aggiunto alla lista di sottoscrizioni';
@@ -263,9 +273,8 @@ $lang['subscr_m_unsubscribe']  = 'Rimuovi sottoscrizione';
 $lang['subscr_m_subscribe']    = 'Sottoscrivi';
 $lang['subscr_m_receive']      = 'Ricevi';
 $lang['subscr_style_every']    = 'email per ogni modifica';
-$lang['subscr_style_digest']   = 'email riassuntiva delle modifiche di ogni pagina';
-$lang['subscr_style_list']     = 'elenco delle pagine modificate dall\'ultima email';
-$lang['authmodfailed']         = 'La configurazione dell\'autenticazione non è corretta. Informa l\'amministratore di questo wiki.';
+$lang['subscr_style_digest']   = 'email di riassunto dei cambiamenti per ogni pagina (ogni %.2f giorni)';
+$lang['subscr_style_list']     = 'lista delle pagine cambiate dall\'ultima email (ogni %.2f giorni)';
 $lang['authtempfail']          = 'L\'autenticazione è temporaneamente non disponibile. Se questa situazione persiste, informa l\'amministratore di questo wiki.';
 $lang['authpwdexpire']         = 'La tua password scadrà in %d giorni, dovresti cambiarla quanto prima.';
 $lang['i_chooselang']          = 'Scegli la lingua';
@@ -284,14 +293,18 @@ $lang['i_confexists']          = '<code>%s</code> esiste già';
 $lang['i_writeerr']            = 'Impossibile creare <code>%s</code>. E\' necessario verificare i permessi della directory o del file oppure creare il file manualmente.';
 $lang['i_badhash']             = 'dokuwiki.php (hash=<code>%s</code>) non riconosciuto o modificato';
 $lang['i_badval']              = '<code>%s</code> - valore vuoto o non valido';
-$lang['i_success']             = 'La configurazione è stata completata correttamente. Ora è possibile eliminare il file install.php. Poi, visita <a href="doku.php">il tuo nuovo DokuWiki</a>.';
-$lang['i_failure']             = 'Si sono verificati errori durante la scrittura dei file di configurazione. Potrebbe essere necessario correggerli manualmente prima di poter utilizzare <a href="doku.php">il tuo nuovo DokuWiki</a>.';
+$lang['i_success']             = 'La configurazione è stata completata correttamente. Ora è possibile eliminare il file install.php. Poi, visita <a href="doku.php?id=wiki:welcome">il tuo nuovo DokuWiki</a>.';
+$lang['i_failure']             = 'Si sono verificati errori durante la scrittura dei file di configurazione. Potrebbe essere necessario correggerli manualmente prima di poter utilizzare <a href="doku.php?id=wiki:welcome">il tuo nuovo DokuWiki</a>.';
 $lang['i_policy']              = 'Regole di accesso iniziali';
 $lang['i_pol0']                = 'Wiki Aperto (lettura, scrittura, caricamento file per tutti)';
 $lang['i_pol1']                = 'Wiki Pubblico (lettura per tutti, scrittura e caricamento file per gli utenti registrati)';
 $lang['i_pol2']                = 'Wiki Chiuso (lettura, scrittura, caricamento file solamente per gli utenti registrati)';
+$lang['i_allowreg']            = 'Permetti agli utenti di registrarsi';
 $lang['i_retry']               = 'Riprova';
 $lang['i_license']             = 'Per favore scegli la licenza sotto cui vuoi rilasciare il contenuto:';
+$lang['i_license_none']        = 'Non mostrare informazioni sulla licenza';
+$lang['i_pop_field']           = 'Per favore, aiutaci ad incrementare la conoscenza di DokuWiki:';
+$lang['i_pop_label']           = 'Mensilmente invia una statistica d\'uso anonima di DokuWiki agli sviluppatori';
 $lang['recent_global']         = 'Stai attualmente vedendo le modifiche effettuate nell\'area <b>%s</b>. Puoi anche <a href="%s">vedere le modifiche recenti dell\'intero wiki</a>.';
 $lang['years']                 = '%d anni fa';
 $lang['months']                = '%d mesi fa';
@@ -316,9 +329,12 @@ $lang['media_files']           = 'File in %s';
 $lang['media_upload']          = 'Upload al %s';
 $lang['media_search']          = 'Cerca in %s';
 $lang['media_view']            = '%s';
+$lang['media_viewold']         = '%s a %s';
 $lang['media_edit']            = 'Modifica %s';
 $lang['media_history']         = 'Storia di %s';
+$lang['media_meta_edited']     = 'metadata modificati';
 $lang['media_perm_read']       = 'Spiacente, non hai abbastanza privilegi per leggere i files.';
 $lang['media_perm_upload']     = 'Spiacente, non hai abbastanza privilegi per caricare files.';
 $lang['media_update']          = 'Carica nuova versione';
 $lang['media_restore']         = 'Ripristina questa versione';
+$lang['searchresult']          = 'Risultati della ricerca';

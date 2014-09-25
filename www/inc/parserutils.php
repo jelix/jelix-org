@@ -86,67 +86,6 @@ function p_wiki_xhtml($id, $rev='', $excuse=true){
 }
 
 /**
- * Returns starting summary for a page (e.g. the first few
- * paragraphs), marked up in XHTML.
- *
- * If $excuse is true an explanation is returned if the file
- * wasn't found
- *
- * @param string $id wiki page id
- * @param string $title populated with page title from heading or page id
- * @param string $rev revision string
- * @param bool   $excuse if an excuse shall be renderer when no content is found
- * @return string xhtml code
- * @deprecated
- * @author Harry Fuecks <hfuecks@gmail.com>
- */
-function p_wiki_xhtml_summary($id, &$title, $rev='', $excuse=true){
-    $file = wikiFN($id,$rev);
-    $ret  = '';
-    $ins  = null;
-
-    //ensure $id is in global $ID (needed for parsing)
-    global $ID;
-    $keep = $ID;
-    $ID   = $id;
-
-    if($rev){
-        if(@file_exists($file)){
-            //no caching on old revisions
-            $ins = p_get_instructions(io_readWikiPage($file,$id,$rev));
-        }elseif($excuse){
-            $ret = p_locale_xhtml('norev');
-            //restore ID (just in case)
-            $ID = $keep;
-            return $ret;
-        }
-
-    }else{
-
-        if(@file_exists($file)){
-            // The XHTML for a summary is not cached so use the instruction cache
-            $ins = p_cached_instructions($file);
-        }elseif($excuse){
-            $ret = p_locale_xhtml('newpage');
-            //restore ID (just in case)
-            $ID = $keep;
-            return $ret;
-        }
-    }
-
-    $ret = p_render('xhtmlsummary',$ins,$info);
-
-    if ( $info['sum_pagetitle'] ) {
-        $title = $info['sum_pagetitle'];
-    } else {
-        $title = $id;
-    }
-
-    $ID = $keep;
-    return $ret;
-}
-
-/**
  * Returns the specified local text in parsed format
  *
  * @author Andreas Gohr <andi@splitbrain.org>
@@ -155,23 +94,6 @@ function p_locale_xhtml($id){
     //fetch parsed locale
     $html = p_cached_output(localeFN($id));
     return $html;
-}
-
-/**
- *     *** DEPRECATED ***
- *
- * use p_cached_output()
- *
- * Returns the given file parsed to XHTML
- *
- * Uses and creates a cachefile
- *
- * @deprecated
- * @author Andreas Gohr <andi@splitbrain.org>
- * @todo   rewrite to use mode instead of hardcoded XHTML
- */
-function p_cached_xhtml($file){
-    return p_cached_output($file);
 }
 
 /**
@@ -190,8 +112,7 @@ function p_cached_output($file, $format='xhtml', $id='') {
     } else {
         $parsed = p_render($format, p_cached_instructions($file,false,$id), $info);
 
-        if ($info['cache']) {
-            $cache->storeCache($parsed);               //save cachefile
+        if ($info['cache'] && $cache->storeCache($parsed)) {              // storeCache() attempts to save cachefile
             if($conf['allowdebug'] && $format=='xhtml') $parsed .= "\n<!-- no cachefile used, but created {$cache->cache} -->\n";
         }else{
             $cache->removeCache();                     //try to delete cachefile
@@ -236,6 +157,8 @@ function p_cached_instructions($file,$cacheonly=false,$id='') {
  *
  * @author Harry Fuecks <hfuecks@gmail.com>
  * @author Andreas Gohr <andi@splitbrain.org>
+ * @param string $text raw wiki syntax text
+ * @return array a list of instruction arrays
  */
 function p_get_instructions($text){
 
@@ -506,8 +429,9 @@ function p_render_metadata($id, $orig){
     global $ID, $METADATA_RENDERERS;
 
     // avoid recursive rendering processes for the same id
-    if (isset($METADATA_RENDERERS[$id]))
+    if (isset($METADATA_RENDERERS[$id])) {
         return $orig;
+    }
 
     // store the original metadata in the global $METADATA_RENDERERS so p_set_metadata can use it
     $METADATA_RENDERERS[$id] =& $orig;
@@ -519,8 +443,6 @@ function p_render_metadata($id, $orig){
     $orig['page'] = $id;
     $evt = new Doku_Event('PARSER_METADATA_RENDER', $orig);
     if ($evt->advise_before()) {
-
-        require_once DOKU_INC."inc/parser/metadata.php";
 
         // get instructions
         $instructions = p_cached_instructions(wikiFN($id),false,$id);
@@ -579,7 +501,7 @@ function p_get_parsermodes(){
         $obj = null;
         foreach($pluginlist as $p){
             /** @var DokuWiki_Syntax_Plugin $obj */
-            if(!$obj =& plugin_load('syntax',$p)) continue; //attempt to load plugin into $obj
+            if(!$obj = plugin_load('syntax',$p)) continue; //attempt to load plugin into $obj
             $PARSER_MODES[$obj->getType()][] = "plugin_$p"; //register mode type
             //add to modes
             $modes[] = array(
@@ -664,7 +586,7 @@ function p_sort_modes($a, $b){
 function p_render($mode,$instructions,&$info){
     if(is_null($instructions)) return '';
 
-    $Renderer =& p_get_renderer($mode);
+    $Renderer = p_get_renderer($mode);
     if (is_null($Renderer)) return null;
 
     $Renderer->reset();
@@ -692,45 +614,53 @@ function p_render($mode,$instructions,&$info){
 }
 
 /**
+ * Figure out the correct renderer class to use for $mode,
+ * instantiate and return it
+ *
  * @param $mode string Mode of the renderer to get
  * @return null|Doku_Renderer The renderer
+ *
+ * @author Christopher Smith <chris@jalakai.co.uk>
  */
-function & p_get_renderer($mode) {
+function p_get_renderer($mode) {
     /** @var Doku_Plugin_Controller $plugin_controller */
     global $conf, $plugin_controller;
 
     $rname = !empty($conf['renderer_'.$mode]) ? $conf['renderer_'.$mode] : $mode;
     $rclass = "Doku_Renderer_$rname";
 
+    // if requested earlier or a bundled renderer
     if( class_exists($rclass) ) {
-        return new $rclass();
-    }
-
-    // try default renderer first:
-    $file = DOKU_INC."inc/parser/$rname.php";
-    if(@file_exists($file)){
-        require_once $file;
-
-        if ( !class_exists($rclass) ) {
-            trigger_error("Unable to resolve render class $rclass",E_USER_WARNING);
-            msg("Renderer '$rname' for $mode not valid",-1);
-            return null;
-        }
         $Renderer = new $rclass();
-    }else{
-        // Maybe a plugin/component is available?
-        list($plugin, $component) = $plugin_controller->_splitName($rname);
-        if (!$plugin_controller->isdisabled($plugin)){
-            $Renderer =& $plugin_controller->load('renderer',$rname);
-        }
-
-        if(!isset($Renderer) || is_null($Renderer)){
-            msg("No renderer '$rname' found for mode '$mode'",-1);
-            return null;
-        }
+        return $Renderer;
     }
 
-    return $Renderer;
+    // not bundled, see if its an enabled renderer plugin & when $mode is 'xhtml', the renderer can supply that format.
+    $Renderer = $plugin_controller->load('renderer',$rname);
+    if ($Renderer && is_a($Renderer, 'Doku_Renderer')  && ($mode != 'xhtml' || $mode == $Renderer->getFormat())) {
+        return $Renderer;
+    }
+
+    // there is a configuration error!
+    // not bundled, not a valid enabled plugin, use $mode to try to fallback to a bundled renderer
+    $rclass = "Doku_Renderer_$mode";
+    if ( class_exists($rclass) ) {
+        // viewers should see renderered output, so restrict the warning to admins only
+        $msg = "No renderer '$rname' found for mode '$mode', check your plugins";
+        if ($mode == 'xhtml') {
+            $msg .= " and the 'renderer_xhtml' config setting";
+        }
+        $msg .= ".<br/>Attempting to fallback to the bundled renderer.";
+        msg($msg,-1,'','',MSG_ADMINS_ONLY);
+
+        $Renderer = new $rclass;
+        $Renderer->nocache();     // fallback only (and may include admin alerts), don't cache
+        return $Renderer;
+    }
+
+    // fallback failed, alert the world
+    msg("No renderer '$rname' found for mode '$mode'",-1);
+    return null;
 }
 
 /**

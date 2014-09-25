@@ -1,13 +1,16 @@
 <?php
+
 /**
- * turkish language file
- *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
+ * 
  * @author Selim Farsakoğlu <farsakogluselim@yahoo.de>
  * @author Aydın Coşkuner <aydinweb@gmail.com>
  * @author Cihan Kahveci <kahvecicihan@gmail.com>
  * @author Yavuz Selim <yavuzselim@gmail.com>
  * @author Caleb Maclennan <caleb@alerque.com>
+ * @author farukerdemoncel@gmail.com
+ * @author Mustafa Aslan <maslan@hotmail.com>
+ * @author huseyin can <huseyincan73@gmail.com>
  */
 $lang['encoding']              = 'utf-8';
 $lang['direction']             = 'ltr';
@@ -43,11 +46,15 @@ $lang['btn_backtomedia']       = 'Çokluortam dosyası seçimine dön';
 $lang['btn_subscribe']         = 'Sayfa Değişikliklerini Bildir';
 $lang['btn_profile']           = 'Kullanıcı Bilgilerini Güncelle';
 $lang['btn_reset']             = 'Sıfırla';
+$lang['btn_resendpwd']         = 'Yeni şifre belirle';
 $lang['btn_draft']             = 'Taslağı düzenle';
 $lang['btn_recover']           = 'Taslağı geri yükle';
 $lang['btn_draftdel']          = 'Taslağı sil';
 $lang['btn_revert']            = 'Geri Yükle';
 $lang['btn_register']          = 'Kayıt ol';
+$lang['btn_apply']             = 'Uygula';
+$lang['btn_media']             = 'Çokluortam Yöneticisi';
+$lang['btn_deleteuser']        = 'Hesabımı Sil';
 $lang['loggedinas']            = 'Giriş ismi';
 $lang['user']                  = 'Kullanıcı ismi';
 $lang['pass']                  = 'Parola';
@@ -59,6 +66,7 @@ $lang['fullname']              = 'Tam isim';
 $lang['email']                 = 'E-posta';
 $lang['profile']               = 'Kullanıcı Bilgileri';
 $lang['badlogin']              = 'Üzgünüz, Kullanıcı adı veya şifre yanlış oldu.';
+$lang['badpassconfirm']        = 'Üzgünüz, parolanız yanlış';
 $lang['minoredit']             = 'Küçük Değişiklikler';
 $lang['draftdate']             = 'Taslak şu saatte otomatik kaydedildi:';
 $lang['nosecedit']             = 'Sayfa yakın zamanda değiştirilmiştir, bölüm bilgisi eski kalmıştır. Bunun için bölüm yerine tüm sayfa yüklenmiştir.';
@@ -75,8 +83,14 @@ $lang['profna']                = 'Bu wiki kullanıcı bilgilerini değiştirmeyi
 $lang['profnochange']          = 'Değişiklik yok, birşey yapılmadı.';
 $lang['profnoempty']           = 'Boş isim veya e-posta adresine izin verilmiyor.';
 $lang['profchanged']           = 'Kullanıcı bilgileri başarıyla değiştirildi.';
+$lang['profnodelete']          = 'Bu wiki kullanıcı silmeyi desteklemiyor';
+$lang['profdeleteuser']        = 'Hesabı Sil';
+$lang['profdeleted']           = 'Bu wiki\'den hesabınız silindi';
+$lang['profconfdelete']        = 'Bu wiki\'den hesabımı silmek istiyorum. <br/>Bu işlem geri alınamaz';
+$lang['profconfdeletemissing'] = 'Onay kutusu işaretlenmedi';
 $lang['pwdforget']             = 'Parolanızı mı unuttunuz? Yeni bir parola alın';
 $lang['resendna']              = 'Bu wiki parolayı tekrar göndermeyi desteklememektedir.';
+$lang['resendpwd']             = 'İçin yeni şifre belirle';
 $lang['resendpwdmissing']      = 'Üzgünüz, tüm alanları doldurmalısınız.';
 $lang['resendpwdnouser']       = 'Üzgünüz,  veritabanımızda bu kullanıcıyı bulamadık.';
 $lang['resendpwdbadauth']      = 'Üzgünüz, bu doğrulama kodu doğru değil. Doğrulama linkini tam olarak kullandığınıza emin olun.';
@@ -89,9 +103,10 @@ $lang['searchmedia_in']        = '%s içinde ara';
 $lang['txt_upload']            = 'Yüklenecek dosyayı seç';
 $lang['txt_filename']          = 'Dosya adı (zorunlu değil)';
 $lang['txt_overwrt']           = 'Mevcut dosyanın üstüne yaz';
+$lang['maxuploadsize']         = 'Yükleme dosya başına en fazla %s';
 $lang['lockedby']              = 'Şu an şunun tarafından kilitli:';
 $lang['lockexpire']            = 'Kilitin açılma tarihi:';
-$lang['js']['willexpire']            = 'Bu sayfayı değiştirme kilidinin süresi yaklaşık bir dakika içinde geçecek.\nÇakışmaları önlemek için önizleme tuşunu kullanarak kilit sayacını sıfırla.';
+$lang['js']['willexpire']      = 'Bu sayfayı değiştirme kilidinin süresi yaklaşık bir dakika içinde geçecek.\nÇakışmaları önlemek için önizleme tuşunu kullanarak kilit sayacını sıfırla.';
 $lang['js']['notsavedyet']     = 'Kaydedilmemiş değişiklikler kaybolacak.
 Devam etmek istiyor musunuz?';
 $lang['js']['searchmedia']     = 'Dosyalar için Ara';
@@ -122,6 +137,15 @@ $lang['js']['nosmblinks']      = 'Windows paylaşımı sadece Microsoft Internet
 $lang['js']['linkwiz']         = 'Bağlantı sihirbazı';
 $lang['js']['linkto']          = 'Bağlantı:';
 $lang['js']['del_confirm']     = 'Bu girişi sil?';
+$lang['js']['restore_confirm'] = 'Bu sürüme geri dönmek istediğinizden emin misiniz?';
+$lang['js']['media_diff']      = 'Farkları gör:';
+$lang['js']['media_diff_both'] = 'Yan yana';
+$lang['js']['media_select']    = 'Dosyalar seç...';
+$lang['js']['media_upload_btn'] = 'Yükle';
+$lang['js']['media_done_btn']  = 'Bitti';
+$lang['js']['media_drop']      = 'Yüklemek istediğiniz dosyaları buraya bırakın';
+$lang['js']['media_cancel']    = 'kaldır';
+$lang['js']['media_overwrt']   = 'Var olan dosyaların üzerine yaz';
 $lang['rssfailed']             = 'Bu beslemeyi çekerken hata oluştu: ';
 $lang['nothingfound']          = 'Hiçbir şey yok.';
 $lang['mediaselect']           = 'Çokluortam dosyası seçimi';
@@ -156,6 +180,7 @@ $lang['yours']                 = 'Senin Sürümün';
 $lang['diff']                  = 'Kullanılan sürüm ile farkları göster';
 $lang['diff2']                 = 'Seçili sürümler arasındaki farkı göster';
 $lang['difflink']              = 'Karşılaştırma görünümüne bağlantı';
+$lang['diff_type']             = 'farklı görünüş';
 $lang['line']                  = 'Satır';
 $lang['breadcrumb']            = 'İz';
 $lang['youarehere']            = 'Buradasınız';
@@ -163,15 +188,25 @@ $lang['lastmod']               = 'Son değiştirilme';
 $lang['by']                    = 'Değiştiren:';
 $lang['deleted']               = 'silindi';
 $lang['created']               = 'oluşturuldu';
-$lang['restored']              = 'eski sürüme dönüldü';
+$lang['restored']              = 'eski sürüme dönüldü (%s)';
 $lang['external_edit']         = 'Dışarıdan düzenle';
 $lang['summary']               = 'Özeti düzenle';
 $lang['noflash']               = 'Bu içeriği göstermek için <a href="http://www.adobe.com/products/flashplayer/">Adobe Flash Eklentisi</a> gerekmektedir.';
 $lang['download']              = 'Parçacığı indir';
+$lang['tools']                 = 'Alet';
+$lang['user_tools']            = 'Kullanıcı Aletleri';
+$lang['site_tools']            = 'Site Aletleri';
+$lang['page_tools']            = 'Sayfa Aletleri';
+$lang['skip_to_content']       = 'Bağlanmak için kaydır';
+$lang['sidebar']               = 'kaydırma çubuğu';
 $lang['mail_newpage']          = 'sayfa eklenme:';
 $lang['mail_changed']          = 'sayfa değiştirilme:';
 $lang['mail_new_user']         = 'yeni kullanıcı';
 $lang['mail_upload']           = 'dosya yüklendi:';
+$lang['changes_type']          = 'görünüşü değiştir';
+$lang['pages_changes']         = 'Sayfalar';
+$lang['media_changes']         = 'Çokluortam dosyaları';
+$lang['both_changes']          = 'Sayfalar ve çoklu ortam dosyaları';
 $lang['qb_bold']               = 'Kalın Yazı';
 $lang['qb_italic']             = 'Eğik Yazı';
 $lang['qb_underl']             = 'Altı Çizgili Yazı';
@@ -198,7 +233,7 @@ $lang['admin_register']        = 'Yeni kullanıcı ekle...';
 $lang['metaedit']              = 'Metaverileri Değiştir';
 $lang['metasaveerr']           = 'Metaveri yazma başarısız ';
 $lang['metasaveok']            = 'Metaveri kaydedildi';
-$lang['img_backto']            = 'Şuna dön:';
+$lang['btn_img_backto']            = 'Şuna dön: %s';
 $lang['img_title']             = 'Başlık';
 $lang['img_caption']           = 'Serlevha';
 $lang['img_date']              = 'Tarih';
@@ -209,8 +244,16 @@ $lang['img_copyr']             = 'Telif Hakkı';
 $lang['img_format']            = 'Biçim';
 $lang['img_camera']            = 'Fotoğraf Makinası';
 $lang['img_keywords']          = 'Anahtar Sözcükler';
-$lang['authmodfailed']         = 'Yanlış kullanıcı onaylama ayarı. Lütfen Wiki yöneticisine bildiriniz.';
+$lang['img_width']             = 'Genişlik';
+$lang['img_height']            = 'Yükseklik';
+$lang['btn_mediaManager']           = 'Ortam oynatıcısında göster';
+$lang['subscr_m_new_header']   = 'Üyelik ekle';
+$lang['subscr_m_current_header'] = 'Üyeliğini onayla';
+$lang['subscr_m_unsubscribe']  = 'Üyelik iptali';
+$lang['subscr_m_subscribe']    = 'Kayıt ol';
+$lang['subscr_m_receive']      = 'Al';
 $lang['authtempfail']          = 'Kullanıcı doğrulama geçici olarak yapılamıyor. Eğer bu durum devam ederse lütfen Wiki yöneticine haber veriniz.';
+$lang['authpwdexpire']         = 'Şifreniz %d gün sonra geçersiz hale gelecek, yakın bir zamanda değiştirmelisiniz.';
 $lang['i_chooselang']          = 'Dili seçiniz';
 $lang['i_installer']           = 'Dokuwiki Kurulum Sihirbazı';
 $lang['i_wikiname']            = 'Wiki Adı';
@@ -232,4 +275,32 @@ $lang['i_pol0']                = 'Tamamen Açık Wiki (herkes okuyabilir, yazabi
 $lang['i_pol1']                = 'Açık Wiki (herkes okuyabilir, ancak  sadece üye olanlar yazabilir ve dosya yükleyebilir)';
 $lang['i_pol2']                = 'Kapalı Wiki (sadece üye olanlar okuyabilir, yazabilir ve dosya yükleyebilir)';
 $lang['i_retry']               = 'Tekrar Dene';
+$lang['i_license']             = 'Lütfen içeriği hangi lisans altında yayınlamak istediğniizi belirtin:';
 $lang['recent_global']         = '<b>%s</b> namespace\'i içerisinde yapılan değişiklikleri görüntülemektesiniz. Wiki\'deki tüm değişiklikleri de <a href="%s">bu adresten</a> görebilirsiniz. ';
+$lang['years']                 = '%d yıl önce';
+$lang['months']                = '%d ay önce';
+$lang['weeks']                 = '%d hafta önce';
+$lang['days']                  = '%d gün önce';
+$lang['hours']                 = '%d saat önce';
+$lang['minutes']               = '%d dakika önce';
+$lang['seconds']               = '%d saniye önce';
+$lang['wordblock']             = 'Değişikliğiniz kaydedilmedi çünkü istenmeyen mesaj içeriyor (spam).';
+$lang['media_uploadtab']       = 'Karşıya yükle';
+$lang['media_searchtab']       = 'Ara';
+$lang['media_file']            = 'Dosya';
+$lang['media_viewtab']         = 'Görünüm';
+$lang['media_edittab']         = 'Düzenle';
+$lang['media_historytab']      = 'Geçmiş';
+$lang['media_list_thumbs']     = 'Küçük resimler';
+$lang['media_list_rows']       = 'Satırlar';
+$lang['media_sort_name']       = 'İsim';
+$lang['media_sort_date']       = 'Tarih';
+$lang['media_files']           = '%s deki dosyalar';
+$lang['media_upload']          = '%s dizinine yükle';
+$lang['media_search']          = '%s dizininde ara';
+$lang['media_view']            = '%s';
+$lang['media_edit']            = 'Düzenle %s';
+$lang['media_history']         = 'Geçmiş %s';
+$lang['media_perm_upload']     = 'Üzgünüm, karşıya dosya yükleme yetkiniz yok.';
+$lang['media_update']          = 'Yeni versiyonu yükleyin';
+$lang['media_restore']         = 'Bu sürümü eski haline getir';

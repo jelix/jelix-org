@@ -19,46 +19,44 @@
  * @author Andreas Gohr <andi@splitbrain.org>
  */
 function getID($param='id',$clean=true){
+    /** @var Input $INPUT */
     global $INPUT;
     global $conf;
+    global $ACT;
 
     $id = $INPUT->str($param);
 
     //construct page id from request URI
     if(empty($id) && $conf['userewrite'] == 2){
-        $request = $_SERVER['REQUEST_URI'];
+        $request = $INPUT->server->str('REQUEST_URI');
         $script = '';
 
         //get the script URL
-        if($_SERVER['PATH_INFO']) { // HACK_LJ
-            $id = substr($_SERVER['PATH_INFO'],1);
-        }elseif($conf['basedir']){ // end HACK_LJ
+        if($conf['basedir']){
             $relpath = '';
             if($param != 'id') {
                 $relpath = 'lib/exe/';
             }
-            $script = $conf['basedir'].$relpath.utf8_basename($_SERVER['SCRIPT_FILENAME']);
+            $script = $conf['basedir'].$relpath.utf8_basename($INPUT->server->str('SCRIPT_FILENAME'));
 
-        }elseif($_SERVER['PATH_INFO']){
-            $request = $_SERVER['PATH_INFO'];
-        }elseif($_SERVER['SCRIPT_NAME']){
-            $script = $_SERVER['SCRIPT_NAME'];
-        }elseif($_SERVER['DOCUMENT_ROOT'] && $_SERVER['SCRIPT_FILENAME']){
-            $script = preg_replace ('/^'.preg_quote($_SERVER['DOCUMENT_ROOT'],'/').'/','',
-                    $_SERVER['SCRIPT_FILENAME']);
+        }elseif($INPUT->server->str('PATH_INFO')){
+            $request = $INPUT->server->str('PATH_INFO');
+        }elseif($INPUT->server->str('SCRIPT_NAME')){
+            $script = $INPUT->server->str('SCRIPT_NAME');
+        }elseif($INPUT->server->str('DOCUMENT_ROOT') && $INPUT->server->str('SCRIPT_FILENAME')){
+            $script = preg_replace ('/^'.preg_quote($INPUT->server->str('DOCUMENT_ROOT'),'/').'/','',
+                    $INPUT->server->str('SCRIPT_FILENAME'));
             $script = '/'.$script;
         }
 
-        if ($script) {// HACK_LJ
-            //clean script and request (fixes a windows problem)
-            $script  = preg_replace('/\/\/+/','/',$script);
-            $request = preg_replace('/\/\/+/','/',$request);
-            //remove script URL and Querystring to gain the id
-            if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
-                $id = preg_replace ('/\?.*/','',$match[1]);
-            }
-        }// end HACK_LJ
+        //clean script and request (fixes a windows problem)
+        $script  = preg_replace('/\/\/+/','/',$script);
+        $request = preg_replace('/\/\/+/','/',$request);
 
+        //remove script URL and Querystring to gain the id
+        if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
+            $id = preg_replace ('/\?.*/','',$match[1]);
+        }
         $id = urldecode($id);
         //strip leading slashes
         $id = preg_replace('!^/+!','',$id);
@@ -79,7 +77,7 @@ function getID($param='id',$clean=true){
             // fall back to default
             $id = $id.$conf['start'];
         }
-        send_redirect(wl($id,'',true));
+        if (isset($ACT) && $ACT === 'show') send_redirect(wl($id,'',true));
     }
 
     if($clean) $id = cleanID($id);
@@ -97,9 +95,9 @@ function getID($param='id',$clean=true){
  * @author Andreas Gohr <andi@splitbrain.org>
  * @param  string  $raw_id    The pageid to clean
  * @param  boolean $ascii     Force ASCII
- * @param  boolean $media     DEPRECATED
+ * @return string cleaned id
  */
-function cleanID($raw_id,$ascii=false,$media=false){
+function cleanID($raw_id,$ascii=false){
     global $conf;
     static $sepcharpat = null;
 
@@ -119,11 +117,10 @@ function cleanID($raw_id,$ascii=false,$media=false){
     $id = utf8_strtolower($id);
 
     //alternative namespace seperator
-    $id = strtr($id,';',':');
     if($conf['useslash']){
-        $id = strtr($id,'/',':');
+        $id = strtr($id,';/','::');
     }else{
-        $id = strtr($id,'/',$sepchar);
+        $id = strtr($id,';/',':'.$sepchar);
     }
 
     if($conf['deaccent'] == 2 || $ascii) $id = utf8_romanize($id);
@@ -249,6 +246,7 @@ function page_exists($id,$rev='',$clean=true) {
  * @param  $rev     string   page revision, empty string for current
  * @param  $clean   bool     flag indicating that $raw_id should be cleaned.  Only set to false
  *                           when $id is guaranteed to have been cleaned already.
+ * @return string full path
  *
  * @author Andreas Gohr <andi@splitbrain.org>
  */
@@ -366,11 +364,12 @@ function mediaFN($id, $rev=''){
  *
  * @param  string $id  The id of the local file
  * @param  string $ext The file extension (usually txt)
+ * @return string full filepath to localized file
  * @author Andreas Gohr <andi@splitbrain.org>
  */
 function localeFN($id,$ext='txt'){
     global $conf;
-    $file = DOKU_CONF.'/lang/'.$conf['lang'].'/'.$id.'.'.$ext;
+    $file = DOKU_CONF.'lang/'.$conf['lang'].'/'.$id.'.'.$ext;
     if(!@file_exists($file)){
         $file = DOKU_INC.'inc/lang/'.$conf['lang'].'/'.$id.'.'.$ext;
         if(!@file_exists($file)){
@@ -400,7 +399,7 @@ function resolve_id($ns,$id,$clean=true){
 
     // if the id starts with a dot we need to handle the
     // relative stuff
-    if($id{0} == '.'){
+    if($id && $id{0} == '.'){
         // normalize initial dots without a colon
         $id = preg_replace('/^(\.+)(?=[^:\.])/','\1:',$id);
         // prepend the current namespace
@@ -540,15 +539,30 @@ function getCacheName($data,$ext=''){
  * @author Andreas Gohr <gohr@cosmocode.de>
  */
 function isHiddenPage($id){
+    $data = array(
+        'id' => $id,
+        'hidden' => false
+    );
+    trigger_event('PAGEUTILS_ID_HIDEPAGE', $data, '_isHiddenPage');
+    return $data['hidden'];
+}
+
+/**
+ * callback checks if page is hidden
+ *
+ * @param array $data event data    see isHiddenPage()
+ */
+function _isHiddenPage(&$data) {
     global $conf;
     global $ACT;
-    if(empty($conf['hidepages'])) return false;
-    if($ACT == 'admin') return false;
 
-    if(preg_match('/'.$conf['hidepages'].'/ui',':'.$id)){
-        return true;
+    if ($data['hidden']) return;
+    if(empty($conf['hidepages'])) return;
+    if($ACT == 'admin') return;
+
+    if(preg_match('/'.$conf['hidepages'].'/ui',':'.$data['id'])){
+        $data['hidden'] = true;
     }
-    return false;
 }
 
 /**
@@ -639,6 +653,7 @@ function utf8_decodeFN($file){
  * @return string|false the full page id of the found page, false if any
  */
 function page_findnearest($page){
+    if (!$page) return false;
     global $ID;
 
     $ns = $ID;

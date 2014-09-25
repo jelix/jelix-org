@@ -1,8 +1,8 @@
 <?php
+
 /**
- * Slovak language file
- *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
+ * 
  * @author Ondrej Vegh <ov@vsieti.sk> with help of the scholars from Zdruzena stredna skola polygraficka in Bratislava
  * @author Michal Mesko <michal.mesko@gmail.com>
  * @author exusik@gmail.com
@@ -50,6 +50,7 @@ $lang['btn_revert']            = 'Obnoviť';
 $lang['btn_register']          = 'Registrovať';
 $lang['btn_apply']             = 'Použiť';
 $lang['btn_media']             = 'Správa médií';
+$lang['btn_deleteuser']        = 'Zrušiť môj účet';
 $lang['loggedinas']            = 'Prihlásený(á) ako';
 $lang['user']                  = 'Užívateľské meno';
 $lang['pass']                  = 'Heslo';
@@ -61,6 +62,7 @@ $lang['fullname']              = 'Celé meno';
 $lang['email']                 = 'E-Mail';
 $lang['profile']               = 'Užívateľský profil';
 $lang['badlogin']              = 'Zadané užívateľské meno a heslo nie je správne.';
+$lang['badpassconfirm']        = 'Ľutujem, heslo bolo nesprávne.';
 $lang['minoredit']             = 'Menšie zmeny';
 $lang['draftdate']             = 'Koncept automaticky uložený';
 $lang['nosecedit']             = 'Stránka bola medzičasom zmenená, informácie o sekcii sú zastaralé a z tohto dôvodu bola nahraná celá stránka.';
@@ -77,6 +79,11 @@ $lang['profna']                = 'Táto wiki nepodporuje zmenu profilu';
 $lang['profnochange']          = 'Žiadne zmeny, nie je čo robiť.';
 $lang['profnoempty']           = 'Prázdne meno alebo mailová adresa nie sú povolené.';
 $lang['profchanged']           = 'Užívateľský účet úspešne zmenený.';
+$lang['profnodelete']          = 'Táto wiki neumožňuje zrušenie používateľov.';
+$lang['profdeleteuser']        = 'Zrušiť účet';
+$lang['profdeleted']           = 'Váš účet bol zrušený v tejto wiki.';
+$lang['profconfdelete']        = 'Chcem odstrániť môj účet z tejto wiki. <br/> Táto operácia je nevratná.';
+$lang['profconfdeletemissing'] = 'Nebolo zavolené potvrdzovacie políčko';
 $lang['pwdforget']             = 'Zabudli ste heslo? Získajte nové!';
 $lang['resendna']              = 'Táto wiki nepodporuje opätovné zasielanie hesla.';
 $lang['resendpwd']             = 'Nastaviť nové heslo pre';
@@ -182,7 +189,7 @@ $lang['lastmod']               = 'Posledná úprava';
 $lang['by']                    = 'od';
 $lang['deleted']               = 'odstránené';
 $lang['created']               = 'vytvorené';
-$lang['restored']              = 'stará verzia bola obnovená';
+$lang['restored']              = 'stará verzia bola obnovená (%s)';
 $lang['external_edit']         = 'externá úprava';
 $lang['summary']               = 'Komentár k úpravám';
 $lang['noflash']               = 'Pre zobrazenie tohto obsahu potrebujete <a href="http://www.adobe.com/products/flashplayer/">Adobe Flash Plugin</a>.';
@@ -231,7 +238,7 @@ $lang['admin_register']        = 'Pridaj nového užívateľa';
 $lang['metaedit']              = 'Upraviť metainformácie';
 $lang['metasaveerr']           = 'Zápis metainformácií zlyhal';
 $lang['metasaveok']            = 'Metainformácie uložené';
-$lang['img_backto']            = 'Späť na';
+$lang['btn_img_backto']            = 'Späť na %s';
 $lang['img_title']             = 'Titul';
 $lang['img_caption']           = 'Popis';
 $lang['img_date']              = 'Dátum';
@@ -244,7 +251,7 @@ $lang['img_camera']            = 'Fotoaparát';
 $lang['img_keywords']          = 'Kľúčové slová';
 $lang['img_width']             = 'Šírka';
 $lang['img_height']            = 'Výška';
-$lang['img_manager']           = 'Prezrieť v správcovi médií';
+$lang['btn_mediaManager']           = 'Prezrieť v správcovi médií';
 $lang['subscr_subscribe_success'] = 'Používateľ %s bol pridaný do zoznamu hlásení o zmenách %s';
 $lang['subscr_subscribe_error'] = 'Chyba pri pridaní používateľa %s do zoznamu hlásení o zmenách %s';
 $lang['subscr_subscribe_noaddress'] = 'Vaše prihlasovacie meno nemá priradenú žiadnu email adresu, nemôžete byť pridaný do zoznamu hlásení o zmenách';
@@ -261,7 +268,6 @@ $lang['subscr_m_receive']      = 'Dostávať';
 $lang['subscr_style_every']    = 'email pri každej zmene';
 $lang['subscr_style_digest']   = 'email so zhrnutím zmien pre každú stránku (perióda %.2f dňa)';
 $lang['subscr_style_list']     = 'zoznam zmenených stránok od posledného emailu (perióda %.2f dňa)';
-$lang['authmodfailed']         = 'Užívateľská autentifikácia nie je možná. Prosím informujte správcu systému.';
 $lang['authtempfail']          = 'Užívateľská autentifikácia je dočasne nedostupná. Ak táto situácia pretrváva, prosím informujte správcu systému.';
 $lang['authpwdexpire']         = 'Platnosť hesla vyprší za %d dní, mali by ste ho zmeniť čo najskôr.';
 $lang['i_chooselang']          = 'Zvoľte váš jazyk';
@@ -278,14 +284,18 @@ $lang['i_confexists']          = '<code>%s</code> už existuje';
 $lang['i_writeerr']            = 'Nie je možné vytvoriť <code>%s</code>. Potrebujete skontrolovať prístupové práva pre adresár/súbor a vytvoriť ho manuálne.';
 $lang['i_badhash']             = 'neznámy alebo zmenený súbor dokuwiki.php (hash=<code>%s</code>)';
 $lang['i_badval']              = '<code>%s</code> - nesprávna alebo žiadna hodnota';
-$lang['i_success']             = 'Konfigurácia bola úspešne ukončená. Teraz môžete zmazať súbor install.php. Pokračujte vo <a href="doku.php">vašej novej DokuWiki</a>.';
-$lang['i_failure']             = 'Pri zápise konfiguračného súboru nastali nejaké chyby. Potrebujete ich opraviť manuálne pred tým, ako budete môcť používať <a href="doku.php">vašu novú DokuWiki</a>.';
+$lang['i_success']             = 'Konfigurácia bola úspešne ukončená. Teraz môžete zmazať súbor install.php. Pokračujte vo <a href="doku.php?id=wiki:welcome">vašej novej DokuWiki</a>.';
+$lang['i_failure']             = 'Pri zápise konfiguračného súboru nastali nejaké chyby. Potrebujete ich opraviť manuálne pred tým, ako budete môcť používať <a href="doku.php?id=wiki:welcome">vašu novú DokuWiki</a>.';
 $lang['i_policy']              = 'Počiatočná ACL politika';
 $lang['i_pol0']                = 'Otvorená Wiki (čítanie, zápis a nahrávanie pre každého)';
 $lang['i_pol1']                = 'Verejná Wiki (čítanie pre každého, zápis a nahrávanie pre registrovaných užívateľov)';
 $lang['i_pol2']                = 'Uzatvorená Wiki (čítanie, zápis a nahrávanie len pre registrovaných užívateľov)';
+$lang['i_allowreg']            = 'Povolenie samostanej registrácie používateľov';
 $lang['i_retry']               = 'Skúsiť znovu';
 $lang['i_license']             = 'Vyberte licenciu, pod ktorou chcete uložiť váš obsah:';
+$lang['i_license_none']        = 'Nezobrazovať žiadne licenčné informácie';
+$lang['i_pop_field']           = 'Prosím pomôžte nám zlepšiť prácu s DokuWiki:';
+$lang['i_pop_label']           = 'Raz mesačne zaslať anonymné údaje vývojárom DokuWiki';
 $lang['recent_global']         = 'Práve prehliadate zmeny v mennom priestore <b>%s</b>. Môžete si tiež pozrieť <a href="%s">aktuálne zmeny celej wiki</a>.';
 $lang['years']                 = 'pred %d rokmi';
 $lang['months']                = 'pred %d mesiacmi';
@@ -318,4 +328,7 @@ $lang['media_perm_read']       = 'Prepáčte, ale nemáte dostatočné oprávnen
 $lang['media_perm_upload']     = 'Prepáčte, ale nemáte dostatočné oprávnenie na nahrávanie súborov.';
 $lang['media_update']          = 'Nahrať novú verziu';
 $lang['media_restore']         = 'Obnoviť túto verziu';
-$lang['plugin_install_err']    = 'Plugin nebol nainštalovaný úspešne. Premenujte adresár s pluginom \'%s\' na \'%s\'.';
+$lang['currentns']             = 'Aktuálny menný priestor';
+$lang['searchresult']          = 'Výsledky hľadania';
+$lang['plainhtml']             = 'Jednoduché HTML';
+$lang['wikimarkup']            = 'Wiki formát';

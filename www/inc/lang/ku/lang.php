@@ -30,10 +30,9 @@ $lang['btn_admin']  = 'Admin';
 $lang['btn_update'] = 'Rojanekirin';
 $lang['btn_delete'] = 'Jê bibe';
 $lang['btn_back']   = 'Paş';
-$lang['btn_backlink']    = "Girêdanên paş";
+$lang['btn_backlink']    = 'Girêdanên paş';
 $lang['btn_backtomedia'] = 'Back to Mediafile Selection';
 $lang['btn_subscribe']   = 'Subscribe Changes';
-$lang['btn_unsubscribe'] = 'Unsubscribe Changes';
 $lang['btn_register'] = 'Register';
 
 $lang['loggedinas'] = 'Logged in as';
@@ -62,7 +61,7 @@ $lang['lockedby']     = 'Currently locked by';
 $lang['lockexpire']   = 'Lock expires at';
 $lang['js']['willexpire']   = 'Your lock for editing this page is about to expire in a minute.\nTo avoid conflicts use the preview button to reset the locktimer.';
 
-$lang['js']['notsavedyet'] = "Unsaved changes will be lost.\nReally continue?";
+$lang['js']['notsavedyet'] = 'Unsaved changes will be lost.\nReally continue?';
 
 $lang['rssfailed']   = 'An error occured while fetching this feed: ';
 $lang['nothingfound']= 'Tiştek nehat dîtin.';
@@ -95,13 +94,13 @@ $lang['lastmod']    = 'Guherandina dawî';
 $lang['by']         = 'by';
 $lang['deleted']    = 'hat jê birin';
 $lang['created']    = 'hat afirandin';
-$lang['restored']   = 'old revision restored';
+$lang['restored']   = 'old revision restored (%s)';
 $lang['summary']    = 'Kurteya guhartinê';
 
 $lang['mail_newpage'] = 'page added:';
 $lang['mail_changed'] = 'page changed:';
 
-$lang['js']['nosmblinks'] = "Linking to Windows shares only works in Microsoft Internet Explorer.\nYou still can copy and paste the link.";
+$lang['js']['nosmblinks'] = 'Linking to Windows shares only works in Microsoft Internet Explorer.\nYou still can copy and paste the link.';
 
 $lang['qb_bold']    = 'Bold Text';
 $lang['qb_italic']  = 'Italic Text';
@@ -123,26 +122,12 @@ $lang['qb_sig']     = 'Insert Signature';
 
 $lang['js']['del_confirm']= 'Delete this entry?';
 
-$lang['admin_acl']  = 'Access Control List Management...';
 $lang['admin_register']= 'Add new user...';
-
-$lang['acl_group']  = 'Group';
-$lang['acl_user']   = 'User';
-$lang['acl_perms']  = 'Permissions for';
-$lang['page']       = 'Rûpel';
-$lang['namespace']  = 'Namespace';
-
-$lang['acl_perm1']  = 'Bixwîne';
-$lang['acl_perm2']  = 'Biguherîne';
-$lang['acl_perm4']  = 'Biafirîne';
-$lang['acl_perm8']  = 'Upload';
-$lang['acl_perm16'] = 'Jê bibe';
-$lang['acl_new']    = 'Add new Entry';
 
 $lang['metaedit']    = 'Edit Metadata';
 $lang['metasaveerr'] = 'Writing metadata failed';
 $lang['metasaveok']  = 'Metadata saved';
-$lang['img_backto']  = 'Back to';
+$lang['btn_img_backto']  = 'Back to %s';
 $lang['img_title']   = 'Title';
 $lang['img_caption'] = 'Caption';
 $lang['img_date']    = 'Date';
@@ -153,11 +138,5 @@ $lang['img_copyr']   = 'Copyright';
 $lang['img_format']  = 'Format';
 $lang['img_camera']  = 'Camera';
 $lang['img_keywords']= 'Keywords';
-
-$lang['subscribe_success']  = 'Added %s to subscription list for %s';
-$lang['subscribe_error']    = 'Error adding %s to subscription list for %s';
-$lang['subscribe_noaddress']= 'There is no address associated with your login, you cannot be added to the subscription list';
-$lang['unsubscribe_success']= 'Removed %s from subscription list for %s';
-$lang['unsubscribe_error']  = 'Error removing %s from subscription list for %s';
 
 //Setup VIM: ex: et ts=2 :

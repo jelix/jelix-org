@@ -6,8 +6,6 @@
  * @author Andreas Gohr <andi@splitbrain.org>
  */
 if(!defined('DOKU_INC')) die('meh.');
-require_once DOKU_INC . 'inc/plugin.php';
-require_once DOKU_INC . 'inc/pluginutils.php';
 
 /**
  * An empty renderer, produces no output
@@ -59,10 +57,16 @@ class Doku_Renderer extends DokuWiki_Plugin {
         return false;
     }
 
-
-    //handle plugin rendering
-    function plugin($name,$data){
-        $plugin =& plugin_load('syntax',$name);
+    /**
+     * handle plugin rendering
+     *
+     * @param string $name Plugin name
+     * @param mixed  $data custom data set by handler
+     * @param string $state matched state if any
+     * @param string $match raw matched syntax
+     */
+    function plugin($name,$data,$state='',$match=''){
+        $plugin = plugin_load('syntax',$name);
         if($plugin != null){
             $plugin->render($this->getFormat(),$this,$data);
         }
@@ -74,12 +78,12 @@ class Doku_Renderer extends DokuWiki_Plugin {
      */
     function nest($instructions) {
 
-      foreach ( $instructions as $instruction ) {
-        // execute the callback against ourself
-        if (method_exists($this,$instruction[0])) {
-          call_user_func_array(array($this, $instruction[0]), $instruction[1] ? $instruction[1] : array());
+        foreach ( $instructions as $instruction ) {
+            // execute the callback against ourself
+            if (method_exists($this,$instruction[0])) {
+                call_user_func_array(array($this, $instruction[0]), $instruction[1] ? $instruction[1] : array());
+            }
         }
-      }
     }
 
     // dummy closing instruction issued by Doku_Handler_Nest, normally the syntax mode should
@@ -203,57 +207,61 @@ class Doku_Renderer extends DokuWiki_Plugin {
     // $link like 'SomePage'
     function camelcaselink($link) {}
 
-    function locallink($hash, $name = NULL) {}
+    function locallink($hash, $name = null) {}
 
     // $link like 'wiki:syntax', $title could be an array (media)
-    function internallink($link, $title = NULL) {}
+    function internallink($link, $title = null) {}
 
     // $link is full URL with scheme, $title could be an array (media)
-    function externallink($link, $title = NULL) {}
+    function externallink($link, $title = null) {}
 
     function rss ($url,$params) {}
 
     // $link is the original link - probably not much use
     // $wikiName is an indentifier for the wiki
     // $wikiUri is the URL fragment to append to some known URL
-    function interwikilink($link, $title = NULL, $wikiName, $wikiUri) {}
+    function interwikilink($link, $title = null, $wikiName, $wikiUri) {}
 
     // Link to file on users OS, $title could be an array (media)
-    function filelink($link, $title = NULL) {}
+    function filelink($link, $title = null) {}
 
     // Link to a Windows share, , $title could be an array (media)
-    function windowssharelink($link, $title = NULL) {}
+    function windowssharelink($link, $title = null) {}
 
-//  function email($address, $title = NULL) {}
-    function emaillink($address, $name = NULL) {}
+//  function email($address, $title = null) {}
+    function emaillink($address, $name = null) {}
 
-    function internalmedia ($src, $title=NULL, $align=NULL, $width=NULL,
-                            $height=NULL, $cache=NULL, $linking=NULL) {}
+    function internalmedia ($src, $title=null, $align=null, $width=null,
+                            $height=null, $cache=null, $linking=null) {}
 
-    function externalmedia ($src, $title=NULL, $align=NULL, $width=NULL,
-                            $height=NULL, $cache=NULL, $linking=NULL) {}
+    function externalmedia ($src, $title=null, $align=null, $width=null,
+                            $height=null, $cache=null, $linking=null) {}
 
     function internalmedialink (
-        $src,$title=NULL,$align=NULL,$width=NULL,$height=NULL,$cache=NULL
+        $src,$title=null,$align=null,$width=null,$height=null,$cache=null
         ) {}
 
     function externalmedialink(
-        $src,$title=NULL,$align=NULL,$width=NULL,$height=NULL,$cache=NULL
+        $src,$title=null,$align=null,$width=null,$height=null,$cache=null
         ) {}
 
     function table_open($maxcols = null, $numrows = null, $pos = null){}
 
     function table_close($pos = null){}
 
+    function tablethead_open(){}
+
+    function tablethead_close(){}
+
     function tablerow_open(){}
 
     function tablerow_close(){}
 
-    function tableheader_open($colspan = 1, $align = NULL, $rowspan = 1){}
+    function tableheader_open($colspan = 1, $align = null, $rowspan = 1){}
 
     function tableheader_close(){}
 
-    function tablecell_open($colspan = 1, $align = NULL, $rowspan = 1){}
+    function tablecell_open($colspan = 1, $align = null, $rowspan = 1){}
 
     function tablecell_close(){}
 
@@ -267,16 +275,17 @@ class Doku_Renderer extends DokuWiki_Plugin {
      *
      * @author Andreas Gohr <andi@splitbrain.org>
      */
-    function _simpleTitle($name){
+    function _simpleTitle($name) {
         global $conf;
 
         //if there is a hash we use the ancor name only
-        list($name,$hash) = explode('#',$name,2);
+        @list($name, $hash) = explode('#', $name, 2);
         if($hash) return $hash;
 
-        $name = strtr($name,';',':');
-        if($conf['useslash']){
-            $name = strtr($name,'/',':');
+        if($conf['useslash']) {
+            $name = strtr($name, ';/', ';:');
+        } else {
+            $name = strtr($name, ';', ':');
         }
 
         return noNSorNS($name);
@@ -285,9 +294,9 @@ class Doku_Renderer extends DokuWiki_Plugin {
     /**
      * Resolve an interwikilink
      */
-    function _resolveInterWiki(&$shortcut,$reference){
+    function _resolveInterWiki(&$shortcut, $reference, &$exists=null) {
         //get interwiki URL
-        if ( isset($this->interwiki[$shortcut]) ) {
+        if(isset($this->interwiki[$shortcut])) {
             $url = $this->interwiki[$shortcut];
         } else {
             // Default to Google I'm feeling lucky
@@ -296,25 +305,31 @@ class Doku_Renderer extends DokuWiki_Plugin {
         }
 
         //split into hash and url part
-        list($reference,$hash) = explode('#',$reference,2);
+        @list($reference, $hash) = explode('#', $reference, 2);
 
         //replace placeholder
-        if(preg_match('#\{(URL|NAME|SCHEME|HOST|PORT|PATH|QUERY)\}#',$url)){
+        if(preg_match('#\{(URL|NAME|SCHEME|HOST|PORT|PATH|QUERY)\}#', $url)) {
             //use placeholders
-            $url = str_replace('{URL}',rawurlencode($reference),$url);
-            $url = str_replace('{NAME}',$reference,$url);
+            $url = str_replace('{URL}', rawurlencode($reference), $url);
+            $url = str_replace('{NAME}', $reference, $url);
             $parsed = parse_url($reference);
             if(!$parsed['port']) $parsed['port'] = 80;
-            $url = str_replace('{SCHEME}',$parsed['scheme'],$url);
-            $url = str_replace('{HOST}',$parsed['host'],$url);
-            $url = str_replace('{PORT}',$parsed['port'],$url);
-            $url = str_replace('{PATH}',$parsed['path'],$url);
-            $url = str_replace('{QUERY}',$parsed['query'],$url);
-        }else{
+            $url = str_replace('{SCHEME}', $parsed['scheme'], $url);
+            $url = str_replace('{HOST}', $parsed['host'], $url);
+            $url = str_replace('{PORT}', $parsed['port'], $url);
+            $url = str_replace('{PATH}', $parsed['path'], $url);
+            $url = str_replace('{QUERY}', $parsed['query'], $url);
+        } else {
             //default
-            $url = $url.rawurlencode($reference);
+            $url = $url . rawurlencode($reference);
         }
-        if($hash) $url .= '#'.rawurlencode($hash);
+        //handle as wiki links
+        if($url{0} === ':') {
+            list($id, $urlparam) = explode('?', $url, 2);
+            $url = wl(cleanID($id), $urlparam);
+            $exists = page_exists($id);
+        }
+        if($hash) $url .= '#' . rawurlencode($hash);
 
         return $url;
     }
