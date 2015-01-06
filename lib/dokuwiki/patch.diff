@@ -1,8 +1,8 @@
 diff --git a/www/articles.php b/www/articles.php
-index afaf79c..1c95590 100644
+index 1477f80..f3431e4 100644
 --- a/www/articles.php
 +++ b/www/articles.php
-@@ -13,6 +13,28 @@ $updateVersion = 44;
+@@ -13,6 +13,28 @@ $updateVersion = 46.2;
  
  //  xdebug_start_profiling();
  
@@ -46,10 +46,10 @@ index afaf79c..1c95590 100644
 +}
 +
  $REV   = $INPUT->int('rev');
+ $DATE_AT = $INPUT->str('at');
  $IDX   = $INPUT->str('idx');
- $DATE  = $INPUT->int('date');
 diff --git a/www/inc/form.php b/www/inc/form.php
-index 9cd0491..19c1cd9 100644
+index fadc71d..6b551f5 100644
 --- a/www/inc/form.php
 +++ b/www/inc/form.php
 @@ -362,7 +362,7 @@ function form_makeCloseTag($tag) {
@@ -62,10 +62,10 @@ index 9cd0491..19c1cd9 100644
  }
  
 diff --git a/www/inc/infoutils.php b/www/inc/infoutils.php
-index 0992040..f0d2268 100644
+index f9ba115..1dcbd13 100644
 --- a/www/inc/infoutils.php
 +++ b/www/inc/infoutils.php
-@@ -52,9 +52,9 @@ function checkUpdateMessages(){
+@@ -57,9 +57,9 @@ function checkUpdateMessages(){
  function getVersionData(){
      $version = array();
      //import version string
@@ -78,13 +78,13 @@ index 0992040..f0d2268 100644
      }elseif(is_dir(DOKU_INC.'.git')){
          $version['type'] = 'Git';
 diff --git a/www/inc/lang/en/lang.php b/www/inc/lang/en/lang.php
-index 5922891..86cf33d 100644
+index fb455f8..d06a5a5 100644
 --- a/www/inc/lang/en/lang.php
 +++ b/www/inc/lang/en/lang.php
-@@ -366,4 +366,25 @@ $lang['currentns']             = 'Current namespace';
- $lang['searchresult']          = 'Search Result';
- $lang['plainhtml']             = 'Plain HTML';
+@@ -370,4 +370,25 @@ $lang['plainhtml']             = 'Plain HTML';
  $lang['wikimarkup']            = 'Wiki Markup';
+ $lang['page_nonexist_rev']     = 'Page did not exist at %s. It was subsequently created at <a href="%s">%s</a>.';
+ $lang['unable_to_parse_date']  = 'Unable to parse at parameter "%s".';
 +
 +$lang['book_next_c'] = 'Next chapter';
 +$lang['book_prev_c'] = 'Previous chapter';
@@ -108,10 +108,10 @@ index 5922891..86cf33d 100644
 +
  //Setup VIM: ex: et ts=2 :
 diff --git a/www/inc/lang/fr/lang.php b/www/inc/lang/fr/lang.php
-index 1f11608..4e544cc 100644
+index dfaa8df..2253c91 100644
 --- a/www/inc/lang/fr/lang.php
 +++ b/www/inc/lang/fr/lang.php
-@@ -358,3 +358,23 @@ $lang['currentns']             = 'Namespace actuel';
+@@ -365,3 +365,23 @@ $lang['currentns']             = 'Catégorie courante';
  $lang['searchresult']          = 'Résultat de la recherche';
  $lang['plainhtml']             = 'HTML brut';
  $lang['wikimarkup']            = 'Wiki balise';
@@ -136,10 +136,10 @@ index 1f11608..4e544cc 100644
 +$lang['book_up_f'] = 'Section parente';
 +$lang['book_current_f'] = 'Section ';
 diff --git a/www/inc/pageutils.php b/www/inc/pageutils.php
-index 8474c56..0ee1689 100644
+index 49c00d3..a310687 100644
 --- a/www/inc/pageutils.php
 +++ b/www/inc/pageutils.php
-@@ -32,7 +32,9 @@ function getID($param='id',$clean=true){
+@@ -36,7 +36,9 @@ function getID($param='id',$clean=true){
          $script = '';
  
          //get the script URL
@@ -150,7 +150,7 @@ index 8474c56..0ee1689 100644
              $relpath = '';
              if($param != 'id') {
                  $relpath = 'lib/exe/';
-@@ -49,14 +51,16 @@ function getID($param='id',$clean=true){
+@@ -53,14 +55,16 @@ function getID($param='id',$clean=true){
              $script = '/'.$script;
          }
  
@@ -175,12 +175,12 @@ index 8474c56..0ee1689 100644
          //strip leading slashes
          $id = preg_replace('!^/+!','',$id);
 diff --git a/www/inc/parser/xhtml.php b/www/inc/parser/xhtml.php
-index cf36a81..8530fa9 100644
+index 5627a03..0b223fb 100644
 --- a/www/inc/parser/xhtml.php
 +++ b/www/inc/parser/xhtml.php
-@@ -176,9 +176,9 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
-         if ($level <= $conf['maxseclevel']) {
-             $this->doc .= ' class="' . $this->startSectionEdit($pos, 'section', $text) . '"';
+@@ -218,9 +218,9 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
+         if($level <= $conf['maxseclevel']) {
+             $this->doc .= ' class="'.$this->startSectionEdit($pos, 'section', $text).'"';
          }
 -        $this->doc .= ' id="'.$hid.'">';
 +        $this->doc .= '><a name="'.$hid.'" id="'.$hid.'">';
@@ -189,7 +189,7 @@ index cf36a81..8530fa9 100644
 +        $this->doc .= '<a title="Link to this section" class="anchor" href="#'.$hid.'"> ¶</a></h'.$level.'>'.DOKU_LF;
      }
  
-     function section_open($level) {
+     /**
 diff --git a/www/inc/utf8.php b/www/inc/utf8.php
 index c944667..fe840b8 100644
 --- a/www/inc/utf8.php
