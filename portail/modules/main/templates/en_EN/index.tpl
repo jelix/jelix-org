@@ -10,7 +10,6 @@
                
                <a href="/articles/en/download/stable/1.5">{$versions['1.5']}</a> -
                <a href="/articles/en/download/stable/1.4">{$versions['1.4']}</a> -
-               <a href="/articles/en/download/stable/1.3">{$versions['1.3']}</a> -
                <a href="/articles/en/download/nightly#nightly-builds">nightly</a></p>
         </div>
 

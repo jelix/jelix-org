@@ -9,7 +9,6 @@
             <p id="other-releases">
                 <a href="/articles/fr/telechargement/stable/1.5">{$versions['1.5']}</a> -
                 <a href="/articles/fr/telechargement/stable/1.4">{$versions['1.4']}</a> -
-                <a href="/articles/fr/telechargement/stable/1.3">{$versions['1.3']}</a> -
                 <a href="/articles/fr/telechargement/nightly#telechargement-jelix-nightly">nightly</a></p>
         </div>
 
