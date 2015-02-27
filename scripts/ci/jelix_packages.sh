@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # script called by the CI tool each time a push is made
 # the current dir is a git source dir.
@@ -34,8 +35,11 @@ case $BRANCH in
     jelix-1.6.x)
         BRANCHVERSION="1.6.x"
     ;;
-    master)
+    jelix-1.7.x)
         BRANCHVERSION="1.7.x"
+    ;;
+    master)
+        BRANCHVERSION="2.0.x"
     ;;
     *)
     echo "Error: branch name is missing or wrong ('$BRANCH')"
