@@ -13,27 +13,32 @@ fi
 
 BUILD_GOLD="N"
 BUILD_FONT_PACKAGE="N"
-HASMODULES="Y"
+BUILD_TESTAPP="N"
+HASMODULES="N"
 
 case $BRANCH in
     jelix-1.3.x)
         BRANCHVERSION="1.3.x"
-        HASMODULES="N"
         BUILD_GOLD="Y"
         BUILD_FONT_PACKAGE="Y"
+        BUILD_TESTAPP="Y"
     ;;
     jelix-1.4.x)
         BRANCHVERSION="1.4.x"
-        HASMODULES="N"
         BUILD_GOLD="Y"
         BUILD_FONT_PACKAGE="Y"
+        BUILD_TESTAPP="Y"
     ;;
     jelix-1.5.x)
         BRANCHVERSION="1.5.x"
         BUILD_GOLD="Y"
+        HASMODULES="Y"
+        BUILD_TESTAPP="Y"
     ;;
     jelix-1.6.x)
         BRANCHVERSION="1.6.x"
+        HASMODULES="Y"
+        BUILD_TESTAPP="Y"
     ;;
     jelix-1.7.x)
         BRANCHVERSION="1.7.x"
@@ -66,8 +71,10 @@ if [ "$?" != "0" ]; then
     exit 1
 fi
 
-mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH
-mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH
+if [ "$BUILD_TESTAPP" == "Y" ]; then
+    mv -f "$DISTPATH"testapp-*.zip    $DOWNLOADPATH
+    mv -f "$DISTPATH"testapp-*.tar.gz $DOWNLOADPATH
+fi
 
 mv -f "$DISTPATH"jelix-*.zip    $DOWNLOADPATH
 mv -f "$DISTPATH"jelix-*.tar.gz $DOWNLOADPATH
@@ -79,10 +86,6 @@ fi
 
 PACKAGE_NAME_DEV=`cat "$DISTPATH"PACKAGE_NAME_DEV`
 PACKAGE_NAME_OPT=`cat "$DISTPATH"PACKAGE_NAME_OPT`
-if [ "$BUILD_GOLD" == "Y" ]; then
-    PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
-fi
-PACKAGE_TESTAPP_NAME=`cat "$DISTPATH"PACKAGE_TESTAPP_NAME`
 
 cd $DIR_JELIX_SITES/download/www/jelix/nightly/
 if  [ -f latest-nightly-$FILENAME-dev.tar.gz ]
@@ -93,15 +96,6 @@ if  [ -f latest-nightly-$FILENAME-opt.tar.gz ]
 then
     rm latest-nightly-$FILENAME-opt.tar.gz
 fi
-if  [ -f latest-nightly-$TESTAPPFILENAME.tar.gz ]
-then
-    rm latest-nightly-$TESTAPPFILENAME.tar.gz
-fi
-
-ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".tar.gz latest-nightly-$FILENAME-dev.tar.gz
-ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".tar.gz latest-nightly-$FILENAME-opt.tar.gz
-ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".tar.gz latest-nightly-$TESTAPPFILENAME.tar.gz
-    
 if  [ -f latest-nightly-$FILENAME-dev.zip ]
 then
     rm latest-nightly-$FILENAME-dev.zip
@@ -110,15 +104,29 @@ if  [ -f latest-nightly-$FILENAME-opt.zip ]
 then
     rm latest-nightly-$FILENAME-opt.zip
 fi
-if  [ -f latest-nightly-$TESTAPPFILENAME.zip ]
-then
-    rm latest-nightly-$TESTAPPFILENAME.zip
-fi
+
+ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".tar.gz latest-nightly-$FILENAME-dev.tar.gz
+ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".tar.gz latest-nightly-$FILENAME-opt.tar.gz
 ln -s $BRANCHVERSION/"$PACKAGE_NAME_DEV".zip latest-nightly-$FILENAME-dev.zip
 ln -s $BRANCHVERSION/"$PACKAGE_NAME_OPT".zip latest-nightly-$FILENAME-opt.zip
-ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".zip latest-nightly-$TESTAPPFILENAME.zip
+
+if [ "$BUILD_TESTAPP" == "Y" ]; then
+    PACKAGE_TESTAPP_NAME=`cat "$DISTPATH"PACKAGE_TESTAPP_NAME`
+    if  [ -f latest-nightly-$TESTAPPFILENAME.tar.gz ]
+    then
+        rm latest-nightly-$TESTAPPFILENAME.tar.gz
+    fi
+    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".tar.gz latest-nightly-$TESTAPPFILENAME.tar.gz
+    if  [ -f latest-nightly-$TESTAPPFILENAME.zip ]
+    then
+        rm latest-nightly-$TESTAPPFILENAME.zip
+    fi
+    ln -s $BRANCHVERSION/"$PACKAGE_TESTAPP_NAME".zip latest-nightly-$TESTAPPFILENAME.zip
+fi
+ 
 
 if [ "$BUILD_GOLD" == "Y" ]; then
+    PACKAGE_NAME_GOLD=`cat "$DISTPATH"PACKAGE_NAME_GOLD`
     if  [ -f latest-nightly-$FILENAME-gold.tar.gz ]
     then
         rm latest-nightly-$FILENAME-gold.tar.gz

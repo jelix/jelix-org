@@ -37,6 +37,39 @@ fi
 
 source $(dirname $0)/scripts.config.sh
 
+BUILD_GOLD="N"
+BUILD_FONT_PACKAGE="N"
+BUILD_TESTAPP="N"
+HASMODULES="N"
+
+case "jelix-$BRANCH" in
+    jelix-1.3.x)
+        BUILD_GOLD="Y"
+        BUILD_FONT_PACKAGE="Y"
+        BUILD_TESTAPP="Y"
+    ;;
+    jelix-1.4.x)
+        BUILD_GOLD="Y"
+        BUILD_FONT_PACKAGE="Y"
+        BUILD_TESTAPP="Y"
+    ;;
+    jelix-1.5.x)
+        BUILD_GOLD="Y"
+        HASMODULES="Y"
+        BUILD_TESTAPP="Y"
+    ;;
+    jelix-1.6.x)
+        HASMODULES="Y"
+        BUILD_TESTAPP="Y"
+    ;;
+    jelix-1.7.x)
+    ;;
+    *)
+    echo "Error: branch name is missing or wrong ('$BRANCH')"
+    exit 1
+esac
+
+
 echo "update sources..."
 
 cd $BUILD_GIT_DIR
@@ -53,15 +86,20 @@ fi
 
 /usr/bin/php build/buildjelix.php build/config/jelix-dist-dev.ini
 /usr/bin/php build/buildjelix.php build/config/jelix-dist-opt.ini
-if [ -f build/config/jelix-dist-gold.ini ]; then
+
+if [ "$BUILD_GOLD" == "Y" ]; then
     /usr/bin/php build/buildjelix.php build/config/jelix-dist-gold.ini
 fi
-/usr/bin/php build/buildapp.php   build/config/testapp-dist.ini
 
-if [ "$BRANCH" == "1.2.x" -o "$BRANCH" == "1.3.x" -o "$BRANCH" == "1.4.x" ]
-then
+if [ "$BUILD_TESTAPP" == "Y" ]; then
+    /usr/bin/php build/buildapp.php   build/config/testapp-dist.ini
+fi
+
+if [ "$BUILD_FONT_PACKAGE" == "Y" ]; then
     /usr/bin/php build/buildfonts.php build/config/jelix-fonts-dist.ini
-else
+fi
+
+if [ "$HASMODULES" == "Y" ]; then
     /usr/bin/php build/buildmodules.php build/config/modules-dist.ini
 fi
 
