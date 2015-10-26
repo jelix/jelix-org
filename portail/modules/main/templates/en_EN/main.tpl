@@ -78,8 +78,8 @@
             <ul>
                 <li><a href="/articles/en/download/nightly">download nightlies</a></li>
                 <li><a href="/articles/en/changelog">changelog</a></li>
-                <li><a href="http://developer.jelix.org/wiki/en">issues tracker</a></li>
-                <li><a href="http://developer.jelix.org/roadmap">roadmap</a></li>
+                <li><a href="https://github.com/jelix/jelix/issues">issues tracker</a></li>
+                <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
                 <li><a href="http://developer.jelix.org/wiki/en/contribute">How to contribute</a></li>
                 <li><a href="https://github.com/jelix/jelix">Code source repository</a></li>
             </ul>

@@ -83,8 +83,8 @@
             <ul>
                 <li><a href="/articles/fr/telechargement/nightly">Téléchargement nightlies</a></li>
                 <li><a href="/articles/fr/changelog">Journal des changements</a></li>
-                <li><a href="http://developer.jelix.org/wiki/fr">Suivi des bugs</a></li>
-                <li><a href="http://developer.jelix.org/roadmap">roadmap</a></li>
+                <li><a href="https://github.com/jelix/jelix/issues">Suivi des bugs</a></li>
+                <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
                 <li><a href="http://developer.jelix.org/wiki/fr/contribuer">Comment contribuer</a></li>
                 <li><a href="https://github.com/jelix/jelix">Dépôt des sources</a></li>
             </ul>

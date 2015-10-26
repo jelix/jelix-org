@@ -86,8 +86,6 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
              <li<?php if($isTutorial)   echo ' class="selected"';?>><a href="/articles/fr/tutoriels">Tutoriels</a></li>
              <li><a href="http://docs.jelix.org/fr/manuel-1.6">Manuel 1.6</a></li>
              <li><a href="http://docs.jelix.org/fr/manuel-1.5">1.5</a></li>
-             <li><a href="http://docs.jelix.org/fr/manuel-1.4">1.4</a></li>
-             <li><a href="http://docs.jelix.org/fr/manuel-1.3">1.3</a></li>
              <li><a href="http://docs.jelix.org/fr/">autres</a></li>
              <li><a href="/reference/index.php">reference API</a></li>
          
@@ -194,8 +192,8 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
             <ul>
                 <li><a href="/articles/fr/telechargement/nightly">Téléchargement nightlies</a></li>
                 <li><a href="/articles/fr/changelog">Journal des changements</a></li>
-                <li><a href="http://developer.jelix.org/wiki/fr">Suivi des bugs</a></li>
-                <li><a href="http://developer.jelix.org/roadmap">roadmap</a></li>
+                <li><a href="https://github.com/jelix/jelix/issues">Suivi des bugs</a></li>
+                <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
                 <li><a href="http://developer.jelix.org/wiki/fr/contribuer">Comment contribuer</a></li>
                 <li><a href="https://github.com/jelix/jelix">Dépôt des sources</a></li>
             </ul>
@@ -210,7 +208,7 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
         </div>-->
 
         <p id="footer-legend">
-            Copyright 2006-2014 Jelix team. <br/>
+            Copyright 2006-2015 Jelix team. <br/>
             Les icônes utilisées sur cette page viennent des paquets
             <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             et <a href="http://www.oxygen-icons.org/">Oxygen</a>.<br/>

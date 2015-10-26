@@ -39,7 +39,7 @@ foreach ($versions as $branch=>$v) {
        </div>
       <div id="lang-box">
           <strong>EN</strong>
-          <a href="index.html.fr" hreflang="fr">fr</a>
+          <del>fr</del>
       </div>
 
    </div>
@@ -65,8 +65,6 @@ foreach ($versions as $branch=>$v) {
              <li><a href="/articles/en/tutorials">Tutorials</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.6">Manual 1.6</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.5">1.5</a></li>
-             <li><a href="http://docs.jelix.org/en/manual-1.4">1.4</a></li>
-             <li><a href="http://docs.jelix.org/en/manual-1.3">1.3</a></li>
              <li><a href="http://docs.jelix.org/en/">Others</a></li>
              <li class="selected"><a href="/reference/">API reference</a></li>
          </ul>
@@ -85,14 +83,14 @@ foreach ($versions as $branch=>$v) {
                     ?>
             <dt>Lastest stable release Jelix <?php echo $version?>:</dt>
             <dd><a href="<?php echo $version?>/">HTML, online</a> -
-                 <a href="http://download.jelix.org/jelix/documentation/jelix-<?php echo $version?>-apidoc_html.tar.gz">HTML tar.gz</a> -
-                 <a href="http://download.jelix.org/jelix/documentation/jelix-<?php echo $version?>-apidoc_html.zip">HTML zip</a>
+                 <a href="http://download.jelix.org/jelix/releases/<?php echo $branch?>.x/<?php echo $version?>/jelix-<?php echo $version?>-apidoc_html.tar.gz">HTML tar.gz</a> -
+                 <a href="http://download.jelix.org/jelix/releases/<?php echo $branch?>.x/<?php echo $version?>/jelix-<?php echo $version?>-apidoc_html.zip">HTML zip</a>
             </dd>
                     <?php
                 }
             ?>
        </dl>
-        <p>Go on <a href="http://download.jelix.org/jelix/documentation/">the download web site</a> to retrieve API documentation for old releases, for each branches.</p>
+        <p>Go on <a href="http://download.jelix.org/jelix/releases">the download web site</a> to retrieve API documentation for old releases, for each branches.</p>
       </div>
    </div>
 </div>
@@ -122,15 +120,15 @@ foreach ($versions as $branch=>$v) {
             <ul>
                 <li><a href="/articles/en/download/nightly">download nightlies</a></li>
                 <li><a href="/articles/en/changelog">changelog</a></li>
-                <li><a href="http://developer.jelix.org/wiki/en">issues tracker</a></li>
-                <li><a href="http://developer.jelix.org/roadmap">roadmap</a></li>
+                <li><a href="https://github.com/jelix/jelix/issues">issues tracker</a></li>
+                <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
                 <li><a href="http://developer.jelix.org/wiki/en/contribute">How to contribute</a></li>
                 <li><a href="https://github.com/jelix/jelix">Code source repository</a></li>
             </ul>
         </div>
 
         <p id="footer-legend">
-            Copyright 2006-2014 Jelix team. <br/>
+            Copyright 2006-2015 Jelix team. <br/>
             Icons used on this page come from <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             and <a href="http://www.oxygen-icons.org/">Oxygen</a> icons sets.<br/>
             Design by Laurentj. <br/>
