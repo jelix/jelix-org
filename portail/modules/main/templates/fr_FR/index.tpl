@@ -21,7 +21,7 @@
             <div class="carrousel-container">
                 <div class="carrousel-sections">
                     <div class="section">
-                        <h2>Un framework professionnel</h2>
+                        <h2>Un framework robuste</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/logo3d_jelix_3quart.png" alt="screenshot" /></div>
                         <p>Depuis 2006, Jelix offre des solutions modernes à vos projets d'applications
                             et sites web&nbsp;:</p>
@@ -207,13 +207,7 @@
 
     {/literal}
 
-
-    
-    
             </div>
-
-          
-
             <hr />
         </div>
 

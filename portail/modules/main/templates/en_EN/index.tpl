@@ -22,7 +22,7 @@
             <div class="carrousel-container">
                 <div class="carrousel-sections">
                     <div class="section">
-                        <h2>A professional framework</h2>
+                        <h2>A strong framework</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/logo3d_jelix_3quart.png" alt="screenshot" /></div>
                         <p>Since 2006, Jelix offers modern solutions for your web site and application projects:</p>
                         <ul>
@@ -202,7 +202,7 @@
             <div class="home-item">
                 <h2>Mailing List</h2>
                 <p>Receive news about the project by email, and
-                discuss wwith others users and contributors.</p>
+                discuss with others users and contributors.</p>
                 <div><img width="132" height="26" alt="Google Groups" src="http://groups.google.com/groups/img/3/groups_bar.gif">
                     <form action="http://groups.google.com/group/jelix/boxsubscribe">
                       Email : <input type="text" name="email"> <input type="submit" value="Subscribe" name="sub">
