@@ -58,9 +58,9 @@ function checkUpdateMessages(){
 function getVersionData(){
     $version = array();
     //import version string
-    if(file_exists(DOKU_INC.'VERSION')){
+    if(file_exists(DOKU_INC.'/../../lib/dokuwiki/VERSION')){
         //official release
-        $version['date'] = trim(io_readfile(DOKU_INC.'VERSION'));
+        $version['date'] = trim(io_readfile(DOKU_INC.'/../../lib/dokuwiki/VERSION'));
         $version['type'] = 'Release';
     }elseif(is_dir(DOKU_INC.'.git')){
         $version['type'] = 'Git';

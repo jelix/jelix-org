@@ -378,7 +378,7 @@ function form_makeCloseTag($tag) {
  */
 function form_makeWikiText($text, $attrs=array()) {
     $elem = array('_elem'=>'wikitext', '_text'=>$text,
-                        'class'=>'edit', 'cols'=>'80', 'rows'=>'10');
+                        'class'=>'edit', 'cols'=>'110', 'rows'=>'15');
     return array_merge($elem, $attrs);
 }
 
