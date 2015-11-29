@@ -8,34 +8,17 @@
  * @global Input $INPUT
  */
 
-// update message version
-$updateVersion = 46.4;
+// update message version - always use a string to avoid localized floats!
+$updateVersion = "47.1";
 
 //  xdebug_start_profiling();
 
-// HACK LJ >>>>>>>>>
-  if (isset($_SERVER['PATH_INFO'])) {
-    if (preg_match("!^/(en|fr)/manu(a|e)l\-!", $_SERVER['PATH_INFO'])) {
-      header("Location: http://docs.jelix.org".$_SERVER['PATH_INFO'], true, 301);
-      exit;
-    }
-  }
-
-  $lang ='en';
-  if(isset($_SERVER['PATH_INFO']) && (!isset($_REQUEST['do']) ||$_REQUEST['do'] != 'search')){
-    $_REQUEST['id'] = str_replace('/',':',$_SERVER['PATH_INFO']);
-    if($_REQUEST['id']{0} == ':')
-      $_REQUEST['id'] = substr($_REQUEST['id'],1);
-  }
-  if(isset($_REQUEST['id'])){
-    if($_REQUEST['id'] == 'fr' || strpos($_REQUEST['id'],'fr:')===0){
-       $lang='fr';
-    }
-  }
-  define('DOKU_LANG', $lang);
-// <<<<<<<<<< HACK LJ
-
 if(!defined('DOKU_INC')) define('DOKU_INC', dirname(__FILE__).'/');
+
+// define all DokuWiki globals here (needed within test requests but also helps to keep track)
+global  $ACT,  $INPUT, $QUERY, $ID, $REV, $DATE_AT, $IDX,
+        $DATE, $RANGE, $HIGH, $TEXT, $PRE, $SUF, $SUM, $INFO, $JSINFO;
+
 
 if(isset($_SERVER['HTTP_X_DOKUWIKI_DO'])) {
     $ACT = trim(strtolower($_SERVER['HTTP_X_DOKUWIKI_DO']));
@@ -54,16 +37,6 @@ require_once(DOKU_INC.'inc/init.php');
 $INPUT->set('id', str_replace("\xC2\xAD", '', $INPUT->str('id'))); //soft-hyphen
 $QUERY          = trim($INPUT->str('id'));
 $ID             = getID();
-
-if($ACT == 'show' && !isset($_GET['noredirect']) && $_SERVER["REQUEST_METHOD"] =='GET') {
-    $file = metaFN($ID, '.redirect');
-    if(@file_exists($file) && ($redirect = file_get_contents($file)) != '') {
-        $url = '/articles/'.str_replace(':','/', $redirect);
-        header("HTTP/1.0 301 Redirect");
-        header('Location: '.$url);
-        exit();
-    }
-}
 
 $REV   = $INPUT->int('rev');
 $DATE_AT = $INPUT->str('at');
@@ -104,7 +77,7 @@ if($DATE_AT) {
         $DATE_AT = null;
     } else if ($rev_t === false) { //page did not exist
         $rev_n = $pagelog->getRelativeRevision($DATE_AT,+1);
-        msg(sprintf($lang['page_nonexist_rev'], 
+        msg(sprintf($lang['page_nonexist_rev'],
             strftime($conf['dformat'],$DATE_AT),
             wl($ID, array('rev' => $rev_n)),
             strftime($conf['dformat'],$rev_n)));
