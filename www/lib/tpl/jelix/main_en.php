@@ -79,7 +79,6 @@ $menuCommunity = (strpos($ID,'en:community') === 0 || $ID=='en:goodies');
              <li<?php if(strpos($ID,'en:download:stable')===0)  echo ' class="selected"';?>><a href="/articles/en/download/stable">Stable version</a></li>
              <li<?php if(strpos($ID,'en:download:nightly')===0) echo ' class="selected"';?>><a href="/articles/en/download/nightly">Unstable version</a></li>
              <li<?php if($isChangelog)            echo ' class="selected"';?>><a href="/articles/en/changelog">Last changes</a></li>
-             <li<?php if($ID=='en:download:jtpl') echo ' class="selected"';?>><a href="/articles/en/download/jtpl">jTpl Standalone</a></li>
          
          <?php }elseif($menuDocumentation) { ?>
              <li<?php if($isTutorial) echo ' class="selected"';?>><a href="/articles/en/tutorials">Tutorials</a></li>

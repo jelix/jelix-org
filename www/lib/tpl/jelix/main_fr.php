@@ -80,7 +80,6 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
              <li<?php if(strpos($ID,'fr:telechargement:stable') === 0)  echo ' class="selected"';?>><a href="/articles/fr/telechargement/stable">Version stable</a></li>
              <li<?php if(strpos($ID,'fr:telechargement:nightly') === 0) echo ' class="selected"';?>><a href="/articles/fr/telechargement/nightly">Version instable</a></li>
              <li<?php if($isChangelog)                  echo ' class="selected"';?>><a href="/articles/fr/changelog">Journal des changements</a></li>
-             <li<?php if($ID=='fr:telechargement:jtpl')    echo ' class="selected"';?>><a href="/articles/fr/telechargement/jtpl">jTpl Standalone</a></li>
          
          <?php }elseif($menuDocumentation) { ?>
              <li<?php if($isTutorial)   echo ' class="selected"';?>><a href="/articles/fr/tutoriels">Tutoriels</a></li>
