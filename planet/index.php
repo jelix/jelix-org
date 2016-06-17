@@ -15,8 +15,8 @@
 header("Content-type: text/html; charset=utf-8");
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_EN" lang="en_EN">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
     <title>Jelix Planet - Jelix, PHP framework</title>
@@ -26,7 +26,6 @@ header("Content-type: text/html; charset=utf-8");
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="DC.title" content="Jelix, PHP framework" />
-    <meta name="DC.description" content="Planet of blogs on Jelix" />
     <meta name="robots" content="index,follow,all" />
 </head>
 <body >
@@ -37,7 +36,6 @@ header("Content-type: text/html; charset=utf-8");
             <a href="#topmenubar">sections</a>
         </div>
         <div id="lang-box">
-            <a href="/en/" hreflang="en">en</a> <a href="/fr/" hreflang="fr">fr</a>
         </div>
     </div>
    <h1 id="logo"><img src="/design/logo/logo_jelix_moyen2.png" alt="Jelix" /><br/>
@@ -46,10 +44,7 @@ header("Content-type: text/html; charset=utf-8");
 
 <div id="header">
     <ul id="topmenubar">
-        <li><a href="/en/">Home</a></li>
-        <li><a href="/fr/">Accueil</a></li>
-        <li><a href="http://jelix.org">Portal</a></li>
-        <li><a href="http://developer.jelix.org">Developers</a></li>
+        <li><a href="http://jelix.org">Main portal</a></li>
     </ul>
     <ul id="submenubar">
     </ul>
@@ -57,13 +52,9 @@ header("Content-type: text/html; charset=utf-8");
 
 <div id="main">
 
-
   <h2 id="top">Jelix Planet</h2>
 
-    <ul>
-        <li><a href="/fr/">Planète française</a></li>
-        <li><a href="/en/">English planet</a></li>
-    </ul>
+   <p>No more Planet feeds. Sorry.</p>
 
   <div style="clear:both;"></div>
 </div>

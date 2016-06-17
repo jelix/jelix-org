@@ -96,7 +96,7 @@
         </div>-->
 
         <p id="footer-legend">
-            Copyright 2006-2011 Jelix team. <br/>
+            Copyright 2006-2016 Jelix team. <br/>
             Design par Laurentj. <br/>
 			{@havefnubb~main.poweredby@} <a href="http://www.havefnubb.org" title="HaveFnuBB!">HaveFnuBB!</a><br/>
             <img src="/design/btn_jelix_powered.png" alt="page générée par une application Jelix" />

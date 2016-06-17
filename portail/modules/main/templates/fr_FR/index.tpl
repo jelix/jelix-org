@@ -160,8 +160,6 @@
                     <dd>Posez vos questions sur le forum</dd>
                     <dt><img src="/design/2011/icons/help-faq.png" /><a href="/articles/fr/irc">IRC</a></dt>
                     <dd>Discutez en live avec votre client IRC préféré <a href="/articles/fr/irc">ou sur le site</a></dd>
-                    <dt><img src="/design/2011/icons/bittorrent.png" /><a href="http://planet.jelix.org/fr">Planète</a></dt>
-                    <dd>Les derniers billets de blogs sur jelix</dd>
                 </dl>
             </div>
 

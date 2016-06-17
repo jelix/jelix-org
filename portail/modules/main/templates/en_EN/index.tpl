@@ -167,8 +167,6 @@
                     <dd>Ask your questions on the forum</dd>
                     <dt><img src="/design/2011/icons/help-faq.png" /><a href="/articles/en/irc">IRC</a></dt>
                     <dd>Live discussion with your preferred IRC client <a href="/articles/en/irc">or on the web site</a></dd>
-                    <dt><img src="/design/2011/icons/bittorrent.png" /><a href="http://planet.jelix.org/en">Planet</a></dt>
-                    <dd>Last blog post about Jelix from the community</dd>
                 </dl>
             </div>
 
