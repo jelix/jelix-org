@@ -13,13 +13,3 @@ password = ""
 persistent = on
 force_encoding=on
 table_prefix=
-
-[trac]
-driver=mysql
-database=jelix_trac
-host=localhost
-user=jelix
-password=jelix
-persistent=on
-force_encoding=on
-table_prefix=

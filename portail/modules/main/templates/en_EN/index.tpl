@@ -179,7 +179,7 @@
                         <a href="https://github.com/jelix/jelix">Jelix on Github!</a></dt>
                     <dd>Fork and propose improvements</dd>
                     <dt><img src="/design/2011/icons/bug-buddy.png" />
-                        <a href="http://developer.jelix.org/wiki/en">Issues tracker</a></dt>
+                        <a href="https://github.com/jelix/jelix/issues">Issues tracker</a></dt>
                     <dd>Report bugs or feature requests</dd>
                 </dl>
             </div>

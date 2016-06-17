@@ -170,7 +170,7 @@
                 <dl>
                     <dt><img src="/design/2011/icons/github.jpg" /><a href="https://github.com/jelix/jelix">Jelix sur Github !</a></dt>
                     <dd>Forkez et proposez des améliorations</dd>
-                    <dt><img src="/design/2011/icons/bug-buddy.png" /><a href="http://developer.jelix.org/wiki/fr">Suivi des bugs</a></dt>
+                    <dt><img src="/design/2011/icons/bug-buddy.png" /><a href="https://github.com/jelix/jelix/issues">Suivi des bugs</a></dt>
                     <dd>Rapportez les bugs rencontrés, ou vos demandes d'améliorations</dd>
                 </dl>
             </div>
