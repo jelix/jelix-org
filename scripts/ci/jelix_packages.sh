@@ -43,6 +43,9 @@ case $BRANCH in
     jelix-1.7.x)
         BRANCHVERSION="1.7.x"
     ;;
+    jelix-1.8.x)
+        BRANCHVERSION="1.8.x"
+    ;;
     master)
         BRANCHVERSION="2.0.x"
     ;;

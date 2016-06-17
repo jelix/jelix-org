@@ -40,6 +40,7 @@ rm -rf $BUILD_DIR/docs/*
 
 cd $BUILD_GIT_DIR
 
+git fetch origin
 git checkout jelix-$BRANCH
 git pull origin jelix-$BRANCH
 git checkout refs/tags/$TAG

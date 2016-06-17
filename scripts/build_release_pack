@@ -65,6 +65,12 @@ case "jelix-$BRANCH" in
     jelix-1.7.x)
     ;;
     *)
+    jelix-1.8.x)
+    ;;
+    *)
+    jelix-2.0.x)
+    ;;
+    *)
     echo "Error: branch name is missing or wrong ('$BRANCH')"
     exit 1
 esac
@@ -74,9 +80,10 @@ echo "update sources..."
 
 cd $BUILD_GIT_DIR
 
+git fetch origin
 git checkout jelix-$BRANCH
 git pull --tags origin jelix-$BRANCH
-git checkout refs/tags/$TAG
+git checkout $TAG
 
 echo "build packages..."
 

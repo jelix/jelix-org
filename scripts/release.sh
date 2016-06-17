@@ -9,12 +9,6 @@ if [ "$VERSION" == "" ]; then
     exit 1
 fi
 
-NEXTVERSION=$2
-if [ "$NEXTVERSION" == "" ]; then
-    echo "Warning: next version is missing."
-fi
-
-
 VER_MAJOR=""
 VER_MIDDLE=""
 VER_MINOR=""
@@ -64,11 +58,15 @@ fi
 
 
 BRANCH_VERSION="$VER_MAJOR.$VER_MIDDLE.x"
-if [ "$VER_FIX" == "" ]
-then
-    TAG_NAME="RELEASE_JELIX_${VER_MAJOR}_${VER_MIDDLE}_${VER_MINOR}"
+if [ "$VER_MAJOR" != "1" -o "$VER_MIDDLE" == "7" -o "$VER_MIDDLE" == "8" ]; then
+    TAG_NAME="v$VERSION"
 else
-    TAG_NAME="RELEASE_JELIX_${VER_MAJOR}_${VER_MIDDLE}_${VER_MINOR}_${VER_FIX}"
+    if [ "$VER_FIX" == "" ]
+    then
+        TAG_NAME="RELEASE_JELIX_${VER_MAJOR}_${VER_MIDDLE}_${VER_MINOR}"
+    else
+        TAG_NAME="RELEASE_JELIX_${VER_MAJOR}_${VER_MIDDLE}_${VER_MINOR}_${VER_FIX}"
+    fi
 fi
 
 MANUAL_FR="manuel-${VER_MAJOR}.${VER_MIDDLE}"
