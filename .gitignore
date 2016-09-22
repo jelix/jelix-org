@@ -3,6 +3,7 @@
 Thumbs.db
 *.komodoproject
 .komodotools
+.idea
 
 download/www/*
 !download/www/FOOTER.html
