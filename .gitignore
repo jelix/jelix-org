@@ -1,8 +1,5 @@
-
 .DS_Store
-Thumbs.db
 *.komodoproject
-.komodotools
 .idea
 
 download/www/*
@@ -33,16 +30,8 @@ www/cache/images/
 www/temp/*
 
 portail/var/config/dbprofils.ini.php
-portail/var/config/dbprofils_forum.ini.php
-portail/var/config/defaultconfig.ini.php
 portail/var/config/installer.ini.php
+portail/var/config/defaultconfig.ini.php
 portail/var/log/*
 !portail/var/log/.dummy
-portail/var/books/manual
-portail/var/books/cache
-
-planet/fr/temp/*
-!planet/fr/temp/.dummy
-planet/en/temp/*
-!planet/en/temp/.dummy
 

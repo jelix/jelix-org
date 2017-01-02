@@ -1,9 +1,10 @@
 ;<?php die(''); ?>
 ;for security reasons , don't remove or modify the first line
 
-locale = "en_EN"
-charset = "UTF-8"
-timeZone = "Europe/Paris"
+locale=en_EN
+charset=UTF-8
+timeZone="Europe/Paris"
+
 
 pluginsPath = lib:jelix-plugins/,app:plugins/,lib:havefnubb/plugins/
 modulesPath = lib:jelix-modules/,app:modules/,lib:external-modules/,lib:havefnubb/modules/
@@ -32,91 +33,88 @@ hook.access=1
 jmessenger.access=1
 jtags.access=1
 
-
 [responses]
 html=mainHtmlResponse
 
 [error_handling]
-messageLogFormat = "%date%\t[%code%]\t%msg%\t%file%\t%line%\n"
-logFile = error.log
-email = root@localhost
-emailHeaders = "Content-Type: text/plain; charset=UTF-8\nFrom: webmaster@jelix.org\nX-Mailer: Jelix\nX-Priority: 1 (Highest)\n"
+messageLogFormat="%date%\t%url%\n\t[%code%]\t%msg%\t%file%\t%line%\n"
+logFile=error.log
+email="laurent@jelix.org"
+emailHeaders="Content-Type: text/plain; charset=UTF-8\nFrom: webmaster@jelix.org\nX-Mailer: Jelix\nX-Priority: 1 (Highest)\n"
 quietMessage="A technical error has occured. Sorry for this trouble."
 
 
 ; mots clés que vous pouvez utiliser : ECHO, ECHOQUIET, EXIT, LOGFILE, SYSLOG, MAIL, TRACE
-default      = ECHO EXIT
-error        = ECHO EXIT
-warning      = ECHO
-notice       = ECHO
-strict       = ECHO
+default="ECHOQUIET LOGFILE TRACE EXIT"
+error="ECHOQUIET LOGFILE TRACE EXIT"
+warning="ECHOQUIET LOGFILE TRACE"
+notice="LOGFILE TRACE"
+strict="ECHOQUIET LOGFILE TRACE"
 ; pour les exceptions, il y a implicitement un EXIT
-exception    = ECHO
+exception="ECHOQUIET LOGFILE TRACE"
 
 
 
 [compilation]
-checkCacheFiletime  = on
-force  = off
+checkCacheFiletime=on
+force=off
 
 [urlengine]
-engine        = significant
-enableParser = on
-multiview = on
-;scriptNameServerVariable =
+engine=significant
+enableParser=on
+multiview=on
+;scriptNameServerVariable = 
 ;pathInfoInQueryParameter =
-basePath = "/"
-jelixWWWPath = "jelix/"
-defaultEntrypoint= index
-entrypointExtension= .php
-notfoundAct = "jelix~error:notfound"
+basePath="/"
+jelixWWWPath="jelix/"
+defaultEntrypoint=index
+entrypointExtension=.php
+notfoundAct="jelix~error:notfound"
 
 [mailer]
-webmasterEmail = root@localhost
-webmasterName = "Webmaster"
+webmasterEmail="webmaster@jelix.org"
+webmasterName="Webmaster jelix.org"
 
 ; type d'envoi de mail : "mail" (mail()), "sendmail" (call sendmail), or "smtp" (send directly to a smtp)
-mailerType = mail
+mailerType=mail
 ; Sets the hostname to use in Message-Id and Received headers
 ; and as default HELO string. If empty, the value returned
 ; by SERVER_NAME is used or 'localhost.localdomain'.
-hostname =
-sendmailPath = "/usr/sbin/sendmail"
+hostname=
+sendmailPath="/usr/sbin/sendmail"
 
 ; if mailer = smtp , fill the following parameters
 
 ; SMTP hosts.  All hosts must be separated by a semicolon : "smtp1.example.com:25;smtp2.example.com"
-smtpHost = "localhost"
+smtpHost=localhost
 ; default SMTP server port
-smtpPort = 25
+smtpPort=25
 ; SMTP HELO of the message (Default is hostname)
-smtpHelo =
+smtpHelo=
 ; SMTP authentication
-smtpAuth = off
-smtpUsername =
-smtpPassword =
+smtpAuth=off
+smtpUsername=
+smtpPassword=
 ; SMTP server timeout in seconds
-smtpTimeout = 10
+smtpTimeout=10
 
 [havefnubb]
-title="Jelix Forums"
+title="Jelix : Forums"
 description="Framework PHP5"
-version=1.4
+version=1.4.1
 rules=
 admin_email="laurent@jelix.org"
 url_check_version="http://www.havefnubb.org/last_version"
 avatar_max_width=60
 avatar_max_height=75
 installed=1
-important_nb_views=200
+important_nb_views=2000
 important_nb_replies=100
-posts_per_page=10
+posts_per_page=25
 replies_per_page=10
 members_per_page=25
 stats_nb_of_lastpost=3
 post_max_size=0
-; if the hfnuadmin module is in an other web site or application, set its url here
-admin_url=http://admin.jelix.org
 
 [hfnucontact]
 to_contact=
@@ -145,3 +143,14 @@ name=famfamfam
 ; emoticon_waii.png
 ; emoticon_wink.png
 ; so your own smileys would have to be named like them
+
+[logfiles]
+sql="sql_%Y%%m%%d%.log"
+
+
+
+
+
+
+
+
