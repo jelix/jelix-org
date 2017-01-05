@@ -17,15 +17,27 @@
 * @licence     GNU Lesser General Public Licence see LICENCE file or http://www.gnu.org/licenses/lgpl.html
 */
 require(LIB_PATH.'phpMailer/class.phpmailer.php');
+require(LIB_PATH.'phpMailer/class.smtp.php');
+require(LIB_PATH.'phpMailer/class.pop3.php');
+
 class jMailer extends PHPMailer{
 	protected $bodyTpl='';
 	protected $defaultLang;
 	public $filePath='';
+
+    /**
+     * indicates if mails should be copied into files, so the developer can verify that all mails are sent.
+     */
+    protected $copyToFiles = false;
+
 	function __construct(){
 		global $gJConfig;
 		$this->defaultLang=$gJConfig->locale;
 		$this->CharSet=$gJConfig->charset;
 		$this->Mailer=$gJConfig->mailer['mailerType'];
+        if ($gJConfig->mailer['mailerType']) {
+            $this->Mailer = $gJConfig->mailer['mailerType'];
+        }
 		$this->Hostname=$gJConfig->mailer['hostname'];
 		$this->Sendmail=$gJConfig->mailer['sendmailPath'];
 		$this->Host=$gJConfig->mailer['smtpHost'];
@@ -41,6 +53,8 @@ class jMailer extends PHPMailer{
 		}
 		$this->FromName=$gJConfig->mailer['webmasterName'];
 		$this->filePath=JELIX_APP_VAR_PATH.$gJConfig->mailer['filesDir'];
+        if (isset($gJConfig->mailer['copyToFiles']))
+            $this->copyToFiles = $gJConfig->mailer['copyToFiles'];
 		parent::__construct(true);
 	}
 	public function IsFile(){
@@ -55,10 +69,10 @@ class jMailer extends PHPMailer{
 			$name='';
 			$addr=$address;
 		}
-		if(!$kind){
-			return array($addr,$name);
-		}
-		$this->AddAnAddress($kind,$addr,$name);
+        if ($kind) {
+            $this->AddAnAddress($kind, $addr, $name);
+        }
+        return array($addr, $name);
 	}
 	protected $tpl=null;
 	function Tpl($selector,$isHtml=false){
@@ -132,13 +146,35 @@ class jMailer extends PHPMailer{
 		return parent::SetLanguage($lang[0],$lang_path);
 	}
 	protected function Lang($key){
-	if(count($this->language)< 1){
-		$this->SetLanguage($this->defaultLang);
+        if(count($this->language)< 1){
+            $this->SetLanguage($this->defaultLang);
+        }
+        return parent::lang($key);
 	}
-	if(isset($this->language[$key])){
-		return $this->language[$key];
-	}else{
-		return 'Language string failed to load: ' . $key;
-	}
-	}
+    protected function sendmailSend($header, $body) {
+        if ($this->copyToFiles)
+            $this->copyMail($header, $body);
+        return parent::SendmailSend($header, $body);
+    }
+
+    protected function MailSend($header, $body) {
+        if ($this->copyToFiles)
+            $this->copyMail($header, $body);
+        return parent::MailSend($header, $body);
+    }
+
+    protected function smtpSend($header, $body) {
+        if ($this->copyToFiles)
+            $this->copyMail($header, $body);
+        return parent::SmtpSend($header, $body);
+    }
+
+    protected function copyMail($header, $body) {
+        $dir = rtrim($this->filePath,'/').'/copy-'.date('Ymd').'/';
+        if (isset(jApp::coord()->request))
+            $ip = jApp::coord()->request->getIP();
+        else $ip = "no-ip";
+        $filename = $dir.'mail-'.$ip.'-'.date('Ymd-His').'-'.uniqid(mt_rand(), true);
+        jFile::write ($filename, $header.$body);
+    }
 }
