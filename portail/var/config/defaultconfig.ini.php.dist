@@ -147,8 +147,9 @@ name=famfamfam
 [logfiles]
 sql="sql_%Y%%m%%d%.log"
 
-
-
+[recaptcha]
+sitekey=
+secret=
 
 
 

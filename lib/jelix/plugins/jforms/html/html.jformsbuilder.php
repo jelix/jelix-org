@@ -51,7 +51,10 @@ class htmlJformsBuilder extends jFormsBuilderHtml{
 					$config=isset($ctrl->datepickerConfig)?$ctrl->datepickerConfig:$datepicker_default_config;
 					$resp->addJSLink($bp.$gJConfig->datepickers[$config]);
 				}
-			}
+                else if ($ctrl->type=='captcha') {
+                    $resp->addJSLink("https://www.google.com/recaptcha/api.js", array("async"=>"async", "defer"=>"defer"));
+                }
+            }
 			foreach($v->getWikiEditors()as $ed){
 				if(isset($gJConfig->wikieditors[$ed->config.'.engine.file']))
 					$resp->addJSLink($bp.$gJConfig->wikieditors[$ed->config.'.engine.file']);

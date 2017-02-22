@@ -383,3 +383,7 @@ src_path=
 cache_url=
 ; the path on the file system, to the directory where images cache are stored. default = JELIX_APP_WWW_PATH
 cache_path=
+
+[recaptcha]
+sitekey=
+secret=

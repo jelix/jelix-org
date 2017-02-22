@@ -1819,3 +1819,5 @@ function checkAppNotInstalled(){
 function isAppInstalled(){
 	return file_exists(JELIX_APP_CONFIG_PATH.'installer.ini.php');
 }
+require_once(__DIR__.'/forms/recaptcha/autoload.php');
+

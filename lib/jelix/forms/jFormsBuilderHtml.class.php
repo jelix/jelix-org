@@ -72,6 +72,13 @@ class jFormsBuilderHtml extends jFormsBuilderBase{
 						$resp->addCSSLink($bp.$gJConfig->htmleditors[$skin]);
 				}
 			}
+            if($v instanceof jFormsBase) {
+                foreach($v->controls as $ctrlref=>$ctrl){
+                    if ($ctrl->type=='captcha') {
+                        $resp->addJSLink("https://www.google.com/recaptcha/api.js", array("async"=>"async", "defer"=>"defer"));
+                    }
+                }
+			}
 		}
 	}
 	protected function outputHeaderScript(){
@@ -811,17 +818,28 @@ class jFormsBuilderHtml extends jFormsBuilderBase{
 	protected function jsReset($ctrl){
 	}
 	protected function outputCaptcha($ctrl,&$attr){
-		$ctrl->initExpectedValue();
-		echo '<span class="jforms-captcha-question">',htmlspecialchars($ctrl->question),'</span> ';
-		unset($attr['readonly']);
-		$attr['type']='text';
-		$attr['value']='';
-		echo '<input';
-		$this->_outputAttr($attr);
-		echo $this->_endt;
+        global $gJConfig;
+        $config = $gJConfig->recaptcha;
+        unset($attr['readonly']);
+
+        if (isset($attr['class'])) {
+            $attr['class'] .= ' g-recaptcha';
+        }
+        else {
+            $attr['class'] = 'g-recaptcha';
+        }
+        if (isset($config['sitekey']) && $config['sitekey'] != '') {
+            $attr['data-sitekey']= $config['sitekey'];
+        }
+        else {
+            jLog::log("sitekey for recaptcha is missing from the configuration", "warning");
+        }
+
+        echo '<div ';
+        $this->_outputAttr($attr);
+        echo "></div>\n";
 	}
 	protected function jsCaptcha($ctrl){
-		$this->jsTextarea($ctrl);
 	}
 	protected function outputGroup($ctrl,&$attr){
 		echo '<fieldset><legend>',htmlspecialchars($ctrl->label),"</legend>\n";

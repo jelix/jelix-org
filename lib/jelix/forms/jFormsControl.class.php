@@ -148,20 +148,44 @@ class jFormsControlCaptcha extends jFormsControl{
 	public $type='captcha';
 	public $question='';
 	public $required=true;
-	function check(){
+	function _check(){
+        global $gJConfig;
 		$value=$this->container->data[$this->ref];
-		if(trim($value)==''){
-			return $this->container->errors[$this->ref]=jForms::ERRDATA_REQUIRED;
-		}elseif($value!=$this->container->privateData[$this->ref]){
-			return $this->container->errors[$this->ref]=jForms::ERRDATA_INVALID;
-		}
-		return null;
+        $config = $gJConfig->recaptcha;
+        if (!isset($config['secret']) || $config['secret'] == '') {
+            jLog::log("secret for recaptcha is missing from the configuration", "warning");
+            return jForms::ERRDATA_INVALID;
+        }
+
+        if (!isset($_POST['g-recaptcha-response'])) {
+            return jForms::ERRDATA_REQUIRED;
+        }
+
+        $recaptcha = new \ReCaptcha\ReCaptcha($config['secret']);
+        $resp = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+        if ($resp->isSuccess()) {
+            return null;
+        }
+
+        foreach ($resp->getErrorCodes() as $code) {
+            if ($code == 'missing-input-secret') {
+                \jLog::log("secret for recaptcha is missing from the google request", "warning");
+            }
+            else if ($code == 'invalid-input-secret') {
+                \jLog::log("secret for recaptcha is invalid", "warning");
+            }
+        }
+        return \jForms::ERRDATA_INVALID;
 	}
+	function check() {
+	    $result = $this->_check();
+        if ($result) {
+            $this->container->errors[$this->ref] = $result;
+        }
+        return $result;
+    }
 	function initExpectedValue(){
-		$numbers=jLocale::get('jelix~captcha.number');
-		$id=rand(1,intval($numbers));
-		$this->question=jLocale::get('jelix~captcha.question.'.$id);
-		$this->container->privateData[$this->ref]=jLocale::get('jelix~captcha.response.'.$id);
+
 	}
 }
 class jFormsControlCheckbox extends jFormsControl{

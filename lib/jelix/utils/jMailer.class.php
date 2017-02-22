@@ -170,9 +170,10 @@ class jMailer extends PHPMailer{
     }
 
     protected function copyMail($header, $body) {
+        global $gJCoord;
         $dir = rtrim($this->filePath,'/').'/copy-'.date('Ymd').'/';
-        if (isset(jApp::coord()->request))
-            $ip = jApp::coord()->request->getIP();
+        if (isset($gJCoord->request))
+            $ip = $gJCoord->request->getIP();
         else $ip = "no-ip";
         $filename = $dir.'mail-'.$ip.'-'.date('Ymd-His').'-'.uniqid(mt_rand(), true);
         jFile::write ($filename, $header.$body);
