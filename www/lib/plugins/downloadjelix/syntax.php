@@ -55,7 +55,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
         return false;
     }
 
-    protected $baseUrl = 'http://download.jelix.org/';
+    protected $baseUrl = 'https://download.jelix.org/';
     protected $basePath = '/../../../../download/www/';
     static protected $filetypes = array(
         // 'type'=>array('filename%branch%/%version%', 'downloadbaseurl', 'systembasepath')
