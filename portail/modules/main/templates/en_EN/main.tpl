@@ -58,7 +58,7 @@
     <div class="top-container">
         <div class="footer-box">
         <p><img src="/design/logo/logo_jelix_moyen5.png" alt="Jelix" /><br/>
-            is supported by <a href="http://innophi.com">Innophi</a>.</p>
+            is supported by <a href="https://innophi.com">Innophi</a>.</p>
         <p>Jelix is released under <br/>the LGPL Licence</p>
         </div>
 
@@ -80,7 +80,7 @@
                 <li><a href="/articles/en/changelog">changelog</a></li>
                 <li><a href="https://github.com/jelix/jelix/issues">issues tracker</a></li>
                 <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
-                <li><a href="http://developer.jelix.org/wiki/en/contribute">How to contribute</a></li>
+                <li><a href="https://developer.jelix.org/wiki/en/contribute">How to contribute</a></li>
                 <li><a href="https://github.com/jelix/jelix">Code source repository</a></li>
             </ul>
         </div>

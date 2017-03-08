@@ -40,33 +40,33 @@
                         <div class="section-screenshot"><img src="/design/2011/carroussel/admin-debug.png" alt="screenshot" /></div>
                         <p>Jelix offers components and tools to develop faster:</p>
                         <ul>
-                            <li><a href="http://docs.jelix.org/en/manual-1.6/controllers/crud">generic CRUD controller</a>,
-                                module of <a href="http://docs.jelix.org/en/manual-1.6/create-application/administration-app">administration interface</a>,
-                                <a href="http://docs.jelix.org/en/manual-1.6/views/">dedicated views</a> to (X)HTML, ATOM, RSS,
+                            <li><a href="https://docs.jelix.org/en/manual-1.6/controllers/crud">generic CRUD controller</a>,
+                                module of <a href="https://docs.jelix.org/en/manual-1.6/create-application/administration-app">administration interface</a>,
+                                <a href="https://docs.jelix.org/en/manual-1.6/views/">dedicated views</a> to (X)HTML, ATOM, RSS,
                                 ZIP, PDF, RDF, XUL...</li>
-                            <li><a href="http://docs.jelix.org/en/manual-1.6/jelix-scripts">Scripts for <acronym title="Command Line Interface">CLI</acronym></a>
+                            <li><a href="https://docs.jelix.org/en/manual-1.6/jelix-scripts">Scripts for <acronym title="Command Line Interface">CLI</acronym></a>
                                 to generate code</li>
-                            <li><a href="http://docs.jelix.org/en/manual-1.6/debugging#the-debug-bar">Debug bar</a> to ease debugging.</li>
+                            <li><a href="https://docs.jelix.org/en/manual-1.6/debugging#the-debug-bar">Debug bar</a> to ease debugging.</li>
                         </ul>
-                        <p>Reuse in your applications, modules and plugins availables on <strong><a href="http://booster.jelix.org">booster.jelix.org</a></strong></p>
+                        <p>Reuse in your applications, modules and plugins availables on <strong><a href="https://booster.jelix.org">booster.jelix.org</a></strong></p>
                     </div>
                     <div class="section">
                         <h2>Features</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/soap-tpl.png" alt="screenshot" /></div>
                         <p>The framework provides several components:
-                            <a href="http://docs.jelix.org/en/manual-1.6/daos">an ORM</a>,
-                            a <a href="http://docs.jelix.org/en/manual-1.6/jforms">form system</a>,
-                            a <a href="http://docs.jelix.org/en/manual-1.6/templates">template engine</a>,
-                            an <a href="http://docs.jelix.org/en/manual-1.6/events">event system</a>,
-                            an <a href="http://docs.jelix.org/en/manual-1.6/authentification">authentication</a>,
-                            a <a href="http://docs.jelix.org/en/manual-1.6/rights2">rights management</a>...</p>
-                        <p>Without forgetting the <a href="http://docs.jelix.org/en/manual-1.6/locales">multi-language</a>
-                            and management of <a href="http://docs.jelix.org/en/manual-1.6/themes">graphic themes</a>.</p>
+                            <a href="https://docs.jelix.org/en/manual-1.6/daos">an ORM</a>,
+                            a <a href="https://docs.jelix.org/en/manual-1.6/jforms">form system</a>,
+                            a <a href="https://docs.jelix.org/en/manual-1.6/templates">template engine</a>,
+                            an <a href="https://docs.jelix.org/en/manual-1.6/events">event system</a>,
+                            an <a href="https://docs.jelix.org/en/manual-1.6/authentification">authentication</a>,
+                            a <a href="https://docs.jelix.org/en/manual-1.6/rights2">rights management</a>...</p>
+                        <p>Without forgetting the <a href="https://docs.jelix.org/en/manual-1.6/locales">multi-language</a>
+                            and management of <a href="https://docs.jelix.org/en/manual-1.6/themes">graphic themes</a>.</p>
                         <p>Easily develop your Web services, whether
-                            <a href="http://docs.jelix.org/en/manual-1.6/controllers/rest-full">REST-Full</a>,
-                            <a href="http://docs.jelix.org/en/manual-1.6/web-services/soap">SOAP</a>,
-                            <a href="http://docs.jelix.org/en/manual-1.6/web-services/xml-rpc">xml-rpc</a>,
-                            <a href="http://docs.jelix.org/en/manual-1.6/web-services/ajax">ajax</a> etc.</p>
+                            <a href="https://docs.jelix.org/en/manual-1.6/controllers/rest-full">REST-Full</a>,
+                            <a href="https://docs.jelix.org/en/manual-1.6/web-services/soap">SOAP</a>,
+                            <a href="https://docs.jelix.org/en/manual-1.6/web-services/xml-rpc">xml-rpc</a>,
+                            <a href="https://docs.jelix.org/en/manual-1.6/web-services/ajax">ajax</a> etc.</p>
                     </div>
                     <div class="section">
                         <h2>Quality and strength</h2>
@@ -83,7 +83,7 @@
                         <h2>Deployment</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/wizard.png" alt="screenshot" /></div>
                         <p>A quick and easy deployment thanks to the
-                            <a href="http://docs.jelix.org/en/manual-1.6/create-install-scripts">installation and update system</a> of Jelix.</p>
+                            <a href="https://docs.jelix.org/en/manual-1.6/create-install-scripts">installation and update system</a> of Jelix.</p>
                         <p>Some optimized éditions of Jelix, "Optimized" or "Gold", bring you high performance
                         in your production environments.</p>
                         <p>Do you release your application to wide audience? Configure
@@ -143,9 +143,8 @@
                         <a href="/articles/en/tutorials/minitutorial/1.5.x">Mini tutorial</a></dt>
                     <dd>To discover Jelix</dd>
                     <dt><img src="/design/2011/icons/applications-office.png" />
-                        <a href="http://docs.jelix.org/en/manual-1.6/">Full manual</a></dt>
-                    <dd><a href="http://docs.jelix.org/en/manual-1.6/">Online</a> and
-                        <a href="http://download.jelix.org/jelix/releases/1.6.x/1.6.0/jelix-manual-1.6.0.pdf">in PDF</a>,
+                        <a href="https://docs.jelix.org/en/manual-1.6/">Full manual</a></dt>
+                    <dd><a href="https://docs.jelix.org/en/manual-1.6/">Online</a>
                         to learn concepts and the use of components</dd>
                     <!--<dt><img src="icons/applications-science.png" /><a href="">Cookbook</a></dt>
                     <dd>Trucs et astuces</dd>-->
@@ -160,7 +159,7 @@
                 
                 <dl>
                     <dt><img src="/design/2011/icons/vegastrike.png" />
-                        <a href="http://booster.jelix.org">Booster!</a></dt>
+                        <a href="https://booster.jelix.org">Booster!</a></dt>
                     <dd>Enjoy plugins and modules from the community to boost your projects</dd>
                     <dt><img src="/design/2011/icons/emblem-people.png" />
                         <a href="{jurl 'havefnubb~category:view',array('id_cat'=>2,'ctitle'=>'English')}">Forum</a></dt>
@@ -200,12 +199,8 @@
             <div class="home-item">
                 <h2>Mailing List</h2>
                 <p>Receive news about the project by email, and
-                discuss with others users and contributors.</p>
-                <div><img width="132" height="26" alt="Google Groups" src="http://groups.google.com/groups/img/3/groups_bar.gif">
-                    <form action="http://groups.google.com/group/jelix/boxsubscribe">
-                      Email : <input type="text" name="email"> <input type="submit" value="Subscribe" name="sub">
-                    </form>
-                </div>
+                discuss with others users and contributors.
+                <a href="https://groups.google.com/forum/#!forum/jelix/join">Join the mailing list</a>.</p>
             </div>  
             <div class="home-item">
             <h2>Jelix on twitter</h2>

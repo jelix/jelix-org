@@ -40,32 +40,32 @@
                         <div class="section-screenshot"><img src="/design/2011/carroussel/admin-debug.png" alt="screenshot" /></div>
                         <p>Jelix offre des composants et outils pour développer plus rapidement&nbsp;:</p>
                         <ul>
-                            <li><a href="http://docs.jelix.org/fr/manuel-1.6/controleurs/crud">Contrôleur CRUD générique</a>,
-                                module d'<a href="http://docs.jelix.org/fr/manuel-1.6/creer-application/creer-administration">interface d'administration</a>,
-                                <a href="http://docs.jelix.org/fr/manuel-1.6/vues/">vues dédiées</a> à (X)HTML, ATOM, RSS,
+                            <li><a href="https://docs.jelix.org/fr/manuel-1.6/controleurs/crud">Contrôleur CRUD générique</a>,
+                                module d'<a href="https://docs.jelix.org/fr/manuel-1.6/creer-application/creer-administration">interface d'administration</a>,
+                                <a href="https://docs.jelix.org/fr/manuel-1.6/vues/">vues dédiées</a> à (X)HTML, ATOM, RSS,
                                 ZIP, PDF, RDF, XUL...</li>
-                            <li><a href="http://docs.jelix.org/fr/manuel-1.6/jelix-scripts">Scripts en lignes de commande</a> pour générer rapidement du code</li>
-                            <li><a href="http://docs.jelix.org/fr/manuel-1.6/deboggage#la-debug-barre">Debug bar</a> pour faciliter le debuggage.</li>
+                            <li><a href="https://docs.jelix.org/fr/manuel-1.6/jelix-scripts">Scripts en lignes de commande</a> pour générer rapidement du code</li>
+                            <li><a href="https://docs.jelix.org/fr/manuel-1.6/deboggage#la-debug-barre">Debug bar</a> pour faciliter le debuggage.</li>
                         </ul>
-                        <p>Réutilisez dans vos applications les modules et plugins proposés sur <strong><a href="http://booster.jelix.org">booster.jelix.org</a></strong></p>
+                        <p>Réutilisez dans vos applications les modules et plugins proposés sur <strong><a href="https://booster.jelix.org">booster.jelix.org</a></strong></p>
                     </div>
                     <div class="section">
                         <h2>Fonctionnalités</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/soap-tpl.png" alt="screenshot" /></div>
                         <p>Le framework fourni une multitude de composants&nbsp;:
-                            <a href="http://docs.jelix.org/fr/manuel-1.6/daos">un ORM</a>,
-                            un <a href="http://docs.jelix.org/fr/manuel-1.6/jforms">système de formulaire</a>,
-                            un <a href="http://docs.jelix.org/fr/manuel-1.6/templates">moteur de template</a>,
-                            un <a href="http://docs.jelix.org/fr/manuel-1.6/events">système évenementiel</a>,
-                            un module d'<a href="http://docs.jelix.org/fr/manuel-1.6/authentification">authentification</a>,
-                            de <a href="http://docs.jelix.org/fr/manuel-1.6/droits2">gestion de droits</a>...</p>
-                        <p>Sans oublier l'aspect <a href="http://docs.jelix.org/fr/manuel-1.6/locales">multi-langue</a> et
-                            la gestion de <a href="http://docs.jelix.org/fr/manuel-1.6/themes">themes</a> graphiques.</p>
+                            <a href="https://docs.jelix.org/fr/manuel-1.6/daos">un ORM</a>,
+                            un <a href="https://docs.jelix.org/fr/manuel-1.6/jforms">système de formulaire</a>,
+                            un <a href="https://docs.jelix.org/fr/manuel-1.6/templates">moteur de template</a>,
+                            un <a href="https://docs.jelix.org/fr/manuel-1.6/events">système évenementiel</a>,
+                            un module d'<a href="https://docs.jelix.org/fr/manuel-1.6/authentification">authentification</a>,
+                            de <a href="https://docs.jelix.org/fr/manuel-1.6/droits2">gestion de droits</a>...</p>
+                        <p>Sans oublier l'aspect <a href="https://docs.jelix.org/fr/manuel-1.6/locales">multi-langue</a> et
+                            la gestion de <a href="https://docs.jelix.org/fr/manuel-1.6/themes">themes</a> graphiques.</p>
                         <p>Développez aisement vos services Web, qu'ils soient
-                            <a href="http://docs.jelix.org/fr/manuel-1.6/controleurs/rest-full">REST-Full</a>,
-                            en <a href="http://docs.jelix.org/fr/manuel-1.6/services-web/soap">SOAP</a>,
-                            en <a href="http://docs.jelix.org/fr/manuel-1.6/services-web/xml-rpc">xml-rpc</a>,
-                            en <a href="http://docs.jelix.org/fr/manuel-1.6/services-web/ajax">ajax</a> etc.</p>
+                            <a href="https://docs.jelix.org/fr/manuel-1.6/controleurs/rest-full">REST-Full</a>,
+                            en <a href="https://docs.jelix.org/fr/manuel-1.6/services-web/soap">SOAP</a>,
+                            en <a href="https://docs.jelix.org/fr/manuel-1.6/services-web/xml-rpc">xml-rpc</a>,
+                            en <a href="https://docs.jelix.org/fr/manuel-1.6/services-web/ajax">ajax</a> etc.</p>
                     </div>
                     <div class="section">
                         <h2>Qualité et robustesse</h2>
@@ -82,10 +82,10 @@
                         <h2>Deploiement</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/wizard.png" alt="screenshot" /></div>
                         <p>Un deploiement aisé et rapide grâce au
-                            <a href="http://docs.jelix.org/fr/manuel-1.6/creer-script-installation">système d'installation et de mise à jour</a> de Jelix.</p>
+                            <a href="https://docs.jelix.org/fr/manuel-1.6/creer-script-installation">système d'installation et de mise à jour</a> de Jelix.</p>
                         <p>Les éditions optimisées de Jelix, "Optimized" ou "Gold", vous offre des performances accrues dans vos environnements de production.</p>
                         <p>Vous diffusez votre application à un large public ? Utilisez
-                            <a href="http://docs.jelix.org/fr/manuel-1.6/creer-wizard">le wizard</a> de jelix,
+                            <a href="https://docs.jelix.org/fr/manuel-1.6/creer-wizard">le wizard</a> de jelix,
                             et en quelques clics l'application est installée et prête à l'emploi</p>
                     </div>
                     <div class="section">
@@ -138,9 +138,9 @@
                         <a href="/articles/fr/tutoriels/minitutoriel/1.5.x">Mini tutoriel</a></dt>
                     <dd>Pour découvrir Jelix</dd>
                     <dt><img src="/design/2011/icons/applications-office.png" />
-                        <a href="http://docs.jelix.org/fr/manuel-1.6/">Manuel complet</a></dt>
-                    <dd>En français, <a href="http://docs.jelix.org/fr/manuel-1.6/">en ligne</a> et
-                        <a href="http://download.jelix.org/jelix/releases/1.6.x/1.6.0/jelix-manuel-1.6.0.pdf">en PDF</a>,
+                        <a href="https://docs.jelix.org/fr/manuel-1.6/">Manuel complet</a></dt>
+                    <dd>En français, <a href="https://docs.jelix.org/fr/manuel-1.6/">en ligne</a> et
+                        <a href="https://download.jelix.org/jelix/releases/1.6.x/1.6.0/jelix-manuel-1.6.0.pdf">en PDF</a>,
                     pour bien apprendre les concepts et
                     l'utilisation des composants de Jelix</dd>
                     <!--<dt><img src="icons/applications-science.png" /><a href="">Cookbook</a></dt>
@@ -154,7 +154,7 @@
                 <h2>Communauté</h2>
                 
                 <dl>
-                    <dt><img src="/design/2011/icons/vegastrike.png" /><a href="http://booster.jelix.org">Booster !</a></dt>
+                    <dt><img src="/design/2011/icons/vegastrike.png" /><a href="https://booster.jelix.org">Booster !</a></dt>
                     <dd>Profitez des modules et plugins de la communauté pour booster vos projets</dd>
                     <dt><img src="/design/2011/icons/emblem-people.png" /><a href="{jurl 'havefnubb~category:view',array('id_cat'=>1,'ctitle'=>'Français')}">Forum</a></dt>
                     <dd>Posez vos questions sur le forum</dd>
@@ -189,12 +189,8 @@
             <div class="home-item">
 				<h2>Liste de discussion</h2>
 				<p>Tenez-vous au courant de l'actualité Jelix par mail,
-				et discutez avec les autres utilisateurs.</p>
-                <div><img width="132" height="26" alt="Google Groups" src="http://groups.google.com/groups/img/3/groups_bar.gif">
-					<form action="http://groups.google.com/group/jelix-fr/boxsubscribe">
-					  Email : <input type="text" name="email"> <input type="submit" value="S'abonner" name="sub">
-					</form>
-				</div>
+				et discutez avec les autres utilisateurs.
+                    <a href="https://groups.google.com/forum/#!forum/jelix/join">Inscrivez-vous</a>.</p>
             </div>  
             <div class="home-item">
             <h2>Jelix Sur twitter</h2>

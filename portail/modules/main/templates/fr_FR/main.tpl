@@ -63,7 +63,7 @@
     <div class="top-container">
         <div class="footer-box">
         <p><img src="/design/logo/logo_jelix_moyen5.png" alt="Jelix" /><br/>
-            est sponsorisé par <a href="http://innophi.com">Innophi</a>.</p>
+            est sponsorisé par <a href="https://innophi.com">Innophi</a>.</p>
         <p>Jelix est publié sous <br/>la licence LGPL</p>
         </div>
         
@@ -85,7 +85,7 @@
                 <li><a href="/articles/fr/changelog">Journal des changements</a></li>
                 <li><a href="https://github.com/jelix/jelix/issues">Suivi des bugs</a></li>
                 <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
-                <li><a href="http://developer.jelix.org/wiki/fr/contribuer">Comment contribuer</a></li>
+                <li><a href="https://developer.jelix.org/wiki/fr/contribuer">Comment contribuer</a></li>
                 <li><a href="https://github.com/jelix/jelix">Dépôt des sources</a></li>
             </ul>
         </div>
