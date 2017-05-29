@@ -24,11 +24,6 @@ if [ "$DIR_JELIX_SITES" == "" ]; then
     exit 0
 fi
 
-#------- planet
-
-chown -R :$WWWUSER $DIR_JELIX_SITES/planet/fr/temp $DIR_JELIX_SITES/planet/en/temp 
-chmod -R g+w $DIR_JELIX_SITES/planet/fr/temp $DIR_JELIX_SITES/planet/en/temp 
-
 #------- portail
 
 chown -R :$WWWUSER $DIR_JELIX_SITES/portail/var/log $DIR_JELIX_SITES/www/cache $DIR_JELIX_SITES/www/data $DIR_JELIX_SITES/www/conf/users.auth.php
