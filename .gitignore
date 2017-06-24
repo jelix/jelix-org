@@ -11,11 +11,11 @@ scripts/scripts.config.sh
 
 temp/build_dir/*
 !temp/build_dir/.dummy
-temp/portail/
+temp/portail/*
 !temp/portail/.dummy
-temp/portail-cli/
+temp/portail-cli/*
 !temp/portail-cli/.dummy
-temp/portail-scripts/
+temp/portail-scripts/*
 !temp/portail-scripts/.dummy
 
 www/conf/users.auth.php
@@ -24,10 +24,10 @@ www/data/*
 !www/data/.htaccess
 !www/data/security.png
 
-www/reference/1*
-www/reference/trunk
-www/cache/images/
-www/temp/*
+www/reference/*
+!www/reference/index.php
+www/cache/images/*
+!www/cache/images/empty
 
 portail/var/config/dbprofils.ini.php
 portail/var/config/installer.ini.php
