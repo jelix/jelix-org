@@ -6,10 +6,10 @@ default = portail
 [portail]
 
 driver="mysql"
-database = "jelix_www"
-host = "localhost"
-user = "jelixwww"
-password = "jelix"
+database = "__JELIX_ORG_DB_NAME__"
+host = "__JELIX_ORG_DB_HOST__"
+user = "__JELIX_ORG_DB_LOGIN__"
+password = "__JELIX_ORG_DB_PASSWD__"
 persistent = on
 force_encoding=on
 table_prefix=

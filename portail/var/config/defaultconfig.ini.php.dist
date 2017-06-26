@@ -148,8 +148,8 @@ name=famfamfam
 sql="sql_%Y%%m%%d%.log"
 
 [recaptcha]
-sitekey=
-secret=
+sitekey=__JELIX_ORG_RECAPTCHA_KEY__
+secret=__JELIX_ORG_RECAPTCHA_SECRET__
 
 
 
