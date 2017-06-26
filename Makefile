@@ -54,6 +54,6 @@ clean:
 
 .PHONY: deploy
 deploy: build
-	rsync -av --delete --include-from=.build-files ./ $(JELIX_ORG_DEPLOY_TARGET)
+	rsync -av --delete --ignore-times --checksum --include-from=.build-files ./ $(JELIX_ORG_DEPLOY_TARGET)
 
 
