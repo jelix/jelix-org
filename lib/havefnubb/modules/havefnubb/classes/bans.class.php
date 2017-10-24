@@ -70,21 +70,17 @@ class bans {
      * @return mixed : true/false or message of ban
      */
     public static function checkDomain($email) {
-        $return = false;
         $bans = self::getBannedDomains();
         foreach ($bans as $ban) {
-            if (strpos($ban->ban_email,'@') > 0 )
-                list($bannedAddress,$bannedDomain) = preg_split('/@/',$ban->ban_email);
-            else
+            if (strpos($ban->ban_email,'@') === false ) {
                 $bannedDomain = $ban->ban_email;
-
-            list($userAddress,$userDomain) = preg_split('/@/',$email);
-
-            if ( $bannedDomain == $userDomain ) {
-                return $ban->ban_message;
+                list($userAddress,$userDomain) = preg_split('/@/',$email);
+                if ( $bannedDomain == $userDomain ) {
+                    return $ban->ban_message;
+                }
             }
         }
-        return $return;
+        return false;
     }
 
     /**
