@@ -17,21 +17,21 @@ if [ "$BRANCH" == "" ]; then
     echo "Error: branch version is missing"
     echo $HELP
     echo $HELP2
-    exit 0
+    exit 2
 fi
 
 if [ "$TAG" == "" ]; then
     echo "Error: tag name is missing"
     echo $HELP
     echo $HELP2
-    exit 0
+    exit 3
 fi
 
 if [ "$VER" == "" ]; then
     echo "Error: version is missing"
     echo $HELP
     echo $HELP2
-    exit 0
+    exit 4
 fi
 
 source $(dirname $0)/scripts.config.sh
