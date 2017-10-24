@@ -33,9 +33,10 @@ class jFormsBuilderHtml extends jFormsBuilderBase{
 		}
 		echo '</table> <div class="jforms-submit-buttons">';
 		if($ctrl=$this->_form->getReset()){
-			if(!$this->_form->isActivated($ctrl->ref))continue;
-			$this->outputControl($ctrl);
-			echo ' ';
+			if($this->_form->isActivated($ctrl->ref)) {
+                $this->outputControl($ctrl);
+                echo ' ';
+            }
 		}
 		foreach($this->_form->getSubmits()as $ctrlref=>$ctrl){
 			if(!$this->_form->isActivated($ctrlref))continue;
@@ -73,7 +74,7 @@ class jFormsBuilderHtml extends jFormsBuilderBase{
 				}
 			}
             if($v instanceof jFormsBase) {
-                foreach($v->controls as $ctrlref=>$ctrl){
+                foreach($v->getControls() as $ctrlref=>$ctrl){
                     if ($ctrl->type=='captcha') {
                         $resp->addJSLink("https://www.google.com/recaptcha/api.js", array("async"=>"async", "defer"=>"defer"));
                     }
@@ -127,7 +128,8 @@ class jFormsBuilderHtml extends jFormsBuilderBase{
 			echo '<ul id="'.$this->_name.'_errors" class="jforms-error-list">';
 			$errRequired='';
 			foreach($errors as $cname=>$err){
-				if(!$this->_form->isActivated($ctrls[$cname]->ref))continue;
+				if(!$this->_form->isActivated($ctrls[$cname]->ref))
+				    continue;
 				if($err===jForms::ERRDATA_REQUIRED){
 					if($ctrls[$cname]->alertRequired){
 						echo '<li>',$ctrls[$cname]->alertRequired,'</li>';
