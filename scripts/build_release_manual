@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 MLANG=$1
 MID=$2
 MVERSION=$3

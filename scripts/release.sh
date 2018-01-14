@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 SCRIPTDIR=$(dirname $0)
 source $SCRIPTDIR/scripts.config.sh
