@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-SCRIPTDIR=$(dirname $0)
+SCRIPTDIR="$( cd "$(dirname "$0")" ; pwd -P )"
+
 source $SCRIPTDIR/scripts.config.sh
 
 VERSION=$1

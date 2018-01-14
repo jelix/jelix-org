@@ -2,9 +2,7 @@
 
 # path should not contain trailing slash
 
-DIR_JELIX_SITES=$(dirname $0)/..
-
-#BUILD_DIR="$DIR_JELIX_SITES/temp/build_dir"
+DIR_JELIX_SITES="$(dirname $( cd "$(dirname "$0")" ; pwd -P ))"
 
 BUILD_DIR="__JELIX_ORG_BUILD_DIR__"
 BUILD_GIT_DIR="$BUILD_DIR/git/jelix"
