@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author Sébastien Bauer <sebastien.bauer@advalvas.be>
  * @author Antoine Fixary <antoine.fixary@freesbee.fr>
  * @author cumulus <pta-n56@myamail.com>
@@ -369,6 +369,8 @@ $lang['plainhtml']             = 'HTML brut';
 $lang['wikimarkup']            = 'Wiki balise';
 $lang['page_nonexist_rev']     = 'La page n\'existait pas le %s. Elle a été créée le <a href="%s">%s</a>.';
 $lang['unable_to_parse_date']  = 'Ne peut analyser le paramètre date "%s".';
+$lang['email_signature_text'] = 'Ce courriel a été généré par DokuWiki depuis
+@DOKUWIKIURL@';
 
 $lang['book_next_c'] = 'Chapitre suivant';
 $lang['book_prev_c'] = 'Chapitre précédent ';
