@@ -8,6 +8,8 @@ download/www/*
 !download/www/robots.txt
 
 scripts/scripts.config.sh
+scripts/composer.lock
+scripts/vendor
 
 temp/build_dir/*
 !temp/build_dir/.dummy

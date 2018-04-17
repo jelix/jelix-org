@@ -34,24 +34,48 @@ if [ "$VER" == "" ]; then
     exit 4
 fi
 
+
+VER_MAJOR=""
+VER_MIDDLE=""
+
+for i in $(echo $VERSION | tr "." "\n")
+do
+    if [ "$VER_MAJOR" == "" ]
+    then
+        VER_MAJOR=$i
+    else
+        if [ "$VER_MIDDLE" == "" ]
+        then
+            VER_MIDDLE=$i
+        fi
+    fi
+done
+
+VER_SHORT=$VER_MAJOR"."$VER_MIDDLE
+
 source $(dirname $0)/scripts.config.sh
 
 rm -rf $BUILD_DIR/docs/*
+
+if [ ! -d $BUILD_DIR/phpdoc-cache ]; then
+    mkdir $BUILD_DIR/phpdoc-cache
+fi
 
 cd $BUILD_GIT_DIR
 
 git fetch origin
 git checkout jelix-$BRANCH
 git pull origin jelix-$BRANCH
-git checkout refs/tags/$TAG
+git checkout $TAG
 
 export TESTPATH=$BUILD_DIR/docs/
-export DOCSPATH=$DIR_JELIX_SITES/www/reference/$VER
-export PHPDOC=$DIR_JELIX_SITES/lib/phpdoc/
+export DOCSTARGETPATH=$DIR_JELIX_SITES/www/reference/$VER_SHORT
+export PHPDOC=$DIR_JELIX_SITES/scripts/vendor/bin/phpdoc
+export DOCSCACHEPATH=$BUILD_DIR/phpdoc-cache
 
 make docs
 
-cd $DIR_JELIX_SITES/www/reference/$VER
+cd $DIR_JELIX_SITES/www/reference/$VER_SHORT
 tar czf $DIR_JELIX_SITES/download/www/jelix/releases/$BRANCH/$VER/jelix-"$VER"-apidoc_html.tar.gz *
 zip -r $DIR_JELIX_SITES/download/www/jelix/releases/$BRANCH/$VER/jelix-"$VER"-apidoc_html.zip *
 

@@ -1,0 +1,12 @@
+{
+    "name": "jelix-org/scripts",
+    "require": {
+        "phpdocumentor/phpdocumentor": "2.*"
+    },
+    "authors": [
+        {
+            "name": "Laurent Jouanneau",
+            "email": "dev@ljouanneau.com"
+        }
+    ]
+}

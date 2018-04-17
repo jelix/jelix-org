@@ -82,7 +82,7 @@ foreach ($versions as $branch=>$v) {
                 foreach($versions as $branch=>$version) {
                     ?>
             <dt>Lastest stable release Jelix <?php echo $version?>:</dt>
-            <dd><a href="<?php echo $version?>/">HTML, online</a> -
+            <dd><a href="<?php echo $branch?>/">HTML, online</a> -
                  <a href="http://download.jelix.org/jelix/releases/<?php echo $branch?>.x/<?php echo $version?>/jelix-<?php echo $version?>-apidoc_html.tar.gz">HTML tar.gz</a> -
                  <a href="http://download.jelix.org/jelix/releases/<?php echo $branch?>.x/<?php echo $version?>/jelix-<?php echo $version?>-apidoc_html.zip">HTML zip</a>
             </dd>

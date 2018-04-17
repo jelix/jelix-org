@@ -47,6 +47,7 @@ build: clean _build
 
 .PHONY: _build
 _build: portail/var/config/defaultconfig.ini.php portail/var/config/dbprofils.ini.php scripts/scripts.config.sh
+	composer install --prefer-dist --no-dev --no-progress --no-suggest --ignore-platform-reqs --no-ansi --no-interaction --working-dir=scripts/
 
 .PHONY: clean
 clean:
