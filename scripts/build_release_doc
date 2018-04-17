@@ -38,7 +38,7 @@ fi
 VER_MAJOR=""
 VER_MIDDLE=""
 
-for i in $(echo $VERSION | tr "." "\n")
+for i in $(echo $VER | tr "." "\n")
 do
     if [ "$VER_MAJOR" == "" ]
     then
