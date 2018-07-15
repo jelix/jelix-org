@@ -38,6 +38,7 @@ fi
 source $(dirname $0)/scripts.config.sh
 
 BUILD_GOLD="N"
+BUILD_OPT="N"
 BUILD_FONT_PACKAGE="N"
 BUILD_TESTAPP="N"
 HASMODULES="N"
@@ -45,20 +46,24 @@ HASMODULES="N"
 case "jelix-$BRANCH" in
     jelix-1.3.x)
         BUILD_GOLD="Y"
+        BUILD_OPT="Y"
         BUILD_FONT_PACKAGE="Y"
         BUILD_TESTAPP="Y"
     ;;
     jelix-1.4.x)
         BUILD_GOLD="Y"
+        BUILD_OPT="Y"
         BUILD_FONT_PACKAGE="Y"
         BUILD_TESTAPP="Y"
     ;;
     jelix-1.5.x)
         BUILD_GOLD="Y"
+        BUILD_OPT="Y"
         HASMODULES="Y"
         BUILD_TESTAPP="Y"
     ;;
     jelix-1.6.x)
+        BUILD_OPT="Y"
         HASMODULES="Y"
         BUILD_TESTAPP="Y"
     ;;
@@ -89,8 +94,13 @@ if [ -d $BUILD_GIT_DIR/_dist ]; then
    rm -rf $BUILD_GIT_DIR/_dist
 fi
 
-/usr/bin/php build/buildjelix.php build/config/jelix-dist-dev.ini
-/usr/bin/php build/buildjelix.php build/config/jelix-dist-opt.ini
+if [ "$BUILD_OPT" == "Y" ]; then
+    /usr/bin/php build/buildjelix.php build/config/jelix-dist-dev.ini
+    /usr/bin/php build/buildjelix.php build/config/jelix-dist-opt.ini
+else
+    /usr/bin/php build/buildjelix.php build/config/jelix-dist.ini
+fi
+
 
 if [ "$BUILD_GOLD" == "Y" ]; then
     /usr/bin/php build/buildjelix.php build/config/jelix-dist-gold.ini
