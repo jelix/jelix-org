@@ -98,7 +98,7 @@ if [ "$BUILD_OPT" == "Y" ]; then
     /usr/bin/php build/buildjelix.php build/config/jelix-dist-dev.ini
     /usr/bin/php build/buildjelix.php build/config/jelix-dist-opt.ini
 else
-    /usr/bin/php build/buildjelix.php build/config/jelix-dist.ini
+    make release
 fi
 
 
