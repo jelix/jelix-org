@@ -112,9 +112,11 @@ class jZone{
 		$module=jContext::get();
 		$ar=$this->_params;
 		ksort($ar);
-		$id=md5(serialize($ar));
-		return JELIX_APP_TEMP_PATH.'zonecache/~'.$module.'~'.strtolower(get_class($this)).'~'.$id.'.php';
+		$id = md5(serialize($ar));
+		$path = $id[0].'/'.$id[1].$id[2].'/'.$id.'.php';
+		return JELIX_APP_TEMP_PATH.'zonecache/'.$module.'/'.strtolower(get_class($this)).'/'.$path;
 	}
+
 	private static function  _callZone($name,$method,&$params){
 		$sel=new jSelectorZone($name);
 		jContext::push($sel->module);
