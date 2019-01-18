@@ -24,7 +24,7 @@
                     <div class="section">
                         <h2>A strong framework</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/logo3d_jelix_3quart.png" alt="screenshot" /></div>
-                        <p>Since 2006, Jelix offers modern solutions for your web site and application projects:</p>
+                        <p>Since 2006, Jelix offers sustainable solutions for your web site and application projects:</p>
                         <ul>
                             <li>An architecture in reusable modules:
                                 <strong>capitalize on your development</strong></li>
@@ -75,7 +75,7 @@
                         <ul>
                             <li>Security first&nbsp;: in forms, authentication...</li>
                             <li>An advanced errors management, and following used protocols</li>
-                            <li>Thousand unit tests on Jelix components</li>
+                            <li>Thousands unit tests on Jelix components</li>
                             <li>PHPUnit or Simpletest integration for your own tests</li>
                         </ul>
                     </div>
@@ -110,24 +110,21 @@
                 <li><a href="#jelix-users-2"><img src="/design/2011/users/3liz.png" alt="3Liz"/></a></li>
                 <li><a href="#jelix-users-3"><img src="/design/2011/users/overblog.png" alt="Over-Blog"/></a></li>
                 <li><a href="#jelix-users-4"><img src="/design/2011/users/bp2i.png" alt="BNP Parisbas"/></a></li>
-                <li><a href="#jelix-users-5"><img src="/design/2011/users/kayuko.png" alt="Kayuko" /></a></li>
             </ul>
             <div id="jelix-users-description">
                 <p id="jelix-users-1">
-                    Since 2011, <a href="http://transatel.com">Transatel</a> has chosen Jelix to develop their frontend applications,
+                    In 2011, <a href="http://transatel.com">Transatel</a> has chosen Jelix to develop their frontend applications,
                     used by their business customers. These applications allow to manage millions of SIM cards
                     (Individual or 'Machine To Machine' cards). Their customers are Everything Everywhere (a joint-venture of Orange and T-Mobile in UK),
                     Mobistars and many others MVNO.
                 </p>
                 <p id="jelix-users-2"><a href="http://3liz.com">3Liz</a>, specialized into solutions on geographic information systems,
-                provides web applications like <a href="http://hub.qgis.org/wiki/lizmapwebclient/">LizMap</a>, using Jelix
+                provides web applications like <a href="https://lizmap.com/">LizMap</a>, based on Jelix
                 </p>
                 <p id="jelix-users-3">Jelix motorized the biggest european blog platform, over-blog.com (2006-2012).
                     <br/>Over-blog was one of the first user of Jelix.</p>
                 <p id="jelix-users-4">BNP Parisbas, one of the biggest french bank, use jelix in some
                     of their intranet applications.</p>
-                <p id="jelix-users-5">Jelix motorized the DVD prices comparison engine of Kayuko, and their customer projects.</p>
-
             </div>
             <p>And <a href="/articles/en/hall-of-fame">much more...</a></p>
         </div>
