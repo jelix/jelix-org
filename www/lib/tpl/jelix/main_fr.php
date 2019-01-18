@@ -207,12 +207,11 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
         </div>-->
 
         <p id="footer-legend">
-            Copyright 2006-2018 Jelix team. <br/>
+            Copyright 2006-2019 Jelix team. <br/>
             Les icônes utilisées sur cette page viennent des paquets
             <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             et <a href="http://www.oxygen-icons.org/">Oxygen</a>.<br/>
-            Design par Laurentj. <br/>
-            <img src="/design/btn_jelix_powered.png" alt="page générée par une application Jelix" />
+            Design par Laurentj.
         </p>
     </div>
 </div>
