@@ -137,10 +137,8 @@
                     <dd>Pour découvrir Jelix</dd>
                     <dt><img src="/design/2011/icons/applications-office.png" />
                         <a href="https://docs.jelix.org/fr/manuel-1.6/">Manuel complet</a></dt>
-                    <dd>En français, <a href="https://docs.jelix.org/fr/manuel-1.6/">en ligne</a> et
-                        <a href="https://download.jelix.org/jelix/releases/1.6.x/1.6.0/jelix-manuel-1.6.0.pdf">en PDF</a>,
-                    pour bien apprendre les concepts et
-                    l'utilisation des composants de Jelix</dd>
+                    <dd>En français, <a href="https://docs.jelix.org/fr/manuel-1.6/">en ligne</a>,
+                    pour bien apprendre les concepts et l'utilisation des composants de Jelix</dd>
                     <!--<dt><img src="icons/applications-science.png" /><a href="">Cookbook</a></dt>
                     <dd>Trucs et astuces</dd>-->
                     <dt><img src="/design/2011/icons/applications-system.png" /><a href="/reference/">Référence détaillée des APIs</a></dt>
