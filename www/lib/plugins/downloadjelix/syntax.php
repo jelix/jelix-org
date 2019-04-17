@@ -59,6 +59,7 @@ class syntax_plugin_downloadjelix extends DokuWiki_Syntax_Plugin {
     protected $basePath = '/../../../../download/www/';
     static protected $filetypes = array(
         // 'type'=>array('filename%branch%/%version%', 'downloadbaseurl', 'systembasepath')
+        'jelix' =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%.tar.gz',   'zip'=>true),
         'jelixgold' =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-gold.tar.gz',   'zip'=>true),
         'jelixopt'  =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-opt.tar.gz',    'zip'=>true),
         'jelixdev'  =>array('name'=>'jelix/releases/%branch%/%version%/jelix-%version%-dev.tar.gz',    'zip'=>true),
