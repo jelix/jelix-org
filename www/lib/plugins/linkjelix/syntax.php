@@ -56,7 +56,7 @@ class syntax_plugin_linkjelix extends DokuWiki_Syntax_Plugin {
     }
 
     static protected $filetypes = array(
-        'apiref'    =>array('url'=>'https://jelix.org/reference/%branch%/'),
+        'apiref'    =>array('url'=>'https://jelix.org/reference/%majorversion%/'),
     );
 
     /**
@@ -67,7 +67,7 @@ class syntax_plugin_linkjelix extends DokuWiki_Syntax_Plugin {
             if($data[0] == DOKU_LEXER_SPECIAL) {
                 $type = $data[1];
                 $version = '';
-                $branch = $data[2];
+                $branch = $majorVersion = $data[2];
                 if (isset(self::$versions[$branch])) {
                     $version = self::$versions[$branch];
                 }
@@ -83,7 +83,7 @@ class syntax_plugin_linkjelix extends DokuWiki_Syntax_Plugin {
                 }
                 $attr = self::$filetypes[$type];
                 
-                $URL = str_replace(array('%branch%', '%version%'), array($branch.'.x', $version), $attr['url']);
+                $URL = str_replace(array('%branch%', '%version%', '%majorversion%'), array($branch.'.x', $version, $majorVersion), $attr['url']);
                 
                 $html = '<a href="'.$URL.'">'.htmlspecialchars($data[3]).'</a>';
                 $renderer->doc .= $html;
