@@ -56,7 +56,7 @@ class syntax_plugin_linkjelix extends DokuWiki_Syntax_Plugin {
     }
 
     static protected $filetypes = array(
-        'apiref'    =>array('url'=>'https://jelix.org/reference/%version%/'),
+        'apiref'    =>array('url'=>'https://jelix.org/reference/%branch%/'),
     );
 
     /**
