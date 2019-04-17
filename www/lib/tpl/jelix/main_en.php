@@ -83,10 +83,10 @@ $menuCommunity = (strpos($ID,'en:community') === 0 || $ID=='en:goodies');
          <?php }elseif($menuDocumentation) { ?>
              <li<?php if($isTutorial) echo ' class="selected"';?>><a href="/articles/en/tutorials">Tutorials</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.6">Manual 1.6</a></li>
-             <li><a href="http://docs.jelix.org/en/manual-1.5">1.5</a></li>
-             <li><a href="http://docs.jelix.org/en/">others</a></li>
+             <li><a href="http://docs.jelix.org/en/manual-1.7">Manual 1.7</a></li>
              <li><a href="/reference/index.php">API reference</a></li>
-         
+             <li><a href="http://docs.jelix.org/en/">others</a></li>
+
          <?php }elseif($menuCommunity) { ?>
              <li><a href="/forums/forum/cat/2-english">Forums</a></li>
              <li<?php if($ID=='en:community') echo ' class="selected"';?>><a href="/articles/en/community#mailing-list">Mailing List &amp; IRC</a></li>

@@ -1,9 +1,13 @@
 <?php
 
-$versions = array('1.6'=>'', '1.5'=>'', '1.4'=>'', '1.3'=>'', '1.2'=>'', '1.1'=>'', '1.0'=>'');
+$versions = array('1.7'=>'', '1.6'=>'');
+$deprecatedVersions = array('1.5'=>'', '1.4'=>'', '1.3'=>'', '1.2'=>'', '1.1'=>'', '1.0'=>'');
 
 foreach ($versions as $branch=>$v) {
     $versions[$branch] = file_get_contents(__DIR__.'/../api/releases/'.$branch.'/latest-stable-version');
+}
+foreach ($deprecatedVersions as $branch=>$v) {
+    $deprecatedVersions[$branch] = file_get_contents(__DIR__.'/../api/releases/'.$branch.'/latest-stable-version');
 }
 ?>
 
@@ -64,20 +68,15 @@ foreach ($versions as $branch=>$v) {
          <ul id="submenubar">
              <li><a href="/articles/en/tutorials">Tutorials</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.6">Manual 1.6</a></li>
-             <li><a href="http://docs.jelix.org/en/manual-1.5">1.5</a></li>
-             <li><a href="http://docs.jelix.org/en/">Others</a></li>
+             <li><a href="http://docs.jelix.org/en/manual-1.7">Manual 1.7</a></li>
              <li class="selected"><a href="/reference/">API reference</a></li>
+             <li><a href="http://docs.jelix.org/en/">Others</a></li>
          </ul>
       </div>
       <div id="article">
 
         <h1>API Reference</h1>
         <dl>
-            <dt>Jelix trunk (development, updated each night)</dt>
-            <dd><a href="trunk/">HTML, online</a> -
-                 <a href="http://download.jelix.org/jelix/documentation/jelix-trunk-apidoc_html.tar.gz">HTML tar.gz</a> -
-                 <a href="http://download.jelix.org/jelix/documentation/jelix-trunk-apidoc_html.zip">HTML zip</a>
-            </dd>
             <?php
                 foreach($versions as $branch=>$version) {
                     ?>
@@ -89,7 +88,30 @@ foreach ($versions as $branch=>$v) {
                     <?php
                 }
             ?>
-       </dl>
+        </dl>
+
+          <h1>API Reference of old unmaintened releases</h1>
+          <dl>
+            <?php
+                foreach($deprecatedVersions as $branch=>$version) {
+                    ?>
+            <dt>Jelix <?php echo $version?>:</dt>
+            <dd><a href="<?php echo $branch?>/">HTML, online</a> -
+                 <a href="http://download.jelix.org/jelix/releases/<?php echo $branch?>.x/<?php echo $version?>/jelix-<?php echo $version?>-apidoc_html.tar.gz">HTML tar.gz</a> -
+                 <a href="http://download.jelix.org/jelix/releases/<?php echo $branch?>.x/<?php echo $version?>/jelix-<?php echo $version?>-apidoc_html.zip">HTML zip</a>
+            </dd>
+                    <?php
+                }
+            ?>
+        </dl>
+          <h1>API Reference of unstable versions</h1>
+            <dl>
+                <dt>Jelix trunk (development)</dt>
+                <dd><a href="trunk/">HTML, online</a> -
+                    <a href="http://download.jelix.org/jelix/documentation/jelix-trunk-apidoc_html.tar.gz">HTML tar.gz</a> -
+                    <a href="http://download.jelix.org/jelix/documentation/jelix-trunk-apidoc_html.zip">HTML zip</a>
+                </dd>
+           </dl>
         <p>Go on <a href="http://download.jelix.org/jelix/releases">the download web site</a> to retrieve API documentation for old releases, for each branches.</p>
       </div>
    </div>
@@ -128,7 +150,7 @@ foreach ($versions as $branch=>$v) {
         </div>
 
         <p id="footer-legend">
-            Copyright 2006-2018 Jelix team. <br/>
+            Copyright 2006-2019 Jelix team. <br/>
             Icons used on this page come from <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             and <a href="http://www.oxygen-icons.org/">Oxygen</a> icons sets.<br/>
             Design by Laurentj. <br/>

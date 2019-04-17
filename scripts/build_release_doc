@@ -71,7 +71,7 @@ git checkout $TAG
 export TESTPATH=$BUILD_DIR/docs/
 export DOCSTARGETPATH=$DIR_JELIX_SITES/www/reference/$VER_SHORT
 export PHPDOC=$DIR_JELIX_SITES/scripts/vendor/bin/phpdoc
-export DOCSCACHEPATH=$BUILD_DIR/phpdoc-cache
+export DOCSCACHEPATH=$BUILD_DIR/phpdoc-cache/$VER_SHORT
 
 make docs
 

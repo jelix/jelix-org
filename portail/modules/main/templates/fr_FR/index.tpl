@@ -7,7 +7,7 @@
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
                 <a href="/articles/fr/telechargement/stable/1.6">Téléchargez Jelix {$versions['1.6']}</a></p>
             <p id="other-releases">
-                <a href="/articles/fr/telechargement/stable/1.5">{$versions['1.5']}</a> -
+                <a href="/articles/fr/telechargement/stable/1.7">{$versions['1.7']}</a> -
                 <a href="/articles/fr/telechargement/nightly#telechargement-jelix-nightly">nightly</a></p>
         </div>
 
@@ -101,7 +101,7 @@
             </div>
         </div>
 
-
+{*
         <div class="content-box" id="jelix-users">
             <h2>Ils utilisent Jelix</h2>
 
@@ -124,7 +124,7 @@
             </div>
             <p>Et <a href="/articles/fr/hall-of-fame">bien plus encore...</a></p>
         </div>
-
+*}
 
         <div class="content-box" id="home-items">
             

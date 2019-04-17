@@ -8,7 +8,7 @@
                 <a href="/articles/en/download/stable/1.6">Download Jelix {$versions['1.6']}</a></p>
             <p id="other-releases">
                
-               <a href="/articles/en/download/stable/1.5">{$versions['1.5']}</a> -
+               <a href="/articles/en/download/stable/1.7">{$versions['1.7']}</a> -
                <a href="/articles/en/download/nightly#nightly-builds">nightly</a></p>
         </div>
 
@@ -102,7 +102,7 @@
                </div>
             </div>
         </div>
-
+{*
         <div class="content-box" id="jelix-users">
             <h2>They use Jelix</h2>
             <ul>
@@ -128,7 +128,7 @@
             </div>
             <p>And <a href="/articles/en/hall-of-fame">much more...</a></p>
         </div>
-
+*}
 
         <div class="content-box" id="home-items">
             

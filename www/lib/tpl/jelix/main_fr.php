@@ -84,10 +84,10 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
          <?php }elseif($menuDocumentation) { ?>
              <li<?php if($isTutorial)   echo ' class="selected"';?>><a href="/articles/fr/tutoriels">Tutoriels</a></li>
              <li><a href="http://docs.jelix.org/fr/manuel-1.6">Manuel 1.6</a></li>
-             <li><a href="http://docs.jelix.org/fr/manuel-1.5">1.5</a></li>
-             <li><a href="http://docs.jelix.org/fr/">autres</a></li>
+             <li><a href="http://docs.jelix.org/fr/manuel-1.7">Manual 1.7</a></li>
              <li><a href="/reference/index.php">reference API</a></li>
-         
+             <li><a href="http://docs.jelix.org/fr/">autres</a></li>
+
          <?php }elseif($menuCommunity) { ?>
              <li><a href="/forums/forum/cat/1-francais">Forums</a></li>
              <li<?php if($ID=='fr:communaute') echo ' class="selected"';?>><a href="/articles/fr/communaute#mailing-list">Mailing List &amp; IRC</a></li>
