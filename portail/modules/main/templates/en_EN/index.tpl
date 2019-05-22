@@ -137,7 +137,7 @@
 
                 <dl>
                     <dt><img src="/design/2011/icons/applications-education.png" />
-                        <a href="/articles/en/tutorials/minitutorial/1.5.x">Mini tutorial</a></dt>
+                        <a href="/articles/en/tutorials/minitutorial/1.6.x">Mini tutorial</a></dt>
                     <dd>To discover Jelix</dd>
                     <dt><img src="/design/2011/icons/applications-office.png" />
                         <a href="https://docs.jelix.org/en/manual-1.6/">Full manual</a></dt>
