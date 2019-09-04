@@ -5,10 +5,10 @@
 
         <div id="releases">
             <p id="latest-release"><img src="/design/2011/icons/human-folder-downloads.png" />
-                <a href="/articles/en/download/stable/1.6">Download Jelix {$versions['1.6']}</a></p>
+                <a href="/articles/en/download/stable/1.7">Download Jelix {$versions['1.7']}</a></p>
             <p id="other-releases">
                
-               <a href="/articles/en/download/stable/1.7">{$versions['1.7']}</a> -
+               <a href="/articles/en/download/stable/1.6">{$versions['1.6']}</a> -
                <a href="/articles/en/download/nightly#nightly-builds">nightly</a></p>
         </div>
 
@@ -40,13 +40,13 @@
                         <div class="section-screenshot"><img src="/design/2011/carroussel/admin-debug.png" alt="screenshot" /></div>
                         <p>Jelix offers components and tools to develop faster:</p>
                         <ul>
-                            <li><a href="https://docs.jelix.org/en/manual-1.6/controllers/crud">generic CRUD controller</a>,
-                                module of <a href="https://docs.jelix.org/en/manual-1.6/create-application/administration-app">administration interface</a>,
-                                <a href="https://docs.jelix.org/en/manual-1.6/views/">dedicated views</a> to (X)HTML, ATOM, RSS,
+                            <li><a href="https://docs.jelix.org/en/manual-1.7/modules/controllers">generic CRUD controller</a>,
+                                module of <a href="https://docs.jelix.org/en/manual-1.7/application/administration-app">administration interface</a>,
+                                <a href="https://docs.jelix.org/en/manual-1.7/modules/views">dedicated views</a> to (X)HTML, ATOM, RSS,
                                 ZIP, PDF, RDF, XUL...</li>
-                            <li><a href="https://docs.jelix.org/en/manual-1.6/jelix-scripts">Scripts for <acronym title="Command Line Interface">CLI</acronym></a>
+                            <li><a href="https://docs.jelix.org/en/manual-1.7/installation/jelix-scripts">Scripts for <acronym title="Command Line Interface">CLI</acronym></a>
                                 to generate code</li>
-                            <li><a href="https://docs.jelix.org/en/manual-1.6/debugging#the-debug-bar">Debug bar</a> to ease debugging.</li>
+                            <li><a href="https://docs.jelix.org/en/manual-1.7/dev-tools/debugging#the-debug-bar">Debug bar</a> to ease debugging.</li>
                         </ul>
                         <p>Reuse in your applications, modules and plugins availables on <strong><a href="https://booster.jelix.org">booster.jelix.org</a></strong></p>
                     </div>
@@ -54,19 +54,19 @@
                         <h2>Features</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/soap-tpl.png" alt="screenshot" /></div>
                         <p>The framework provides several components:
-                            <a href="https://docs.jelix.org/en/manual-1.6/daos">an ORM</a>,
-                            a <a href="https://docs.jelix.org/en/manual-1.6/jforms">form system</a>,
-                            a <a href="https://docs.jelix.org/en/manual-1.6/templates">template engine</a>,
-                            an <a href="https://docs.jelix.org/en/manual-1.6/events">event system</a>,
-                            an <a href="https://docs.jelix.org/en/manual-1.6/authentification">authentication</a>,
-                            a <a href="https://docs.jelix.org/en/manual-1.6/rights2">rights management</a>...</p>
-                        <p>Without forgetting the <a href="https://docs.jelix.org/en/manual-1.6/locales">multi-language</a>
-                            and management of <a href="https://docs.jelix.org/en/manual-1.6/themes">graphic themes</a>.</p>
+                            <a href="https://docs.jelix.org/en/manual-1.7/components/daos">an ORM</a>,
+                            a <a href="https://docs.jelix.org/en/manual-1.7/components/jforms">form system</a>,
+                            a <a href="https://docs.jelix.org/en/manual-1.7/components/templates">template engine</a>,
+                            an <a href="https://docs.jelix.org/en/manual-1.7/components/events">event system</a>,
+                            an <a href="https://docs.jelix.org/en/manual-1.7/components/authentication">authentication</a>,
+                            a <a href="https://docs.jelix.org/en/manual-1.7/components/rights">rights management</a>...</p>
+                        <p>Without forgetting the <a href="https://docs.jelix.org/en/manual-1.7/components/locales">multi-language</a>
+                            and management of <a href="https://docs.jelix.org/en/manual-1.7/application/themes">graphic themes</a>.</p>
                         <p>Easily develop your Web services, whether
-                            <a href="https://docs.jelix.org/en/manual-1.6/controllers/rest-full">REST-Full</a>,
-                            <a href="https://docs.jelix.org/en/manual-1.6/web-services/soap">SOAP</a>,
-                            <a href="https://docs.jelix.org/en/manual-1.6/web-services/xml-rpc">xml-rpc</a>,
-                            <a href="https://docs.jelix.org/en/manual-1.6/web-services/ajax">ajax</a> etc.</p>
+                            <a href="https://docs.jelix.org/en/manual-1.7/modules/controllers/rest-full">REST-Full</a>,
+                            <a href="https://docs.jelix.org/en/manual-1.7/modules/web-services/soap">SOAP</a>,
+                            <a href="https://docs.jelix.org/en/manual-1.7/modules/web-services/xml-rpc">xml-rpc</a>,
+                            <a href="https://docs.jelix.org/en/manual-1.7/modules/web-services/ajax">ajax</a> etc.</p>
                     </div>
                     <div class="section">
                         <h2>Quality and strength</h2>
@@ -83,11 +83,11 @@
                         <h2>Deployment</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/wizard.png" alt="screenshot" /></div>
                         <p>A quick and easy deployment thanks to the
-                            <a href="https://docs.jelix.org/en/manual-1.6/create-install-scripts">installation and update system</a> of Jelix.</p>
+                            <a href="https://docs.jelix.org/en/manual-1.7/configurator-installer/create-install-scripts">installation and update system</a> of Jelix.</p>
                         <p>Some optimized éditions of Jelix, "Optimized" or "Gold", bring you high performance
                         in your production environments.</p>
                         <p>Do you release your application to wide audience? Configure
-                            <a href="http://docs.jelix.org/en/manual-1.6/create-wizard">the wizard</a> of jelix,
+                            <a href="https://docs.jelix.org/en/manual-1.7/configurator-installer/create-wizard">the wizard</a> of jelix,
                             and your application is installed and ready to use in few clicks</p>
                     </div>
                     <div class="section">
@@ -137,11 +137,11 @@
 
                 <dl>
                     <dt><img src="/design/2011/icons/applications-education.png" />
-                        <a href="/articles/en/tutorials/minitutorial/1.6.x">Mini tutorial</a></dt>
+                        <a href="/articles/en/tutorials/minitutorial/1.7.x">Mini tutorial</a></dt>
                     <dd>To discover Jelix</dd>
                     <dt><img src="/design/2011/icons/applications-office.png" />
-                        <a href="https://docs.jelix.org/en/manual-1.6/">Full manual</a></dt>
-                    <dd><a href="https://docs.jelix.org/en/manual-1.6/">Online</a>
+                        <a href="https://docs.jelix.org/en/manual-1.7/">Full manual</a></dt>
+                    <dd><a href="https://docs.jelix.org/en/manual-1.7/">Online</a>
                         to learn concepts and the use of components</dd>
                     <!--<dt><img src="icons/applications-science.png" /><a href="">Cookbook</a></dt>
                     <dd>Trucs et astuces</dd>-->
@@ -201,12 +201,7 @@
             </div>  
             <div class="home-item">
             <h2>Jelix on twitter</h2>
-    {literal}
-<a class="twitter-timeline"  href="https://twitter.com/jelixfmk"  data-widget-id="446274608707022848">Tweets by @jelixfmk</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-    {/literal}
-
+                <p><a href="https://twitter.com/jelixfmk">@jelixfmk</a></p>
             </div>
             <hr />
         </div>
