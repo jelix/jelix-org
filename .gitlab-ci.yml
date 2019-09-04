@@ -5,6 +5,11 @@ deploy:
   stage: deploy
   script:
     - make deploy
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - scripts/vendor/
+      - scripts/composer.lock
   when: manual
   only:
     - master
