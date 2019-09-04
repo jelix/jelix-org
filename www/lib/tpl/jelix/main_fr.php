@@ -83,8 +83,8 @@ $menuSupport = (strpos($ID,'fr:support') === 0);
          
          <?php }elseif($menuDocumentation) { ?>
              <li<?php if($isTutorial)   echo ' class="selected"';?>><a href="/articles/fr/tutoriels">Tutoriels</a></li>
-             <li><a href="http://docs.jelix.org/fr/manuel-1.6">Manuel 1.6</a></li>
              <li><a href="http://docs.jelix.org/fr/manuel-1.7">Manual 1.7</a></li>
+             <li><a href="http://docs.jelix.org/fr/manuel-1.6">Manuel 1.6</a></li>
              <li><a href="/reference/index.php">reference API</a></li>
              <li><a href="http://docs.jelix.org/fr/">autres</a></li>
 
