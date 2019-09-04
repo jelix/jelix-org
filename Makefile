@@ -20,9 +20,7 @@ endif
 ifndef JELIX_ORG_RECAPTCHA_SECRET
     JELIX_ORG_RECAPTCHA_SECRET=
 endif
-ifndef JELIX_ORG_DEPLOY_TARGET
-    JELIX_ORG_DEPLOY_TARGET=/tmp/jelix.org
-endif
+
 
 
 portail/var/config/defaultconfig.ini.php:
@@ -55,6 +53,7 @@ clean:
 
 .PHONY: deploy
 deploy: build
-	rsync -av --delete --ignore-times --checksum --include-from=.build-files ./ $(JELIX_ORG_DEPLOY_TARGET)
+	rsync -av --delete --ignore-times --checksum --include-from=.build-files ./ $(JELIX_ORG_DEPLOY_SSH):$(JELIX_ORG_DEPLOY_DIR)
+	ssh $(JELIX_ORG_DEPLOY_SSH) 'cd $(JELIX_ORG_DEPLOY_DIR) && ./update.sh'
 
 
