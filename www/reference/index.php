@@ -67,8 +67,8 @@ foreach ($deprecatedVersions as $branch=>$v) {
       <div id="content-header">
          <ul id="submenubar">
              <li><a href="/articles/en/tutorials">Tutorials</a></li>
-             <li><a href="http://docs.jelix.org/en/manual-1.6">Manual 1.6</a></li>
              <li><a href="http://docs.jelix.org/en/manual-1.7">Manual 1.7</a></li>
+             <li><a href="http://docs.jelix.org/en/manual-1.6">Manual 1.6</a></li>
              <li class="selected"><a href="/reference/">API reference</a></li>
              <li><a href="http://docs.jelix.org/en/">Others</a></li>
          </ul>
