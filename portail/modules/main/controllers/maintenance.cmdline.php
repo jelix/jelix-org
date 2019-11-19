@@ -15,7 +15,8 @@ class maintenanceCtrl extends jControllerCmdLine {
     * true means that a value should be provided for the option on the command line
     */
     protected $allowed_options = array(
-
+        "deletezombieusers" => array('--all'=>false, '--confirm'=>false),
+        "deleteunconfirmedusers" => array('--all'=>false, '--confirm'=>false)
     );
 
     /**
@@ -76,41 +77,108 @@ class maintenanceCtrl extends jControllerCmdLine {
         return $rep;
     }
 
-    function deleteuser() {
+
+    function deletezombieusers() {
         $rep = $this->getResponse();
+
         $c = jDb::getConnection();
 
-        $login = $this->param('login');
-        $loginB = $c->quote($login);
-
-        $rs = $c->query("SELECT id from community_users where login = ".$loginB);
-        if (!$rs || ! ($rec = $rs->fetch())) {
-            $rep->addContent("unkown user\n");
-            return $rep;
+        $sql = 'SELECT id, login, email, create_date FROM community_users WHERE status = 1 AND id NOT IN (SELECT distinct id_user FROM hfnu_posts)';
+        if (!$this->option('--all')) {
+            $d = new DateTime();
+            $interval = new DateInterval("P15D");
+            $d->sub($interval);
+            $sql.= ' AND create_date < '.$c->quote($d->format("Y-m-d"));
+        }
+        $confirm = $this->option('--confirm');
+        $rs = $c->query($sql);
+        foreach($rs as $rec) {
+            $rep->addContent('- '.$rec->login.' ('.$rec->id.') - '.$rec->email.' - '.$rec->create_date."\n");
+            if ($confirm) {
+                $this->_deleteUser($rep, $rec->login, $rec->id);
+            }
         }
 
-        $id_user = $rec->id;
+        if (!$confirm) {
+            $rep->addContent("\nAdd option --confirm to really delete them\n");
+        }
+        return $rep;
+    }
+
+
+    function deleteunconfirmedusers()
+    {
+        $rep = $this->getResponse();
+
+        $c = jDb::getConnection();
+
+        if ($this->option('--all')) {
+            $rs = $c->query('SELECT id, login, request_date FROM community_users WHERE status = 0 ');
+        }
+        else {
+            $d = new DateTime();
+            $interval = new DateInterval("P2D");
+            $d->sub($interval);
+            $rs = $c->query('SELECT id, login, request_date FROM community_users WHERE status = 0 AND request_date < '.$c->quote($d->format("Y-m-d")) );
+        }
+
+        $confirm = $this->option('--confirm');
+
+        foreach($rs as $rec) {
+            $rep->addContent('- '.$rec->login.' - '.$rec->request_date."\n");
+            if ($confirm) {
+                $this->_deleteUser($rep, $rec->login, $rec->id);
+            }
+        }
+        if (!$confirm) {
+            $rep->addContent("\nAdd option --confirm to really delete them\n");
+        }
+        return $rep;
+    }
+
+
+    function deleteuser()
+    {
+        $rep = $this->getResponse();
+        $login = $this->param('login');
+        $this->_deleteUser($rep, $login);
+        return $rep;
+    }
+
+    protected function _deleteUser($rep, $login, $id_user=null)
+    {
+        $c = jDb::getConnection();
+        $loginB = $c->quote($login);
+
+        if ($id_user === null) {
+            $rs = $c->query("SELECT id from community_users where login = ".$loginB);
+            if (!$rs || ! ($rec = $rs->fetch())) {
+                $rep->addContent("unkown user\n");
+                return false;
+            }
+            $id_user = $rec->id;
+        }
 
         $rs = $c->query("select id_post, id_forum, thread_id, subject FROM hfnu_posts where id_user= ".$id_user);
         if (!$rs || count($all=$rs->fetchAll())) {
-            $rep->addContent("The user has some posts. delete them before deleting the user\n");
+            $rep->addContent("The user '".$login."' has some posts. delete them before deleting the user\n");
             foreach($all as $rec) {
                 $rep->addContent(' - '.$rec->id_post.':"'.$rec->subject.'", forum:'.$rec->id_forum.'", thread:'.$rec->thread_id."\n");
             }
-            return $rep;
+            return false;
         }
 
         $rs = $c->query("select id_thread, id_first_msg FROM hfnu_threads where id_user= ".$id_user);
         if (!$rs || count($all=$rs->fetchAll())) {
-            $rep->addContent("The user has some threads. delete them before deleting the user\n");
+            $rep->addContent("The user '".$login."' has some threads. delete them before deleting the user\n");
             foreach($all as $rec) {
                 $rep->addContent(' - '.$rec->id_thread.', first msg:'.$rec->id_first_msg."\n");
             }
-            return $rep;
+            return false;
         }
 
-        $c->exec('DELETE FROM connected_users WHERE login ='.$loginB);
-        $c->exec('DELETE FROM hfnu_bans WHERE login ='.$loginB);
+        $c->exec('DELETE FROM connectedusers WHERE login ='.$loginB);
+        $c->exec('DELETE FROM hfnu_bans WHERE ban_username ='.$loginB);
         $c->exec('DELETE FROM hfnu_notify WHERE id_user='.$id_user);
         $c->exec('DELETE FROM hfnu_rates WHERE id_user='.$id_user);
         $c->exec('DELETE FROM hfnu_read_forum WHERE id_user='.$id_user);
@@ -119,7 +187,7 @@ class maintenanceCtrl extends jControllerCmdLine {
         $c->exec('DELETE FROM hfnu_subscript_forum WHERE id_user='.$id_user);
         $c->exec('DELETE FROM jmessenger WHERE id_from='.$id_user.' or id_for='.$id_user);
 
-        $rs = $c->query("select id_aclgrp from jacl2_group where owner_login =".$loginB);
+        $rs = $c->query("select id_aclgrp from jacl2_group where ownerlogin =".$loginB);
         if ($rs && $rec = $rs->fetch()) {
             $private_group_id = $rec->id_aclgrp;
             $c->exec('DELETE FROM jacl2_rights WHERE id_aclgrp ='.$private_group_id);
@@ -127,10 +195,10 @@ class maintenanceCtrl extends jControllerCmdLine {
             $c->exec('DELETE FROM jacl2_group WHERE id_aclgrp ='.$private_group_id);
         }
         $c->exec('DELETE FROM hfnu_member_custom_fields WHERE id_user='.$id_user);
-        $c->exec('DELETE FROM community_users WHERE id_user='.$id_user);
+        $c->exec('DELETE FROM community_users WHERE id='.$id_user);
 
         $rep->addContent("user deleted\n");
-        return $rep;
+        return true;
     }
 }
 
