@@ -639,7 +639,7 @@ if(!function_exists('utf8_decode_numeric')){
     }
 }
 
-if(!class_exists('utf8_entity_decoder')){
+if(!class_exists('utf8_entity_decoder', false)){
     /**
      * Encapsulate HTML entity decoding tables
      */
