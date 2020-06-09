@@ -36,9 +36,7 @@ function getID($param='id',$clean=true){
         $script = '';
 
         //get the script URL
-        if($_SERVER['PATH_INFO']) { // HACK_LJ
-            $id = substr($_SERVER['PATH_INFO'],1);
-        }elseif($conf['basedir']){ // end HACK_LJ
+        if($conf['basedir']){
             $relpath = '';
             if($param != 'id') {
                 $relpath = 'lib/exe/';
@@ -55,17 +53,14 @@ function getID($param='id',$clean=true){
             $script = '/'.$script;
         }
 
-        if ($script) {// HACK_LJ
-            //clean script and request (fixes a windows problem)
-            $script = preg_replace('/\/\/+/', '/', $script);
-            $request = preg_replace('/\/\/+/', '/', $request);
+        //clean script and request (fixes a windows problem)
+        $script  = preg_replace('/\/\/+/','/',$script);
+        $request = preg_replace('/\/\/+/','/',$request);
 
-            //remove script URL and Querystring to gain the id
-            if (preg_match('/^' . preg_quote($script, '/') . '(.*)/', $request, $match)) {
-                $id = preg_replace('/\?.*/', '', $match[1]);
-            }
-        }// end HACK_LJ
-
+        //remove script URL and Querystring to gain the id
+        if(preg_match('/^'.preg_quote($script,'/').'(.*)/',$request, $match)){
+            $id = preg_replace ('/\?.*/','',$match[1]);
+        }
         $id = urldecode($id);
         //strip leading slashes
         $id = preg_replace('!^/+!','',$id);
@@ -401,6 +396,8 @@ function metaFiles($id){
  *
  * @param string     $id  media id
  * @param string|int $rev empty string or revision timestamp
+ * @param bool $clean
+ *
  * @return string full path
  */
 function mediaFN($id, $rev='', $clean=true){
