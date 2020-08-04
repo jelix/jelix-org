@@ -80,13 +80,13 @@
                 <li><a href="/articles/en/changelog">changelog</a></li>
                 <li><a href="https://github.com/jelix/jelix/issues">issues tracker</a></li>
                 <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
-                <li><a href="https://developer.jelix.org/wiki/en/contribute">How to contribute</a></li>
+                <li><a href="https://github.com/jelix/jelix/blob/master/CONTRIBUTING.md">How to contribute</a></li>
                 <li><a href="https://github.com/jelix/jelix">Code source repository</a></li>
             </ul>
         </div>
 
         <p id="footer-legend">
-            Copyright 2006-2019 Jelix team. <br/>
+            Copyright 2006-2020 Jelix team. <br/>
             Icons used on this page come from <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             and <a href="http://www.oxygen-icons.org/">Oxygen</a> icons sets.<br/>
             Design by Laurentj. <br/>

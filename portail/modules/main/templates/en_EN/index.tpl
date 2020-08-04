@@ -28,7 +28,7 @@
                         <ul>
                             <li>An architecture in reusable modules:
                                 <strong>capitalize on your development</strong></li>
-                            <li>An <acronym title="Model View Controller">MVC</acronym> logic and
+                            <li>An <abbr title="Model View Controller">MVC</abbr> logic and
                             a structured organization of files for <strong>easy maintenance</strong></li>
                             <li>Plugins to extend jelix components</li>
                             <li>Many simple APIs</li>
@@ -43,12 +43,14 @@
                             <li><a href="https://docs.jelix.org/en/manual-1.7/modules/controllers">generic CRUD controller</a>,
                                 module of <a href="https://docs.jelix.org/en/manual-1.7/application/administration-app">administration interface</a>,
                                 <a href="https://docs.jelix.org/en/manual-1.7/modules/views">dedicated views</a> to (X)HTML, ATOM, RSS,
-                                ZIP, PDF, RDF, XUL...</li>
-                            <li><a href="https://docs.jelix.org/en/manual-1.7/installation/jelix-scripts">Scripts for <acronym title="Command Line Interface">CLI</acronym></a>
+                                ZIP, PDF...</li>
+                            <li><a href="https://docs.jelix.org/en/manual-1.7/installation/jelix-scripts">Scripts for <abbr title="Command Line Interface">CLI</abbr></a>
                                 to generate code</li>
                             <li><a href="https://docs.jelix.org/en/manual-1.7/dev-tools/debugging#the-debug-bar">Debug bar</a> to ease debugging.</li>
                         </ul>
-                        <p>Reuse in your applications, modules and plugins availables on <strong><a href="https://booster.jelix.org">booster.jelix.org</a></strong></p>
+                        <p>Use modules and plugins available on <strong><a href="https://packagist.org/packages/jelix">on Packagist</a></strong>.
+                            <a href="/articles/en/independent-components">Use some components</a> outside Jelix.
+                        </p>
                     </div>
                     <div class="section">
                         <h2>Features</h2>
@@ -74,9 +76,9 @@
                         <p>A robustness at all levels:</p>
                         <ul>
                             <li>Security first&nbsp;: in forms, authentication...</li>
-                            <li>An advanced errors management, and following used protocols</li>
+                            <li>An advanced errors management, following used formats/protocols</li>
                             <li>Thousands unit tests on Jelix components</li>
-                            <li>PHPUnit or Simpletest integration for your own tests</li>
+                            <li>PHPUnit integration for your own tests</li>
                         </ul>
                     </div>
                     <div class="section">
@@ -84,8 +86,6 @@
                         <div class="section-screenshot"><img src="/design/2011/carroussel/wizard.png" alt="screenshot" /></div>
                         <p>A quick and easy deployment thanks to the
                             <a href="https://docs.jelix.org/en/manual-1.7/configurator-installer/create-install-scripts">installation and update system</a> of Jelix.</p>
-                        <p>Some optimized éditions of Jelix, "Optimized" or "Gold", bring you high performance
-                        in your production environments.</p>
                         <p>Do you release your application to wide audience? Configure
                             <a href="https://docs.jelix.org/en/manual-1.7/configurator-installer/create-wizard">the wizard</a> of jelix,
                             and your application is installed and ready to use in few clicks</p>
@@ -148,6 +148,8 @@
                     <dt><img src="/design/2011/icons/applications-system.png" />
                         <a href="/reference/">Detailled reference of APIs</a></dt>
                     <dd>Enter in the core of Jelix</dd>
+                    <dt><a href="/articles/en/independent-components">Independent components</a></dt>
+                    <dd>List of components usable without Jelix.</dd>
                 </dl>
             </div>
             

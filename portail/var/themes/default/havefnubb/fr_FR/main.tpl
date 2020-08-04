@@ -82,7 +82,7 @@
                 <li><a href="/articles/fr/changelog">Journal des changements</a></li>
                 <li><a href="https://github.com/jelix/jelix/issues">Suivi des bugs</a></li>
                 <li><a href="https://github.com/jelix/jelix/milestones">roadmap</a></li>
-                <li><a href="http://developer.jelix.org/wiki/fr/contribuer">Comment contribuer</a></li>
+                <li><a href="https://github.com/jelix/jelix/blob/master/CONTRIBUTING.md">Comment contribuer</a></li>
                 <li><a href="https://github.com/jelix/jelix">Dépôt des sources</a></li>
             </ul>
         </div>
@@ -96,7 +96,7 @@
         </div>-->
 
         <p id="footer-legend">
-            Copyright 2006-2016 Jelix team. <br/>
+            Copyright 2006-2020 Jelix team. <br/>
             Design par Laurentj. <br/>
 			{@havefnubb~main.poweredby@} <a href="http://www.havefnubb.org" title="HaveFnuBB!">HaveFnuBB!</a><br/>
             <img src="/design/btn_jelix_powered.png" alt="page générée par une application Jelix" />

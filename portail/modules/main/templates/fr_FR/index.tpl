@@ -24,12 +24,12 @@
                     <div class="section">
                         <h2>Un framework robuste</h2>
                         <div class="section-screenshot"><img src="/design/2011/carroussel/logo3d_jelix_3quart.png" alt="screenshot" /></div>
-                        <p>Depuis 2006, Jelix offre des solutions perennes à vos projets d'applications
+                        <p>Depuis 2006, Jelix offre des solutions pérennes à vos projets d'applications
                             et sites web&nbsp;:</p>
                         <ul>
                             <li>Une architecture en modules réutilisables&nbsp;:
                                 <strong>capitalisez sur vos développements !</strong></li>
-                            <li>Une logique <acronym title="Modele Vue Controleur">MVC</acronym> et
+                            <li>Une logique <abbr title="Modele Vue Controleur">MVC</abbr> et
                                 une arborescence normalisée pour <strong>une maintenance facilitée</strong></li>
                             <li>Des plugins pour étendre la plupart des composants</li>
                             <li>Des APIs simples et nombreuses</li>
@@ -44,11 +44,12 @@
                             <li><a href="https://docs.jelix.org/fr/manuel-1.7/modules/controleurs/crud">Contrôleur CRUD générique</a>,
                                 module d'<a href="https://docs.jelix.org/fr/manuel-1.7/application/creer-administration">interface d'administration</a>,
                                 <a href="https://docs.jelix.org/fr/manuel-1.7/modules/vues/index">vues dédiées</a> à (X)HTML, ATOM, RSS,
-                                ZIP, PDF, RDF, XUL...</li>
+                                ZIP, PDF...</li>
                             <li><a href="https://docs.jelix.org/fr/manuel-1.7/installation/jelix-scripts">Scripts en lignes de commande</a> pour générer rapidement du code</li>
                             <li><a href="https://docs.jelix.org/fr/manuel-1.7/outils-dev/deboggage#la-debug-barre">Debug bar</a> pour faciliter le debuggage.</li>
                         </ul>
-                        <p>Réutilisez dans vos applications les modules et plugins proposés sur <strong><a href="https://booster.jelix.org">booster.jelix.org</a></strong></p>
+                        <p>Utilisez les modules et plugins disponibles <strong><a href="https://packagist.org/packages/jelix">sur Packagist</a></strong>.
+                            <a href="/articles/fr/composants-independants">Utilisez certains composants</a> en dehors de Jelix</p>
                     </div>
                     <div class="section">
                         <h2>Fonctionnalités</h2>
@@ -57,12 +58,12 @@
                             <a href="https://docs.jelix.org/fr/manuel-1.7/composants/daos">un ORM</a>,
                             un <a href="https://docs.jelix.org/fr/manuel-1.7/composants/jforms">système de formulaire</a>,
                             un <a href="https://docs.jelix.org/fr/manuel-1.7/composants/templates">moteur de template</a>,
-                            un <a href="https://docs.jelix.org/fr/manuel-1.7/composants/events">système évenementiel</a>,
+                            un <a href="https://docs.jelix.org/fr/manuel-1.7/composants/events">système évènementiel</a>,
                             un module d'<a href="https://docs.jelix.org/fr/manuel-1.7/composants/authentification">authentification</a>,
                             de <a href="https://docs.jelix.org/fr/manuel-1.7/composants/droits">gestion de droits</a>...</p>
                         <p>Sans oublier l'aspect <a href="https://docs.jelix.org/fr/manuel-1.7/composants/locales">multi-langue</a> et
                             la gestion de <a href="https://docs.jelix.org/fr/manuel-1.7/application/themes">themes</a> graphiques.</p>
-                        <p>Développez aisement vos services Web, qu'ils soient
+                        <p>Développez aisément vos services Web, qu'ils soient
                             <a href="https://docs.jelix.org/fr/manuel-1.7/modules/controleurs/rest-full">REST-Full</a>,
                             en <a href="https://docs.jelix.org/fr/manuel-1.7/modules/services-web/soap">SOAP</a>,
                             en <a href="https://docs.jelix.org/fr/manuel-1.7/modules/services-web/xml-rpc">xml-rpc</a>,
@@ -76,7 +77,7 @@
                             <li>Sécurité avant tout&nbsp;: dans les formulaires, l'authentification...</li>
                             <li>Une gestion poussée des erreurs, et respectant les protocoles utilisés</li>
                             <li>Des milliers de tests unitaires sur les composants de jelix</li>
-                            <li>Intégration de PHPUnit ou Simpletest pour vos propres tests</li>
+                            <li>Intégration de PHPUnit pour vos propres tests</li>
                         </ul>
                     </div>
                     <div class="section">
@@ -84,7 +85,6 @@
                         <div class="section-screenshot"><img src="/design/2011/carroussel/wizard.png" alt="screenshot" /></div>
                         <p>Un deploiement aisé et rapide grâce au
                             <a href="https://docs.jelix.org/fr/manuel-1.7/configurateur-installateur/creer-script-installation">système d'installation et de mise à jour</a> de Jelix.</p>
-                        <p>Les éditions optimisées de Jelix, "Optimized" ou "Gold", vous offre des performances accrues dans vos environnements de production.</p>
                         <p>Vous diffusez votre application à un large public ? Utilisez
                             <a href="https://docs.jelix.org/fr/manuel-1.7/configurateur-installateur/creer-wizard">le wizard</a> de jelix,
                             et en quelques clics l'application est installée et prête à l'emploi</p>
@@ -144,6 +144,8 @@
                     <dd>Trucs et astuces</dd>-->
                     <dt><img src="/design/2011/icons/applications-system.png" /><a href="/reference/">Référence détaillée des APIs</a></dt>
                     <dd>Entrez dans le coeur de Jelix</dd>
+                    <dt><a href="/articles/fr/composants-independants">Composants indépendants</a></dt>
+                    <dd>Liste des composants que vous pouvez utilisez sans Jelix</dd>
                 </dl>
             </div>
             

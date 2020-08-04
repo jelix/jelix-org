@@ -199,7 +199,7 @@ $menuCommunity = (strpos($ID,'en:community') === 0 || $ID=='en:goodies');
         </div>
 
         <p id="footer-legend">
-            Copyright 2006-2019 Jelix team. <br/>
+            Copyright 2006-2020 Jelix team. <br/>
             Icons used on this page come from <a href="http://schollidesign.deviantart.com/art/Human-O2-Iconset-105344123">Human-O2</a>
             and <a href="http://www.oxygen-icons.org/">Oxygen</a> icons sets.<br/>
             Design by Laurentj.
